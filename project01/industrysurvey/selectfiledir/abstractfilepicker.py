@@ -1,7 +1,6 @@
 from pathlib import Path
 from abc import ABCMeta
 from abc import abstractmethod
-from abc import ABC
 import win32com.client
 
 

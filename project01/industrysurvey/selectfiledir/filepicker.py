@@ -1,5 +1,5 @@
 import pathlib
-from abstractfilepicker import AbstractFileDialog
+from selectfiledir.abstractfilepicker import AbstractFileDialog
 import tkinter.filedialog as dialog
 import tkinter
 
@@ -12,7 +12,7 @@ class GetFile(AbstractFileDialog):
     def get_files(self):
         root = tkinter.Tk()
         root.withdraw()
-        result = dialog.askopenfilenames(filetypes=self.ftype, initaldir=self.initdir)
+        result = dialog.askopenfilenames(filetypes=self.fType, initialdir=self.initdir)
         if not self.hasItem(result):
             return False
         self.file_list = list(result)

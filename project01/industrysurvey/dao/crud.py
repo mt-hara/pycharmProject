@@ -20,7 +20,7 @@ class Customers(BaseSession):
                 return i.customerCd
 
 if __name__ == "__main__":
-    sqlite_patrh = "C:\\dev\\sqlite3\\BizSurvey.sqlite3"
+    sqlite_patrh = "G:\\97.ACCESS\\sqlite3db\\BizSurvey.sqlite3"
     cli = Customers(sqlite_patrh)
     # cli.select()
     strfld = cli.like_select("シーシーエス")

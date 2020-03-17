@@ -5,8 +5,8 @@ import pathlib
 import tkinter as tk
 import tkinter.filedialog as filedialog
 import tkinter.messagebox as msgbox
-from industrysurvey.selectfiledir.filepicker import GetFile
-from industrysurvey.selectfiledir.filepicker import GetDirs
+from selectfiledir.filepicker import GetFile
+from selectfiledir.filepicker import GetDirs
 
 
 class AbsApplication(tk.Frame):

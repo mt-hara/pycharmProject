@@ -16,10 +16,6 @@ class AbstractApp(tk.Frame):
         super().__init__(master=master,cnf={}, **kw)
         self.grid()
 
-    def cancel_cmd(self):
-        self.destroy()
-        self.quit()
-
 
 class MyApp(AbstractApp):
     def __init__(self,master=None,cnf={}, **kw):
@@ -38,7 +34,7 @@ class MyApp(AbstractApp):
 
 if __name__ == "__main__":
     root: Tk = tk.Tk()
-    app = MyApp(master=root)
-    app.master.title("My Application")
-    app.master.geometry("650x400")
-    app.mainloop()
+    apps = MyApp(master=root)
+    apps.master.title("My Application")
+    apps.master.geometry("650x400")
+    apps.mainloop()

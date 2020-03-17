@@ -9,11 +9,12 @@ class GetFile(AbstractFileDialog):
         super().__init__(def_dir, fType, *args, **kw)
         self.file_list = []
 
+    @property
     def get_files(self):
         root = tkinter.Tk()
         root.withdraw()
         result = dialog.askopenfilenames(filetypes=self.fType, initialdir=self.initdir)
-        if not self.hasItem(result):
+        if self.hasItem(result) == False:
             return False
         self.file_list = list(result)
 
@@ -28,7 +29,7 @@ class GetDirs(AbstractFileDialog):
 
         def get_files(self):
             result = dialog.askdirectory(initialdir=self.initdir)
-            if not self.hasItem(result):
+            if self.hasItem(result) == False:
                 return False
 
             self.set_ext_type(self.ftype)

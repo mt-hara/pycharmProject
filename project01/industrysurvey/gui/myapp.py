@@ -8,7 +8,7 @@ from tkinter import Tk
 
 from gui.appmodel import AppModel
 from gui.appview import AppView
-from gui.appcontroller import AppContrpller
+from gui.appcontroller import AppController
 
 
 class AbstractApp(tk.Frame):
@@ -31,7 +31,7 @@ class MyApp(AbstractApp):
 
         self.model = AppModel(self.master)
         self.view = AppView(self.master, self.model)
-        self.controller = AppContrpller(self.master, self.model, self.view)
+        self.controller = AppController(self.master, self.model, self.view)
 
         self.view.top_view()
 

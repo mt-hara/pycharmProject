@@ -2,32 +2,70 @@ from dto.excelbase import AbsExcelApp
 from dto.excelbase import AbsExcelWorkBook
 import dataclasses
 
+
 class ExcelData():
     def __init__(self, app, filepath):
         self.wb = AbsExcelWorkBook(app, filepath)
         self.ws = self.wb.xlws
+        self.customercd = ""
+        self.get_exdata()
+
+    def get_exdata(self):
+        self.customercd = str(self.ws.range("H3").value)
+
 
 @dataclasses.dataclass
 class CustomerMaster:
-    customercd : str
-    ringino : str
-    customername : str
-    CustomerShortName : str
-    excludeLaw : bool
-    headOfficeZipCd : str
-    headOfficeAddress1 : str
-    headOfficeAddress2 : str
-    headOfficeTel : str
-    headOfficeFax : str
-    BranchOfficeZipCd : str
-    BranchOfficeAddress1 : str
-    BranchOfficeAddress2 : str
-    BranchOfficeTel : str
-    BranchOfficeFax : str
-    repName : str
-    repKanaName : str
-    repJobTitle : str
-    repBirthday :str
+    CustomerCd: str
+    ringino: str
+    CustomerName: str
+    vustomerShortName: str
+    excludeLaw: bool
+    headOfficeZipCd: str
+    headOfficeAddress1: str
+    headOfficeAddress2: str
+    headOfficeTel: str
+    headOfficeFax: str
+    BranchOfficeZipCd: str
+    BranchOfficeAddress1: str
+    BranchOfficeAddress2: str
+    BranchOfficeTel: str
+    BranchOfficeFax: str
+    repName: str
+    repKanaName: str
+    repJobTitle: str
+    repBirthday: str
+    employees: int
+    employeeMonth: int
+    employeeYear: int
+    CapitalForm: int
+    CorporateType: int
+    OtherCorpType: str
+    establishedMonth: int
+    establishedYear: int
+    AccountClosingMonth: int
+    ReturnOnEquity: float
+    ISO9001Certif: str
+    ISO9001ResistedNo: str
+    ISO9001CertifPlanYM: str
+    ISO14001Certif: str
+    ISO14001ResistedNo: str
+    ISO14001CertifPlanYM: str
+    OtherCertif:str
+    CustomerCategory: str
+    CustomerBizType: int
+    picName: str
+    picKanaName: str
+    PicEmailAddress: str
+    picDept: str
+    picPosition: str
+    sameHeadOffice: bool
+    contactZipCd: str
+    contactAddress1: str
+    contactAddress2: str
+    contactTel: str
+    contactFax: str
+    contactInfo: str
 
 
 if __name__ == "__main__":
@@ -36,4 +74,5 @@ if __name__ == "__main__":
     xlbook = ExcelData(xlapp.app, filename)
     var = xlbook.ws.name
     print(var)
+    print(xlbook.customercd)
     xlapp.close_app()

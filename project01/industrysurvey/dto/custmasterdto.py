@@ -1,12 +1,15 @@
 from dataclasses import dataclass, fields, asdict, astuple
-from excelcls.concexcel import ConcExcelApp
-from excelcls.concexcel import ConcExcelWorkBook
+from excelcls.concexcel import ConExcelApp
+from excelcls.concexcel import ConExcelWorkBook
+
 
 @dataclass
-class CustomerMaster(ConcExcelWorkBook):
+class CustomerMaster(ConExcelWorkBook):
     def __init__(self, app, filepath):
         super().__init__(app, filepath)
-        self.set_data(self.ws)
+        self.get_shape_pos()
+        self.get_cell_data(self.ws)
+
 
     CustomerCd: str = ""
     ringNo: str = ""
@@ -60,25 +63,89 @@ class CustomerMaster(ConcExcelWorkBook):
     contactFax: str = ""
     contactInfo: str = ""
 
+    def get_cell_data(self, ws):
+        self.get_shape_data()
+        self.CustomerCd: str = str(ws.range("H3").value)
+        self.CustomerName: str = ws.range("H5").value
+        self.CustomerKanaName: str = ws.range("H4").value
+        self.employees: int = int(ws.range("K22").value)
 
-    def set_data(self, ws):
-        self.CustomerCd = ws.range("H3").value
-        self.CustomerName = ws.range("H5").value
-        self.CustomerKanaName = ws.range("H4").value
-        self.employees = int(ws.range("K22").value)
+    def get_shape_data(self):
+        for dictval in self.sh_pos:
+            top_pos: float = dictval["top"]
+            left_pos: float = dictval["left"]
 
-
-
-
+            # 業種分類
+            if 210 < top_pos < 225:
+                if  80 < left_pos < 125:
+                    print("メーカー")
+                elif 145 < left_pos < 190:
+                    print("商社")
+                elif 200 < left_pos < 285:
+                    print("メーカー＆商社")
+                elif 298 < left_pos < 350:
+                    print("代理店")
+                elif 360 < left_pos < 400:
+                    print("卸売")
+                elif 422 < left_pos < 445:
+                    print("その他")
+                else:
+                    print("else")
+            # 資本形態
+            elif 222 < top_pos < 238:
+                if 80 < left_pos < 125:
+                    print("個人")
+                else:
+                    print("法人")
+                    if 180 < left_pos < 235:
+                        print("株式会社")
+                    elif 240 < left_pos < 290:
+                        print("有限会社")
+                    elif 295 < left_pos < 400:
+                        print("その他")
+            # 上場区分
+            elif 237 < top_pos < 253:
+                if 340 < left_pos < 410:
+                    print("非上場")
+                else:
+                    print("上場")
+                    if 80 < left_pos < 125:
+                        print("東証1部")
+                    elif 150 < left_pos < 190:
+                        print("東証2部")
+                    elif 210 < left_pos < 300:
+                        print("その他")
+            # ISO認認証取得区分
+            elif 690 < top_pos < 717:
+                if 25.5 < left_pos < 100:
+                    print("ISO9000取得済み")
+                elif 305 < left_pos < 390:
+                    print("ISO14000取得済み")
+            elif 720 < top_pos < 731:
+                if 25.5 < top_pos < 100:
+                    print("ISO9000取得予定")
+                elif 305 < left_pos < 390:
+                    print("ISO14000取得予定")
+            elif 733 < top_pos < 747:
+                if 25.5 < left_pos < 100:
+                    print("ISO9000予定なし")
+                elif 305 < left_pos < 390:
+                    print("ISO14000予定なし")
+            elif top_pos>800:
+                pass
 
 if __name__ == "__main__":
-    xlapp = ConcExcelApp()
-    filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（㈱八木熊）.xlsx"
+    xlapp = ConExcelApp()
+    # filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（㈱八木熊）.xlsx"
+    filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査表（ワタキューセイモア株式会社）.xlsx"
 
-    mst = CustomerMaster(xlapp.app,filename)
+    mst = CustomerMaster(xlapp.app, filename)
 
-    print(repr(mst))
+    # print(repr(mst))
+
+    # for i in mst.sh_pos:
+    #     print("top = " + str(i["top"]))
+    #     print("left= " + str(i["left"]))
 
     mst.wb_close()
     xlapp.close_app()
-

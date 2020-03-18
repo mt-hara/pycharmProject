@@ -17,14 +17,14 @@ class AbsExcelApp(metaclass=ABCMeta):
 
 
 class AbsExcelWorkBook():
-    def __init__(self, app, filename) -> None:
-        self.app = app
-        self.filepath = filename
+    def __init__(self, app: object, filename: str) -> None:
+        self.app: object = app
+        self.filepath: str = filename
         self.xlwb = None
         self.xlws = None
         self.open_book(self.app)
 
-    def open_book(self, app):
+    def open_book(self, app: object):
         try:
             self.xlwb = app.books.open(self.filepath)
             self.xlwb.app.calculate = 'manual'

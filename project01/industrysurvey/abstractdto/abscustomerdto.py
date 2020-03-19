@@ -1,0 +1,56 @@
+from dataclasses import dataclass, fields, asdict, astuple
+
+
+@dataclass
+class AbstCustomerMaster():
+    CustomerCd: str
+    ringNo: str
+    CustomerName: str
+    CustomerKanaName: str
+    CustomerShortName: str
+    excludeLaw: bool
+    headOfficeZipCd: str
+    headOfficeAddress1: str
+    headOfficeAddress2: str
+    headOfficeTel: str
+    headOfficeFax: str
+    BranchOfficeZipCd: str
+    BranchOfficeAddress1: str
+    BranchOfficeAddress2: str
+    BranchOfficeTel: str
+    BranchOfficeFax: str
+    repName: str
+    repKanaName: str
+    repJobTitle: str
+    repBirthday: str
+    employees: int
+    employeeMonth: int
+    employeeYear: int
+    CapitalForm: int
+    CorporateType: int
+    OtherCorpType: str
+    establishedMonth: int
+    establishedYear: int
+    AccountClosingMonth: int
+    ReturnOnEquity: float
+    ISO9001Certif: str
+    ISO9001ResistedNo: str
+    ISO9001CertifPlanYM: str
+    ISO14001Certif: str
+    ISO14001ResistedNo: str
+    ISO14001CertifPlanYM: str
+    OtherCertif: str
+    CustomerCategory: str
+    CustomerBizType: int
+    picName: str
+    picKanaName: str
+    PicEmailAddress: str
+    picDept: str
+    picPosition: str
+    sameHeadOffice: bool
+    contactZipCd: str
+    contactAddress1: str
+    contactAddress2: str
+    contactTel: str
+    contactFax: str
+    contactInfo: str

@@ -44,6 +44,8 @@ class AbstractExcelApp():
 
     def close_wb(self):
         self.xlwb.close()
+        self.xlws = None
+        self.xlwb = None
 
     def open_ws(self):
         self.xlws = AbstractWorkSheet().open_worksheet(self.xlwb)
@@ -71,10 +73,18 @@ if __name__ == "__main__":
     cli = AbstractExcelApp()
     cli.open_app()
     filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（㈱八木熊）.xlsx"
+    filename2 = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（ＮＣＤ NakajimaControlDesign）.xlsx"
 
     cli.open_wb(filename)
+    cli.open_wb(filename2)
     cli.open_ws()
+
     print(cli.xlws.range("H3").value)
+    print(cli.xlws)
     cli.close_wb()
+    if cli.xlws == None:
+        print("sheet is none")
+    else:
+        print(type(cli.xlws))
     cli.close_app()
 

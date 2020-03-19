@@ -1,5 +1,5 @@
 from dataclasses import dataclass, fields, asdict, astuple
-from excelcls.concexcel import ConExcelApp
+from excelcls.concexcel import ConApp
 from excelcls.concexcel import ConExcelWorkBook
 
 
@@ -136,7 +136,7 @@ class CustomerMaster(ConExcelWorkBook):
                 pass
 
 if __name__ == "__main__":
-    xlapp = ConExcelApp()
+    xlapp = ConApp()
     # filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（㈱八木熊）.xlsx"
     filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査表（ワタキューセイモア株式会社）.xlsx"
 

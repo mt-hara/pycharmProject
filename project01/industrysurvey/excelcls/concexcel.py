@@ -1,14 +1,14 @@
-from typing import *
-import xlwings as xlw
+# from typing import *
+# import xlwings as xlw
 import tkinter
 import tkinter.messagebox as msgbox
-from excelcls.absexcel import AbsExcelApp
+from excelcls.absexcel import AbstractApp
 
 root = tkinter.Tk()
 root.withdraw()
 
 
-class ConExcelApp(AbsExcelApp):
+class ConApp(AbstractApp):
 
     def __init__(self) -> None:
         super().__init__()
@@ -25,7 +25,7 @@ class ConExcelApp(AbsExcelApp):
             msgbox.showinfo("エラー", "ファイル読み込みエラー")
             exit(0)
 
-    def close_wb(self) -> object:
+    def close_wb(self):
         self.xlwb.close()
 
     def selerct_sheet(self) -> None:
@@ -67,7 +67,7 @@ class ConExcelWorkBook():
 
 
 if __name__ == "__main__":
-    xlapp = ConExcelApp()
+    xlapp = ConApp()
     filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（㈱八木熊）.xlsx"
     xlapp.open_wb(filename)
 

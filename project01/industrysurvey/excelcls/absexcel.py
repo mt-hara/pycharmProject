@@ -1,40 +1,28 @@
+from typing import *
 import xlwings as xlw
-import tkinter
-import tkinter.messagebox as msgbox
 from abc import ABCMeta
 from abc import abstractmethod
-root = tkinter.Tk()
-root.withdraw()
 
 
 class AbsExcelApp(metaclass=ABCMeta):
     def __init__(self):
         self.app = xlw.App(visible=True)
+        self.xlwb: object = None
+        self.xlws: object = None
 
-    @abstractmethod
-    def close_app(self):
+
+    def close_app(self) -> object:
         self.app.quit()
 
+    @abstractmethod
+    def open_wb(self, *args):
+        pass
 
-class AbsExcelWorkBook():
-    def __init__(self, app: object, filename: str) -> None:
-        self.app: object = app
-        self.filepath: str = filename
-        self.xlwb = None
-        self.xlws = None
-        self.open_book(self.app)
+    @abstractmethod
+    def close_wb(self):
+        pass
 
-    def open_book(self, app: object):
-        try:
-            self.xlwb = app.books.open(self.filepath)
-            self.xlwb.app.calculate = 'manual'
-            self.xlwb.app.display_alerts = False
-            self.xlws = self.xlwb.sheets[0]
-        except AttributeError:
-            msgbox.showinfo("エラー", "ファイル読み込みエラー")
-            pass
-        finally:
-            pass
+    @abstractmethod
+    def selerct_sheet(self):
+        pass
 
-    def close_book(self):
-        self.xlwb.close()

@@ -29,6 +29,7 @@ class AbstCustomerMaster():
     CapitalForm: int
     CorporateType: int
     OtherCorpType: str
+    stockMarket: str
     establishedMonth: int
     establishedYear: int
     AccountClosingMonth: int

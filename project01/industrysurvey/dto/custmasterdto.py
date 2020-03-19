@@ -37,6 +37,7 @@ class CustomerMaster(ConExcelWorkBook):
     CapitalForm: int = None
     CorporateType: int = None
     OtherCorpType: str = ""
+    stockMarket: str=""
     establishedMonth: int = None
     establishedYear: int = None
     AccountClosingMonth: int = None

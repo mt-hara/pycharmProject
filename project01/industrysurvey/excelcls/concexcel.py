@@ -37,7 +37,7 @@ class ConcreateExcelWorkBook(AbstaractWorkBook):
         self.select_sheet()
 
 
-class GetExcelData():
+class ExcelData():
     def __init__(self,worksheet):
         self.shape_pos: List[Any] = []
         self.sheet: object = None
@@ -68,15 +68,14 @@ class GetShapeData():
         self.iso14000_certif = ""
         self.pos_data: List[Any] = []
 
-    def get_biz_type(self):
-        pass
+
 
 
 if __name__ == "__main__":
     xlapp = ConcreateExcelWorkBook()
     filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（㈱八木熊）.xlsx"
     xlapp.open_file(filename)
-    cl = GetExcelData(xlapp.xlws)
+    cl = ExcelData(xlapp.xlws)
     cl.get_shape_pos()
     print(cl.shape_pos)
 

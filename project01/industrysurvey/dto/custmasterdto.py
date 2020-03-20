@@ -1,16 +1,12 @@
 from dataclasses import dataclass, fields, asdict, astuple
-from excelcls.concexcel import ConApp
-from excelcls.concexcel import ConExcelWorkBook
+from excelcls.concexcel import ConcreateExcelWorkBook
+from excelcls.concexcel import ExcelData
+
+
 
 
 @dataclass
-class CustomerMaster(ConExcelWorkBook):
-    def __init__(self, app, filepath):
-        super().__init__(app, filepath)
-        self.get_shape_pos()
-        self.get_cell_data(self.ws)
-
-
+class AllCustomerMaster:
     CustomerCd: str = ""
     ringNo: str = ""
     CustomerName: str = ""
@@ -154,17 +150,17 @@ class CustomerMaster(ConExcelWorkBook):
                 pass
 
 if __name__ == "__main__":
-    xlapp = ConApp()
+    # xlapp = ConApp()
     # filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（㈱八木熊）.xlsx"
     filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査表（ワタキューセイモア株式会社）.xlsx"
 
-    mst = CustomerMaster(xlapp.app, filename)
+    # mst = CustomerMaster(xlapp.app, filename)
 
     # print(repr(mst))
 
     # for i in mst.sh_pos:
     #     print("top = " + str(i["top"]))
     #     print("left= " + str(i["left"]))
-
-    mst.wb_close()
-    xlapp.close_app()
+    #
+    # mst.wb_close()
+    # xlapp.close_app()

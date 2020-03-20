@@ -81,3 +81,12 @@ class AbstaractWorkBook(metaclass=ABCMeta):
 
 class AbstractGetSheetData():
     pass
+
+
+class AbstractExcelData():
+    def __init__(self):
+        self.shape_pos = []
+        self.xlsheet = None
+
+    def set_worksheet(self):
+        pass

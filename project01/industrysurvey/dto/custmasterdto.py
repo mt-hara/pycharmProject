@@ -3,7 +3,9 @@ from excelcls.concexcel import ConcreateExcelWorkBook
 from excelcls.concexcel import ExcelData
 
 
-
+@dataclass
+class CustomerMasterDTO:
+    pass
 
 @dataclass
 class AllCustomerMaster:

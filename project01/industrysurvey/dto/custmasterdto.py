@@ -76,7 +76,13 @@ class CustomerMaster(ConExcelWorkBook):
             top_pos: float = dictval["top"]
             left_pos: float = dictval["left"]
 
-            # 業種分類
+            # 業種分類 venderBizType
+            # 1 メーカー |1
+            # 2 商社 |2
+            # 3 メーカー&商社 |3
+            # 4 代理店 |4
+            # 5 卸売 | 5
+            # 6 その他 | 6
             if 210 < top_pos < 225:
                 if  80 < left_pos < 125:
                     print("メーカー")
@@ -92,24 +98,34 @@ class CustomerMaster(ConExcelWorkBook):
                     print("その他")
                 else:
                     print("else")
-            # 資本形態
+            # 資本形態 CapitalForm
+            #1 個人 | 個人 1
+            #2 法人 | 法人 2
+            #       | その他 9
             elif 222 < top_pos < 238:
                 if 80 < left_pos < 125:
                     print("個人")
                 else:
                     print("法人")
+                    # CorporateType
+                    # 1 株式会社 | 株式会社 1
+                    # 2 有限会社 | 有限会社 2
+                    # 3 その他 | その他 9
                     if 180 < left_pos < 235:
                         print("株式会社")
                     elif 240 < left_pos < 290:
                         print("有限会社")
                     elif 295 < left_pos < 400:
                         print("その他")
-            # 上場区分
+            # 上場区分 stockStatusId
+            # 上場 | 1
+            # 非上場 | 0
             elif 237 < top_pos < 253:
                 if 340 < left_pos < 410:
                     print("非上場")
                 else:
                     print("上場")
+                    # stockMarket string
                     if 80 < left_pos < 125:
                         print("東証1部")
                     elif 150 < left_pos < 190:
@@ -119,8 +135,10 @@ class CustomerMaster(ConExcelWorkBook):
             # ISO認認証取得区分
             elif 690 < top_pos < 717:
                 if 25.5 < left_pos < 100:
+                    #ISO9001Certif
                     print("ISO9000取得済み")
                 elif 305 < left_pos < 390:
+                    #ISO14001Certif
                     print("ISO14000取得済み")
             elif 720 < top_pos < 731:
                 if 25.5 < top_pos < 100:

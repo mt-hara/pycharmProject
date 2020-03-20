@@ -1,26 +1,22 @@
-# from typing import *
-# import xlwings as xlw
+from typing import Dict, Any, List
+
+import xlwings as xlw
 import tkinter
 import tkinter.messagebox as msgbox
-from excelcls.absexcel import AbstractApp
+from excelcls.absexcel import AbstaractWorkBook
 
 root = tkinter.Tk()
 root.withdraw()
 
 
-class ConApp(AbstractApp):
-
-    def __init__(self) -> None:
+class ConcreateExcelWorkBook(AbstaractWorkBook):
+    def __init__(self):
         super().__init__()
-        self.app.calculation = "manual"
-        self.app.display_alerts = False
 
-    # def close_app(self) -> None:
-    #     self.app.quit()
-
-    def open_wb(self, filepath) -> None:
+    def open_wb(self, filepath: str):
         try:
-            self.xlwb = self.app.books.open(filepath)
+            self.xlwb = self.xlapp.books.open(filepath)
+            # return self.xlwb
         except AttributeError:
             msgbox.showinfo("エラー", "ファイル読み込みエラー")
             exit(0)
@@ -28,55 +24,66 @@ class ConApp(AbstractApp):
     def close_wb(self):
         self.xlwb.close()
 
-    def selerct_sheet(self) -> None:
+    def select_sheet(self):
         try:
             self.xlws = self.xlwb.sheets[0]
+            # return self.xlws
         except AttributeError:
             msgbox.showinfo("エラー", "シート読み込みエラー")
             exit(0)
 
+    def open_file(self,filepath):
+        self.open_wb(filepath)
+        self.select_sheet()
 
-class ConExcelWorkBook():
+
+class GetExcelData():
+    def __init__(self,worksheet):
+        self.shape_pos: List[Any] = []
+        self.sheet: object = None
+        self.get_worksheet(worksheet)
+
+    def get_worksheet(self,xlws) -> object:
+        self.sheet = xlws
+        return  self.sheet
+
+    def close_wb(self,xlwb):
+        xlwb.close()
+
+    def get_shape_pos(self):
+        shapes = self.sheet.shapes
+        for sh in shapes:
+            var: Dict[str, Any] = {"top": sh.top, "left": sh.left}
+            self.shape_pos.append(var)
+            
+
+class GetShapeData():
     def __init__(self):
-        pass
+        self.vender_biz_type=None
+        self.capital_form = None
+        self.corporate_type = None
+        self.stock_status = None
+        self.stock_marcket = ""
+        self.iso9000_certif = ""
+        self.iso14000_certif = ""
+        self.pos_data: List[Any] = []
 
-    # def __init__(self, app :object, filepath: str):
-    #     self.wb = AbsExcelWorkBook(app, filepath)
-    #     self.ws = self.wb.xlws
-    #     self.shape = self.ws.shapes
-    #     self.sh_pos: List[Any] = []
-    #
-    # def open_book(self, app, filepath):
-    #     try:
-    #         self.exwb = app.books.open(filepath)
-    #         self.exwb.app.calculate = "manual"
-    #         self.exwb.app.display_alerts = False
-    #
-    #     except AttributeError:
-    #         pass
-    #
-    # def wb_close(self):
-    #     self.wb.close_book()
-    #
-    # def get_shape_pos(self):
-    #     for sh in self.shape:
-    #         var = {}
-    #         var["top"] = sh.top
-    #         var["left"] = sh.left
-    #         self.sh_pos.append(var)
+    def get_biz_type(self):
+        pass
 
 
 if __name__ == "__main__":
-    xlapp = ConApp()
+    xlapp = ConcreateExcelWorkBook()
     filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（㈱八木熊）.xlsx"
-    xlapp.open_wb(filename)
+    xlapp.open_file(filename)
+    cl = GetExcelData(xlapp.xlws)
+    cl.get_shape_pos()
+    print(cl.shape_pos)
 
-    xlapp.close_wb()
+    print(cl.sheet.range("H5").value)
+    cl.close_wb(xlapp.xlwb)
     xlapp.close_app()
-    # cli = ConExcelWorkBook(xlapp.app, filename)
-    # cli.get_shape_pos()
-    #
-    #
+    # xlapp.select_sh
     # for i in cli.sh_pos:
     #     # print(i)
     #     print("top = " + str(i["top"]))

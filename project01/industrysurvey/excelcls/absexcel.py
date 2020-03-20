@@ -4,14 +4,68 @@ from abc import ABCMeta
 from abc import abstractmethod
 
 
-class AbstractApp(metaclass=ABCMeta):
-    def __init__(self):
-        self.app = xlw.App(visible=True)
-        self.xlwb: object = None
-        self.xlws: object = None
+# Applicationの重複起動防止の為Singletonパターンを適用
+class Singleton():
+    def __new__(cls, *args, **kwargs):
+        if not hasattr(cls, "_instance"):
+            cls._instance = super(Singleton, cls).__new__(cls)
+        return cls._instance
 
-    def close_app(self) -> None:
-        self.app.quit()
+
+class AbstractExcelApp(Singleton):
+    """
+    ExcelApplication 基底クラス
+    Singletonクラスを継承
+    """
+    def __init__(self):
+        self.__app = xlw.App(visible=True)
+        self.__app.calculation = "manual"
+        self.__app.display_alerts = False
+
+    @property
+    def app(self):
+        return self.__app
+
+    @app.setter
+    def app(self, application):
+        self.__app = application
+
+
+class AbstaractWorkBook(metaclass=ABCMeta):
+    """
+    Excel Workbook基底クラス
+    """
+    def __init__(self):
+        self.__xlapp = AbstractExcelApp().app
+        self.__xlwb: object = None
+        self.__xlws: object = None
+
+    @property
+    def xlapp(self):
+        return self.__xlapp
+
+    @xlapp.setter
+    def xlapp(self, params):
+        self.__xlapp = params
+
+    @property
+    def xlwb(self):
+        return self.__xlwb
+
+    @xlwb.setter
+    def xlwb(self,instws):
+        self.__xlwb = instws
+
+    @property
+    def xlws(self):
+        return  self.__xlws
+
+    @xlws.setter
+    def xlws(self, instws):
+        self.__xlws = instws
+
+    def close_app(self):
+        self.xlapp.quit()
 
     @abstractmethod
     def open_wb(self, *args):
@@ -22,69 +76,8 @@ class AbstractApp(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def selerct_sheet(self):
+    def select_sheet(self):
         pass
 
-
-class AbstractExcelApp():
-    def __init__(self):
-        self.app  = None
-        self.xlwb = None
-        self.xlws = None
-
-    def open_app(self):
-        self.app = xlw.App(visible=True)
-        return self.app
-
-    def close_app(self):
-        self.app.quit()
-
-    def open_wb(self, filepath):
-        self.xlwb = AbstractWorkBook().open_wb(self.app, filepath)
-
-    def close_wb(self):
-        self.xlwb.close()
-        self.xlws = None
-        self.xlwb = None
-
-    def open_ws(self):
-        self.xlws = AbstractWorkSheet().open_worksheet(self.xlwb)
-
-
-class AbstractWorkBook():
-    def __init__(self):
-        self.wb = None
-
-    def open_wb(self,app,filepath):
-        self.wb = app.books.open(filepath)
-        return self.wb
-
-
-class AbstractWorkSheet():
-    def __init__(self):
-        self.sheet = None
-
-    def open_worksheet(self, wb):
-        self.sheet = wb.sheets[0]
-        return  self.sheet
-
-
-if __name__ == "__main__":
-    cli = AbstractExcelApp()
-    cli.open_app()
-    filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（㈱八木熊）.xlsx"
-    filename2 = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（ＮＣＤ NakajimaControlDesign）.xlsx"
-
-    cli.open_wb(filename)
-    cli.open_wb(filename2)
-    cli.open_ws()
-
-    print(cli.xlws.range("H3").value)
-    print(cli.xlws)
-    cli.close_wb()
-    if cli.xlws == None:
-        print("sheet is none")
-    else:
-        print(type(cli.xlws))
-    cli.close_app()
-
+class AbstractGetSheetData():
+    pass

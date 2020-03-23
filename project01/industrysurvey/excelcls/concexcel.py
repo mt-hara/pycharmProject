@@ -8,36 +8,35 @@ root = tkinter.Tk()
 root.withdraw()
 
 
-class concExcelApp(AbstractExcelApp):
+class ConcExcelApp(AbstractExcelApp):
     def __init__(self):
         super().__init__()
-        self.instwb = concExcelworkBook() #ExcelWorkookインスタンスを格納
+        self.wbinst = None
+
 
     def get_wb(self, filepath):
-        self.instwb.open_wb(self.app,filepath)
+        self.wbinst = ConcExcelworkBook()
+        self.wbinst.open_wb(self.app, filepath)
 
     def close_wb(self):
-        self.instwb.close_wb()
-
-    # def select_sheet(self):
-    #     self.instwb.select_sheet()
+        pass
 
 
-class concExcelworkBook(AbstractExcelWorkBook):
+class ConcExcelworkBook(AbstractExcelWorkBook):
     def __init__(self):
         super().__init__()
 
-    def open_wb(self, app, filepath):
+    def open_wb(self, app,filepath):
         try:
             self.xlwb = app.books.open(filepath)
+            global inch
+            inch = self.xlwb
         except AttributeError:
             msgbox.showinfo("エラー", "ファイル読み込みエラー")
             exit(0)
         else:
             self.select_sheet()
-
-    def close_wb(self):
-        self.xlwb.close()
+            return self.xlwb
 
     def select_sheet(self):
         try:
@@ -46,8 +45,8 @@ class concExcelworkBook(AbstractExcelWorkBook):
             msgbox.showinfo("エラー", "シート読み込みエラー")
             exit(0)
 
-
-
+    def close_wb(self):
+        self.xlwb.close()
 
 
 
@@ -58,12 +57,10 @@ if __name__ == "__main__":
     #             "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\業態調査票（イヌイ株式会社）.xlsx"]
     filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（㈱八木熊）.xlsx"
 
-    app = concExcelApp()
+    app = ConcExcelApp()
+    # for i in filename:
+    #     app.get_wb(i)
+        # app.close_wb()
     app.get_wb(filename)
-    app.select_sheet()
-    print(app.instwb.xlws.range("H5").value)
 
 
-
-    #     app.close_wb()
-    # app.close_app()

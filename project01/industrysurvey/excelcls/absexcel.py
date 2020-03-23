@@ -1,26 +1,35 @@
 import xlwings as xlw
-from  abc import ABCMeta
-from abc import  abstractmethod
+from abc import ABCMeta
+from abc import abstractmethod
 
 
-class Singleton():
-    def __new__(cls, *args, **kwargs):
-        if not hasattr(cls, "_instance"):
-            cls._instance = super(Singleton, cls).__new__(cls)
-        return cls._instance
+# class Singleton():
+#     __instance = None
+#
+#     @staticmethod
+#     def getInstance():
+#         if Singleton.__instance == None:
+#             Singleton()
+#         return Singleton.__instance
+#
+#     def __init__(self):
+#         if Singleton.__instance != None:
+#             raise Exception("Singleton class")
+#         else:
+#             Singleton.__instance = self
 
 
-class AbstractExcelApp(Singleton,metaclass=ABCMeta):
+class AbstractExcelApp(metaclass=ABCMeta):
     """
     ExcelApplication 基底クラス
     Singletonクラスを継承
     """
 
     def __init__(self):
+        self.__app = None
         self.__app = xlw.App(visible=True)
         self.__app.calculation = "manual"
         self.__app.display_alerts = False
-        self.xlwb = None
 
     @property
     def app(self):
@@ -34,8 +43,6 @@ class AbstractExcelApp(Singleton,metaclass=ABCMeta):
     def get_wb(self, *args):
         pass
 
-    def close_app(self):
-        self.app.quit()
 
 
 class AbstractExcelWorkBook(metaclass=ABCMeta):
@@ -49,7 +56,7 @@ class AbstractExcelWorkBook(metaclass=ABCMeta):
 
     @xlwb.setter
     def xlwb(self, obj):
-        self.__xlwb =obj
+        self.__xlwb = obj
 
     @property
     def xlws(self):
@@ -63,6 +70,6 @@ class AbstractExcelWorkBook(metaclass=ABCMeta):
     def open_wb(self, *args):
         pass
 
-    @abstractmethod
+    # @abstractmethod
     def close_wb(self):
         pass

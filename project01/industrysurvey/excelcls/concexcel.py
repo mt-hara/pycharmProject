@@ -19,8 +19,8 @@ class concExcelApp(AbstractExcelApp):
     def close_wb(self):
         self.instwb.close_wb()
 
-    def select_sheet(self):
-        self.instwb.select_sheet()
+    # def select_sheet(self):
+    #     self.instwb.select_sheet()
 
 
 class concExcelworkBook(AbstractExcelWorkBook):
@@ -33,6 +33,8 @@ class concExcelworkBook(AbstractExcelWorkBook):
         except AttributeError:
             msgbox.showinfo("エラー", "ファイル読み込みエラー")
             exit(0)
+        else:
+            self.select_sheet()
 
     def close_wb(self):
         self.xlwb.close()

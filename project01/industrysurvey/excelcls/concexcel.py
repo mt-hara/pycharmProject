@@ -3,7 +3,6 @@ import tkinter
 import tkinter.messagebox as msgbox
 from excelcls.absexcel import AbstractExcelApp
 from excelcls.absexcel import AbstractExcelWorkBook
-from excelcls.absexcel import AbstractWorkSheet
 
 root = tkinter.Tk()
 root.withdraw()

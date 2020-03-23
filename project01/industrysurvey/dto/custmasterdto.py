@@ -1,6 +1,6 @@
 from dataclasses import dataclass, fields, asdict, astuple
-from excelcls.concexcel import ConcreateExcelWorkBook
-from excelcls.concexcel import ExcelData
+from excelcls.concreteexcel import ConcreateExcelWorkBook
+from excelcls.concreteexcel import ExcelData
 
 
 @dataclass

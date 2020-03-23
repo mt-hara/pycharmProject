@@ -1,23 +1,16 @@
-# from typing import *
 import xlwings as xlw
 from abc import ABCMeta
 from abc import abstractmethod
 
 
-# Applicationの重複起動防止の為Singletonパターンを適用
-class Singleton():
-    def __new__(cls, *args, **kwargs):
-        if not hasattr(cls, "_instance"):
-            cls._instance = super(Singleton, cls).__new__(cls)
-        return cls._instance
-
-
-class AbstractExcelApp(Singleton):
+class AbstractExcelApp(metaclass=ABCMeta):
     """
     ExcelApplication 基底クラス
     Singletonクラスを継承
     """
+
     def __init__(self):
+        self.__app = None
         self.__app = xlw.App(visible=True)
         self.__app.calculation = "manual"
         self.__app.display_alerts = False
@@ -30,63 +23,46 @@ class AbstractExcelApp(Singleton):
     def app(self, application):
         self.__app = application
 
+    def close_App(self):
+        self.app.quit()
 
-class AbstractWorkBook(metaclass=ABCMeta):
-    """
-    Excel Workbook基底クラス
-    """
+
+
+class AbstractExcelWorkBook(metaclass=ABCMeta):
     def __init__(self):
-        self.__xlapp = AbstractExcelApp().app
-        self.__xlwb: object = None
-        self.__xlws: object = None
-
-    @property
-    def xlapp(self):
-        return self.__xlapp
-
-    @xlapp.setter
-    def xlapp(self, params):
-        self.__xlapp = params
+        self.__xlwb = None
+        self.__xlws = None
 
     @property
     def xlwb(self):
         return self.__xlwb
 
     @xlwb.setter
-    def xlwb(self,instws):
-        self.__xlwb = instws
+    def xlwb(self, obj):
+        self.__xlwb = obj
 
     @property
     def xlws(self):
-        return  self.__xlws
+        return self.__xlws
 
     @xlws.setter
-    def xlws(self, instws):
-        self.__xlws = instws
+    def xlws(self, obj):
+        self.__xlws = obj
 
-    def close_app(self):
-        self.xlapp.quit()
-
-    @abstractmethod
+    # @abstractmethod
     def open_wb(self, *args):
         pass
 
-    @abstractmethod
-    def close_wb(self):
+    # @abstractmethod
+    def close_workbook(self):
         pass
 
-    @abstractmethod
-    def select_sheet(self):
-        pass
 
-class AbstractGetSheetData():
-    pass
-
-
-class AbstractExcelData():
-    def __init__(self):
-        self.shape_pos = []
-        self.xlsheet = None
-
-    def set_worksheet(self):
-        pass
+# class AbstractShapes(metaclass=ABCMeta):
+#     def __init__(self):
+#         pass
+#
+#     @abstractmethod
+#     def get_shapes_pos(self):
+#         pass
+#

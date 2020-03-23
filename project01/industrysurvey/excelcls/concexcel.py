@@ -3,7 +3,7 @@ import tkinter
 import tkinter.messagebox as msgbox
 from excelcls.absexcel import AbstractExcelApp
 from excelcls.absexcel import AbstractExcelWorkBook
-
+from excelcls.absexcel import AbstractWorkSheet
 
 root = tkinter.Tk()
 root.withdraw()
@@ -12,10 +12,9 @@ root.withdraw()
 class concExcelApp(AbstractExcelApp):
     def __init__(self):
         super().__init__()
-        self.instwb = concExcelworkBook()
+        self.instwb = concExcelworkBook() #ExcelWorkookインスタンスを格納
 
     def get_wb(self, filepath):
-        # self.xlwb = concExcelworkBook().open_wb(self.app,filepath)
         self.instwb.open_wb(self.app,filepath)
 
     def close_wb(self):
@@ -24,13 +23,10 @@ class concExcelApp(AbstractExcelApp):
     def select_sheet(self):
         self.instwb.select_sheet()
 
+
 class concExcelworkBook(AbstractExcelWorkBook):
     def __init__(self):
         super().__init__()
-
-    @classmethod
-    def ret_xlwb(cls):
-        return cls.exlwb
 
     def open_wb(self, app, filepath):
         try:
@@ -43,7 +39,17 @@ class concExcelworkBook(AbstractExcelWorkBook):
         self.xlwb.close()
 
     def select_sheet(self):
-        self.xlws = self.xlwb.sheets[0]
+        try:
+            self.xlws = self.xlwb.sheets[0]
+        except AttributeError:
+            msgbox.showinfo("エラー", "シート読み込みエラー")
+            exit(0)
+
+
+
+
+
+
 
 
 if __name__ == "__main__":

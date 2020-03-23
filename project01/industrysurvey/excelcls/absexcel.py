@@ -20,7 +20,7 @@ class AbstractExcelApp(Singleton,metaclass=ABCMeta):
         self.__app = xlw.App(visible=True)
         self.__app.calculation = "manual"
         self.__app.display_alerts = False
-        self.instwb = None
+        self.xlwb = None
 
     @property
     def app(self):
@@ -30,6 +30,7 @@ class AbstractExcelApp(Singleton,metaclass=ABCMeta):
     def app(self, application):
         self.__app = application
 
+    @abstractmethod
     def get_wb(self, *args):
         pass
 
@@ -39,27 +40,24 @@ class AbstractExcelApp(Singleton,metaclass=ABCMeta):
 
 class AbstractExcelWorkBook(metaclass=ABCMeta):
     def __init__(self):
-        self.__exlwb = None
-        self.__exlws = None
+        self.__xlwb = None
+        self.__xlws = None
 
     @property
-    def exlwb(self):
-        return self.__exlwb
+    def xlwb(self):
+        return self.__xlwb
 
-    @exlwb.setter
-    def exlwb(self, wb):
-        self.__exlwb = wb
+    @xlwb.setter
+    def xlwb(self, obj):
+        self.__xlwb =obj
 
     @property
-    def exlws(self):
-        return self.__exlws
+    def xlws(self):
+        return self.__xlws
 
-    @exlws.setter
-    def exlws(self, ws):
-        self.__exlws = ws
-
-    def set_wb(self):
-        pass
+    @xlws.setter
+    def xlws(self, obj):
+        self.__xlws = obj
 
     @abstractmethod
     def open_wb(self, *args):
@@ -68,4 +66,3 @@ class AbstractExcelWorkBook(metaclass=ABCMeta):
     @abstractmethod
     def close_wb(self):
         pass
-

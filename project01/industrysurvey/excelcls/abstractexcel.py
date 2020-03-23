@@ -56,13 +56,3 @@ class AbstractExcelWorkBook(metaclass=ABCMeta):
     # @abstractmethod
     def close_workbook(self):
         pass
-
-
-# class AbstractShapes(metaclass=ABCMeta):
-#     def __init__(self):
-#         pass
-#
-#     @abstractmethod
-#     def get_shapes_pos(self):
-#         pass
-#

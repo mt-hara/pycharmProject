@@ -66,7 +66,12 @@ class ExcelShapesDTO():
 
 
 class GetShapeData():
-    pass
+    def __init__(self):
+        shapesdto = ExcelShapesDTO()
+        self.shapes_pos = []
+
+    def get_shapes_data(self):
+        pass
 
 
 

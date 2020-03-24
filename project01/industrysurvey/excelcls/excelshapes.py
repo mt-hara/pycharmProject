@@ -24,53 +24,63 @@ class ShapeDataDTO():
         for dict in self.shapes_list:
             t_pos: float = dict["top"]
             l_pos: float = dict["left"]
-            if 210 < t_pos < 225: # 業種分類
-                if  80 < l_pos < 125: self.shapesdto.biz_type = 1 # メーカー
-                elif 145 < l_pos < 190: self.shapesdto.biz_type = 2 # 商社
-                elif 200 < l_pos < 285: self.shapesdto.biz_type = 3 # メーカー＆商社
-                elif 298 < l_pos < 350: self.shapesdto.biz_type = 4 # 代理店
-                elif 360 < l_pos < 400: self.shapesdto.biz_type = 5 # 卸売
-                elif 422 < l_pos < 445: self.shapesdto.biz_type = 6 # その他
-                else: pass
-            elif 222 < t_pos < 238: # 資本形態
-                if 80 < l_pos < 125: self.shapesdto.capital_form = 1 # 個人
+            if 210 < t_pos < 225:  # 業種分類
+                if 80 < l_pos < 125:
+                    self.shapesdto.biz_type = 1  # メーカー
+                elif 145 < l_pos < 190:
+                    self.shapesdto.biz_type = 2  # 商社
+                elif 200 < l_pos < 285:
+                    self.shapesdto.biz_type = 3  # メーカー＆商社
+                elif 298 < l_pos < 350:
+                    self.shapesdto.biz_type = 4  # 代理店
+                elif 360 < l_pos < 400:
+                    self.shapesdto.biz_type = 5  # 卸売
+                elif 422 < l_pos < 445:
+                    self.shapesdto.biz_type = 6  # その他
                 else:
-                    self.shapesdto.capital_form = 2 # 法人
+                    pass
+            elif 222 < t_pos < 238:  # 資本形態
+                if 80 < l_pos < 125:
+                    self.shapesdto.capital_form = 1  # 個人
+                else:
+                    self.shapesdto.capital_form = 2  # 法人
                     # 法人の場合は会社形態を取得する
-                    if 180 < l_pos < 235: self.shapesdto.corp_type = 1 # 株式会社
-                    elif 240 < l_pos < 290: self.shapesdto.corp_type = 2 # 有限会社
-                    elif 295 < l_pos < 400: self.shapesdto.corp_type = 9 # その他
-            elif 237 < t_pos < 253: # 上場区分
-                if 340 < l_pos < 410: self.shapesdto.stock_status = 0 # 非上場
+                    if 180 < l_pos < 235:
+                        self.shapesdto.corp_type = 1  # 株式会社
+                    elif 240 < l_pos < 290:
+                        self.shapesdto.corp_type = 2  # 有限会社
+                    elif 295 < l_pos < 400:
+                        self.shapesdto.corp_type = 9  # その他
+            elif 237 < t_pos < 253:  # 上場区分
+                if 340 < l_pos < 410:
+                    self.shapesdto.stock_status = 0  # 非上場
                 else:
-                    self.shapesdto.stock_status = 1 # 上場
+                    self.shapesdto.stock_status = 1  # 上場
                     # 上場の場合は上場市場を取得
-                    if 80 < l_pos < 125: self.shapesdto.stock_market = "東証1部"
-                    elif 150 < l_pos < 190: self.shapesdto.stock_market = "東証2部"
-                    elif 210 < l_pos < 300: self.shapesdto.stock_market = "その他"
+                    if 80 < l_pos < 125:
+                        self.shapesdto.stock_market = "東証1部"
+                    elif 150 < l_pos < 190:
+                        self.shapesdto.stock_market = "東証2部"
+                    elif 210 < l_pos < 300:
+                        self.shapesdto.stock_market = "その他"
             # ISO認認証取得区分
-            elif 690 < t_pos < 717: #ISO認証取得区分
-                if 25.5 < l_pos < 100: self.shapesdto.iso9000 ="取得済"
-                elif 305 < l_pos < 390: self.shapesdto.iso14000 = "取得済"
+            elif 690 < t_pos < 717:  # ISO認証取得区分
+                if 25.5 < l_pos < 100:
+                    self.shapesdto.iso9000 = "取得済"
+                elif 305 < l_pos < 390:
+                    self.shapesdto.iso14000 = "取得済"
             elif 720 < t_pos < 731:
-                if 25.5 < t_pos < 100: self.shapesdto.iso9000 = "取得予定"
-                elif 305 < l_pos < 390: self.shapesdto.iso14000 = "取得予定"
+                if 25.5 < t_pos < 100:
+                    self.shapesdto.iso9000 = "取得予定"
+                elif 305 < l_pos < 390:
+                    self.shapesdto.iso14000 = "取得予定"
             elif 733 < t_pos < 747:
-                if 25.5 < l_pos < 100: self.shapesdto.iso9000 ="取得予定なし"
-                elif 305 < l_pos < 390: self.shapesdto.iso14000 = "取得予定なし"
-            elif t_pos>800:
+                if 25.5 < l_pos < 100:
+                    self.shapesdto.iso9000 = "取得予定なし"
+                elif 305 < l_pos < 390:
+                    self.shapesdto.iso14000 = "取得予定なし"
+            elif t_pos > 800:
                 pass
-
-
-
-
-
-
-
-
-
-
-
 
 
 class ShapesState(metaclass=ABCMeta):
@@ -97,7 +107,7 @@ class VenderBizType(ConcreteShapesState):
         # super().__init__(left_pos)
         self.bizType = None
 
-    def choose(self,left_pos):
+    def choose(self, left_pos):
         if 80 < self.left_pos < 125:
             self.bizType = 1
         elif 145 < self.left_pos < 190:
@@ -114,8 +124,9 @@ class VenderBizType(ConcreteShapesState):
             raise Exception("業種取得エラー")
         print(self.bizType)
 
+
 class CapitalForm(ConcreteShapesState):
-    def __init__(self,left_pos):
+    def __init__(self, left_pos):
         super().__init__(left_pos)
         self.corptype = None
 
@@ -140,9 +151,11 @@ class ISOCertifStatus(ConcreteShapesState):
     def __init__(self, left_pos):
         super().__init__(left_pos)
 
+
 class ISOSplan(ConcreteShapesState):
     def __init__(self, left_pos):
         super().__init__(left_pos)
+
 
 class ISONoCerfit(ConcreteShapesState):
     def __init__(self, left_pos):
@@ -161,6 +174,7 @@ class ShapesContext():
 
     def get_state(self):
         return self.state.getconcretestate()
+
 
 def setconcstate(top_pos, left_pos):
     if 210 < top_pos < 225:
@@ -246,5 +260,3 @@ if __name__ == "__main__":
 #     @i14000_certif.setter
 #     def i14000_certif(self,param):
 #         self.__i14000_certif = param
-
-

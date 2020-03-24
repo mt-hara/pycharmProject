@@ -17,6 +17,7 @@ class ConcreteState(State):
 
 class ConcreteStateBooting(ConcreteState):
     def __init__(self, state):
+        print(state)
         super(ConcreteStateBooting, self).__init__(state)
 
     def handle(self, context):

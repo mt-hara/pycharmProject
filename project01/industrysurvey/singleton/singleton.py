@@ -9,8 +9,6 @@ class Singleton():
 
     def __init__(self):
         if Singleton.__instance != None:
-            raise Exception("This class is singleton")
+            raise Exception("This is singleton")
         else:
             Singleton.__instance = self
-
-

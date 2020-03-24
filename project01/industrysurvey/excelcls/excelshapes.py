@@ -84,7 +84,7 @@ class ConcreteShapesState(ShapesState):
         # self.state = state
         self.left_pos = left_pos
 
-    def choose(self, left_pos):
+    def choose(self, *args):
         pass
 
     def getconcretestate(self):
@@ -93,21 +93,48 @@ class ConcreteShapesState(ShapesState):
 
 class VenderBizType(ConcreteShapesState):
     def __init__(self, left_pos):
-        super().__init__(left_pos)
+        super(VenderBizType, self).__init__(left_pos)
+        # super().__init__(left_pos)
         self.bizType = None
 
-    def choose(self, left_pos):
-        if 80 < self.left_pos < 225:
+    def choose(self,left_pos):
+        if 80 < self.left_pos < 125:
             self.bizType = 1
         elif 145 < self.left_pos < 190:
             self.bizType = 2
+        elif 200 < self.left_pos < 285:
+            self.bizType = 3
+        elif 298 < self.left_pos < 350:
+            self.bizType = 4
+        elif 360 < self.left_pos < 400:
+            self.bizType = 5
+        elif 422 < self.left_pos < 445:
+            self.bizType = 6
+        else:
+            raise Exception("業種取得エラー")
+        print(self.bizType)
 
+class CapitalForm(ConcreteShapesState):
+    def __init__(self,left_pos):
+        super().__init__(left_pos)
+        self.corptype = None
 
+    def choose(self, left_pos):
+        if 180 < self.left_pos < 235:
+            self.corptype = 1
+        elif 240 < self.left_pos < 290:
+            self.corptype = 2
+        elif 295 < self.left_pos < 400:
+            self.corptype = 9
+        else:
+            raise Exception("会社形態取得エラー")
 
 
 class StockStatus(ConcreteShapesState):
     def __init__(self, left_pos):
         super().__init__(left_pos)
+        self.stockstatus = None
+
 
 class ISOCertifStatus(ConcreteShapesState):
     def __init__(self, left_pos):
@@ -150,7 +177,7 @@ def setconcstate(top_pos, left_pos):
 
 if __name__ == "__main__":
     top = 215
-    left = 85
+    left = 201
     obj = ShapesContext(setconcstate(top, left))
     obj.choose()
 

@@ -1,29 +1,35 @@
 from abc import ABCMeta, abstractmethod
 
 class IState(metaclass=ABCMeta):
-    def __init__(self,text):
-        self.text= text
     @abstractmethod
     def write_name(self,state_context):
         pass
 
-class StateA(IState):
+
+class ConcreteState(IState):
     def __init__(self,text):
-        super(StateA, self).__init__(text)
+        self.text= text
+
+    def write_name(self,state_context):
+        pass
+
+class StateA(ConcreteState):
+    def __init__(self,text):
+        super().__init__(text)
 
     def write_name(self,state_context):
     # def write_name(self, state_context, name):
         print(str.upper(self.text))
 
 
-class StateB(IState):
+class StateB(ConcreteState):
     def __init__(self, text):
         super(StateB, self).__init__(text)
 
     def write_name(self,state_context):
         print(str.lower(self.text))
 
-class StateC(IState):
+class StateC(ConcreteState):
     def __init__(self,text):
        super(StateC, self).__init__(text)
 

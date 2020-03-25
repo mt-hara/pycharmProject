@@ -85,7 +85,7 @@ class ShapeDataDTO():
 
 class ShapesState(metaclass=ABCMeta):
     @abstractmethod
-    def choose(self, *args):
+    def choose(self):
         pass
 
 
@@ -94,7 +94,7 @@ class ConcreteShapesState(ShapesState):
         # self.state = state
         self.left_pos = left_pos
 
-    def choose(self, *args):
+    def choose(self):
         pass
 
     def getconcretestate(self):
@@ -107,7 +107,7 @@ class VenderBizType(ConcreteShapesState):
         # super().__init__(left_pos)
         self.bizType = None
 
-    def choose(self, left_pos):
+    def choose(self):
         if 80 < self.left_pos < 125:
             self.bizType = 1
         elif 145 < self.left_pos < 190:
@@ -130,7 +130,7 @@ class CapitalForm(ConcreteShapesState):
         super().__init__(left_pos)
         self.corptype = None
 
-    def choose(self, left_pos):
+    def choose(self):
         if 180 < self.left_pos < 235:
             self.corptype = 1
         elif 240 < self.left_pos < 290:

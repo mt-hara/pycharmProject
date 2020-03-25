@@ -44,16 +44,22 @@ class VenderBizType(ConcreteState):
     def choose(self, state_context):
         if 80 < self.position < 125:
             self.bizType = 1
+            # dto.biz_type = 1
         elif 145 < self.position < 190:
             self.bizType = 2
+            # dto.biz_type = 2
         elif 200 < self.position < 285:
             self.bizType = 3
+            # dto.biz_type = 3
         elif 298 < self.position < 350:
             self.bizType = 4
+            # dto.biz_type = 4
         elif 360 < self.position < 400:
             self.bizType = 5
+            # dto.biz_type = 5
         elif 422 < self.position < 445:
             self.bizType = 6
+            # dto.biz_type = 6
         else:
             raise Exception("業種取得エラー")
 
@@ -103,10 +109,26 @@ def set_concrete_state(top_pos, left_pos):
         return ISONoCerfit(left_pos)
 
 
-if __name__ == "__main__":
-    top = 215
-    left = 189
-    dto = ShapesDataClass
-    sc = StateContext(set_concrete_state(top,left))
-    biztype = sc.choose()
+class main():
+    def __init__(self):
+        self.top: float = 0
+        self.left: float = 0
+        # self.dto = None
+        self.init()
+    
+    def init(self):
+        self.top = 215
+        self.left = 90
+        # self.dto = ShapesDataClass
+        state=StateContext(set_concrete_state(self.top, self.left))
+        state.choose()
+        # print(self.dto.biz_type)
 
+if __name__ == "__main__":
+    main()
+    # top = 215
+    # left = 189
+    # dto = ShapesDataClass
+    # sc = StateContext(set_concrete_state(top,left,dto))
+    # sc.choose()
+    # print(dto.biz_type)

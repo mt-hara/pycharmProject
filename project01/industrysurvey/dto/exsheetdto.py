@@ -30,15 +30,16 @@ class IShapeState(metaclass=ABCMeta):
 
 
 class ConcreteState(IShapeState):
-    def __init__(self,left_pos):
+    def __init__(self, left_pos):
         self.position = left_pos
 
 
-@singleton
+# @singleton
 class VenderBizType(ConcreteState):
     def __init__(self,left_pos):
         super().__init__(left_pos)
         self.bizType = None
+
 
     def choose(self, state_context):
         if 80 < self.position < 125:
@@ -55,8 +56,6 @@ class VenderBizType(ConcreteState):
             self.bizType = 6
         else:
             raise Exception("業種取得エラー")
-        print(self.bizType)
-        return self.bizType
 
 
 class StockStatus(ConcreteState):
@@ -107,5 +106,7 @@ def set_concrete_state(top_pos, left_pos):
 if __name__ == "__main__":
     top = 215
     left = 189
+    dto = ShapesDataClass
     sc = StateContext(set_concrete_state(top,left))
-    sc.choose()
+    biztype = sc.choose()
+

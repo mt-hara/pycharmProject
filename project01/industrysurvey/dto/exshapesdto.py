@@ -21,21 +21,20 @@ class ConcreteState(IShapeState):
 class VenderBizType(ConcreteState):
     def __init__(self, left_pos, dto):
         super().__init__(left_pos, dto)
-        # self.bizType = None
 
     def choose(self, state_context):
         if 80 < self.position < 125:
-            self.shapesdata.biz_type = 1
+            self.shapesdata.CustomerBizType = 1
         elif 145 < self.position < 190:
-            self.shapesdata.biz_type = 2
+            self.shapesdata.CustomerBizType = 2
         elif 200 < self.position < 285:
-            self.shapesdata.biz_type = 3
+            self.shapesdata.CustomerBizType = 3
         elif 298 < self.position < 350:
-            self.shapesdata.biz_type = 4
+            self.shapesdata.CustomerBizType = 4
         elif 360 < self.position < 400:
-            self.shapesdata.biz_type = 5
+            self.shapesdata.CustomerBizType = 5
         elif 422 < self.position < 445:
-            self.shapesdata.biz_type = 6
+            self.shapesdata.CustomerBizType = 6
         else:
             raise Exception("業種取得エラー")
 
@@ -46,15 +45,15 @@ class CapitalForm(ConcreteState):
 
     def choose(self, state_context):
         if 80 < self.position < 125:
-            self.shapesdata.capital_form = 1
+            self.shapesdata.CapitalForm = 1
         else:
-            self.shapesdata.capital_form = 2
+            self.shapesdata.CapitalForm = 2
             if 180 < self.position < 235:
-                self.shapesdata.corp_type = 1
+                self.shapesdata.CorporateType = 1
             elif 240 < self.position < 290:
-                self.shapesdata.corp_type = 2
+                self.shapesdata.CorporateType = 2
             elif 295 < self.position < 400:
-                self.shapesdata.corp_type = 9
+                self.shapesdata.CorporateType = 9
 
 
 class StockStatus(ConcreteState):
@@ -63,15 +62,15 @@ class StockStatus(ConcreteState):
 
     def choose(self, state_context):
         if 340 < self.position < 410:
-            self.shapesdata.stock_status = 0
+            self.shapesdata.stockListingStatus = 0
         else:
-            self.shapesdata.stock_status = 1
+            self.shapesdata.stockListingStatus = 1
             if 80 < self.position < 125:
-                self.shapesdata.stock_market = "東証１部"
+                self.shapesdata.stockMarket = "東証１部"
             elif 150 < self.position < 190:
-                self.shapesdata.stock_market = "東証２部"
+                self.shapesdata.stockMarket = "東証２部"
             elif 210 < self.position < 300:
-                self.shapesdata.stock_market = "その他"
+                self.shapesdata.stockMarket = "その他"
 
 
 class ISOCertifStatus(ConcreteState):
@@ -80,9 +79,9 @@ class ISOCertifStatus(ConcreteState):
 
     def choose(self, state_context):
         if 25.5 < self.position < 100:
-            self.shapesdata.iso9000 = "取得済"
+            self.shapesdata.ISO9001Certif = "取得済"
         elif 305 < self.position < 390:
-            self.shapesdata.iso14000 = "取得済"
+            self.shapesdata.ISO14001Certif = "取得済"
 
 
 class ISOSplan(ConcreteState):
@@ -91,9 +90,9 @@ class ISOSplan(ConcreteState):
 
     def choose(self, state_context):
         if 25.5 < self.position < 100:
-            self.shapesdata.iso9000 = "取得予定"
+            self.shapesdata.ISO9001Certif = "取得予定"
         elif 305 < self.position < 390:
-            self.shapesdata.iso14000 = "取得予定"
+            self.shapesdata.ISO14001Certif = "取得予定"
 
 
 class ISONoCerfit(ConcreteState):
@@ -102,9 +101,9 @@ class ISONoCerfit(ConcreteState):
 
     def choose(self, state_context):
         if 25.5 < self.position < 100:
-            self.shapesdata.iso9000 = "取得予定なし"
+            self.shapesdata.ISO9001Certif = "取得予定なし"
         elif 305 < self.position < 390:
-            self.shapesdata.iso14000 = "取得予定なし"
+            self.shapesdata.ISO14001Certif = "取得予定なし"
 
 
 class StateContext():

@@ -4,7 +4,7 @@ from excelcls.abstractexcel import AbstractExcelApp
 from excelcls.abstractexcel import AbstractExcelWorkBook
 from selectfiledir.filepicker import *
 import  dataclasses
-from abstractdto.abscustomermstrdto import ShapesDataClass
+from abstractdto.abscustomermstrdto import AllCustomerMaster
 from dto.exshapesdto import ShapesDataDTO
 
 root = tkinter.Tk()
@@ -90,12 +90,15 @@ if __name__ == "__main__":
 
     exshapes = ExcelShapesPos(ws)
     exshapes.get_shape_pos()
-    dto = ShapesDataClass()
-    dao = ShapesDataDTO(dto)
+    dto = AllCustomerMaster()
+    # dao = ShapesDataDTO(dto)
 
-    dao.get_shapes_dt(exshapes.shapes_pos)
+
+    # dao.get_shapes_dt(exshapes.shapes_pos)
+    dto.set_cell_data(ws)
     d = dataclasses.asdict(dto)
-    print(d)
+    for x,y in d.items():
+        print(x,y)
 
     wb.close_workbook()
     baseapp.close_App()

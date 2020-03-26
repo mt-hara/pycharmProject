@@ -223,38 +223,47 @@ class AllCustomerMaster:
     MainProducts_5: str = ""  # C46
 
     def set_cell_data(self,ws):
-        self.CustomerCd = str(ws.range("H3").value)  # H3
-        self.ringiNo = ""
-        self.CustomerName= str(ws.range("H5").value) # H5
-        self.CustomerKanaName =str(ws.range("H4").value)  # H4
-        # CustomerShortName: str = ""  # ""
-        # excludeLaw: bool = False  # false
-        # headOfficeZipCd: str = ""  # I7
-        # headOfficeAddress1: str = ""  # H8
-        # headOfficeAddress2: str = ""  # ""
-        # headOfficeTel: str = ""  # X7
-        # headOfficeFax: str = ""  # AH7
-        # BranchOfficeZipCd: str = ""  # I10
-        # BranchOfficeAddress1: str = ""  # H11
-        # BranchOfficeAddress2: str = ""  # ""
-        # BranchOfficeTel: str = ""  # X10
-        # BranchOfficeFax: str = ""  # AH10
-        # repName: str = ""  # H14
-        # repKanaName: str = ""  # H13
-        # repJobTitle: str = ""  # AD13
-        # repBirthday: str = ""  # AD14 + "年" + AH14 + "月" + AK14 + "日"
-        # employees: int = 0  # k22
-        # employeeMonth: int = 0  # I23
-        # employeeYear: int = 0  # O23
+        self.CustomerCd: str = str(ws.range("H3").value)  # H3
+        self.ringiNo: str = ""
+        self.CustomerName: str = str(ws.range("H5").value) # H5
+        self.CustomerKanaName: str =str(ws.range("H4").value)  # H4
+        self.CustomerShortName: str = ""
+        self.excludeLaw: bool = False
+        self.headOfficeZipCd: str = str(ws.range("I7").value)  # I7
+        self.headOfficeAddress1: str = str(ws.range("H8").value)  # H8
+        self.headOfficeAddress2: str = ""  # ""
+        self.headOfficeTel: str = str(ws.range("X7").value)  # X7
+        self.headOfficeFax: str = str(ws.range("AH7").value)  # AH7
+        self.BranchOfficeZipCd: str = str(ws.range("I10").value)  # I10
+        self.BranchOfficeAddress1: str = str(ws.range("H11").value)  # H11
+        self.BranchOfficeAddress2: str = ""  # ""
+        self.BranchOfficeTel: str = str(ws.range("X10").value)  # X10
+        self.BranchOfficeFax: str = str(ws.range("AH10").value)  # AH10
+        self.repName: str = str(ws.range("H14").value)  # H14
+        self.repKanaName: str = str(ws.range("H13").value)  # H13
+        self.repJobTitle: str = str(ws.range("AD13").value)  # AD13
+        tmpbirthday:str = str(int(ws.range("AD14").value)) + "年" \
+                      + str(int(ws.range("AH14").value)) + "月" +\
+                      str(int(ws.range("AK14").value)) + "日"
+        self.repBirthday: str = tmpbirthday  # AD14 + "年" + AH14 + "月" + AK14 + "日"
+        self.employees: int =int(ws.range("K22").value)  # k22
+        self.employeeMonth: int = int(ws.range("I23").value)  # I23
+        self.employeeYear: int = int(ws.range("O23").value)  # O23
         # CapitalForm: int = 0  # shape 取得
         # CorporateType: str = ""  # shape 取得
-        # OtherCorpType: str = ""  # ""
-        # CustomerCapital: float = 0  # H18
-        # establishedMonth: int = 0  # I19
-        # establishedYear: int = 0  # O19
-        # AccountClosingMonth: int = 0  # M21
-        # ReturnOnEquity: float = 0  # I20
-        # ISO9001Certif: str = ""  # D50 shape 取得 取得済 取得予定 取得予定なし
+        self.OtherCorpType: str = ""  # ""
+        self.CustomerCapital: float = float(ws.range("H18").value)  # H18
+        self.establishedMonth: int = int(ws.range("I19").value)  # I19
+        self.establishedYear: int = int(ws.range("O19").value)  # O19
+        self.AccountClosingMonth: int = int(ws.range("M21").value)  # M21
+        self.ReturnOnEquity: float = float(ws.range("I20").value)  # I20
+        if self.ISO9001Certif == "" or self.ISO9001Certif is None:
+            if not ws.range("D50").value == "":  # D50 shape 取得 取得済 取得予定 取得予定なし
+                self.ISO9001Certif = "取得済"
+            elif not ws.range("D51").value == "":
+                self.ISO9001Certif = "取得予定"
+            elif not ws.range("D52").value == "":
+                self.ISO9001Certif = "取得予定なし"
         # ISO9001ResistedNo: str = ""  # N50
         # ISO9001CertifPlanYM: str = ""  # N51 + "年" + R51 "月"
         # ISO14001Certif: str = ""  # V50 shape 取得 取得 取得済 取得予定 取得予定なし

@@ -4,9 +4,10 @@ import tkinter
 import tkinter.messagebox as msgbox
 from excelcls.abstractexcel import AbstractExcelApp
 from excelcls.abstractexcel import AbstractExcelWorkBook
-
+from selectfiledir.filepicker import *
 from excelcls.excelshapes import ShapeDataDTO
-
+import  dataclasses
+from abstractdto.abscustomermstrdto import ShapesDataClass
 root = tkinter.Tk()
 root.withdraw()
 
@@ -59,6 +60,12 @@ class ExcelShapesPos():
 
 
 if __name__ == "__main__":
+    # def_dir = "DeskTop"
+    # ftype = [("Excel2003ファイル", "*.xlsx")]
+    # dialog = GetFile(def_dir,ftype)
+    # files = dialog.get_files()
+
+
     filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（㈱八木熊）.xlsx"
 
     baseapp = ExcelApp()
@@ -70,10 +77,14 @@ if __name__ == "__main__":
 
     exshapes = ExcelShapesPos(ws)
     exshapes.get_shape_pos()
+    dto = ShapesDataClass()
+    dao = ShapeDataDTO(dto)
+    dao.get_shape_data(exshapes.shapes_pos)
 
-    dto = ShapeDataDTO()
-    dto.get_shape_data(exshapes.shapes_pos)
-    print(dto.shapesdto.biz_type)
+    d = dataclasses.asdict(dto)
+    print(d)
+
+    # print(dto.shapesdto.biz_type)
 
     wb.close_workbook()
     baseapp.close_App()

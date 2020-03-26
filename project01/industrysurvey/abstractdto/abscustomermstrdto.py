@@ -1,61 +1,70 @@
 from dataclasses import dataclass
 
-
 @dataclass
-class AbsCustomerMasterDTO:
-    CustomerCd: str
-    ringNo: str
-    CustomerName: str
-    CustomerKanaName: str
-    CustomerShortName: str
-    excludeLaw: bool
-    headOfficeZipCd: str
-    headOfficeAddress1: str
-    headOfficeAddress2: str
-    headOfficeTel: str
-    headOfficeFax: str
-    BranchOfficeZipCd: str
-    BranchOfficeAddress1: str
-    BranchOfficeAddress2: str
-    BranchOfficeTel: str
-    BranchOfficeFax: str
-    repName: str
-    repKanaName: str
-    repJobTitle: str
-    repBirthday: str
-    employees: int
-    employeeMonth: int
-    employeeYear: int
-    CapitalForm: int
-    CorporateType: int
-    OtherCorpType: str
-    stockMarket: str
-    establishedMonth: int
-    establishedYear: int
-    AccountClosingMonth: int
-    ReturnOnEquity: float
-    ISO9001Certif: str
-    ISO9001ResistedNo: str
-    ISO9001CertifPlanYM: str
-    ISO14001Certif: str
-    ISO14001ResistedNo: str
-    ISO14001CertifPlanYM: str
-    OtherCertif: str
-    CustomerCategory: str
-    CustomerBizType: int
-    picName: str
-    picKanaName: str
-    PicEmailAddress: str
-    picDept: str
-    picPosition: str
-    sameHeadOffice: bool
-    contactZipCd: str
-    contactAddress1: str
-    contactAddress2: str
-    contactTel: str
-    contactFax: str
-    contactInfo: str
+class ShapesDataClass:
+    biz_type: int = 0
+    capital_form: int = 0
+    corp_type: int = 0
+    stock_status: bool = False
+    stock_market: str = ""
+    iso9000: str = ""
+    iso14000: str =""
 
+# @dataclass
+# class AbsCustomerMasterDTO:
+#     CustomerCd: str
+#     ringNo: str
+#     CustomerName: str
+#     CustomerKanaName: str
+#     CustomerShortName: str
+#     excludeLaw: bool
+#     headOfficeZipCd: str
+#     headOfficeAddress1: str
+#     headOfficeAddress2: str
+#     headOfficeTel: str
+#     headOfficeFax: str
+#     BranchOfficeZipCd: str
+#     BranchOfficeAddress1: str
+#     BranchOfficeAddress2: str
+#     BranchOfficeTel: str
+#     BranchOfficeFax: str
+#     repName: str
+#     repKanaName: str
+#     repJobTitle: str
+#     repBirthday: str
+#     employees: int
+#     employeeMonth: int
+#     employeeYear: int
+#     CapitalForm: int
+#     CorporateType: int
+#     OtherCorpType: str
+#     stockMarket: str
+#     establishedMonth: int
+#     establishedYear: int
+#     AccountClosingMonth: int
+#     ReturnOnEquity: float
+#     ISO9001Certif: str
+#     ISO9001ResistedNo: str
+#     ISO9001CertifPlanYM: str
+#     ISO14001Certif: str
+#     ISO14001ResistedNo: str
+#     ISO14001CertifPlanYM: str
+#     OtherCertif: str
+#     CustomerCategory: str
+#     CustomerBizType: int
+#     picName: str
+#     picKanaName: str
+#     PicEmailAddress: str
+#     picDept: str
+#     picPosition: str
+#     sameHeadOffice: bool
+#     contactZipCd: str
+#     contactAddress1: str
+#     contactAddress2: str
+#     contactTel: str
+#     contactFax: str
+#     contactInfo: str
+#
 
 @dataclass
 class AbstractAllCustomerMaster:
@@ -82,23 +91,23 @@ class AbstractAllCustomerMaster:
     employees: int
     employeeMonth: int
     employeeYear: int
-    CapitalForm: int
-    CorporateType: str
+    CapitalForm: int    # shape 取得
+    CorporateType: str  # shape 取得
     OtherCorpType: str
     CustomerCapital: float
     establishedMonth: int
     establishedYear: int
     AccountClosingMonth: int
     ReturnOnEquity: float
-    ISO9001Certif: str
+    ISO9001Certif: str  #shape 取得 取得済 取得予定 取得予定なし
     ISO9001ResistedNo: str
     ISO9001CertifPlanYM: str
-    ISO14001Certif: str
+    ISO14001Certif: str #shape 取得 取得 取得済 取得予定 取得予定なし
     ISO14001ResistedNo: str
     ISO14001CertifPlanYM: str
     OtherCertif: str
     CustomerCategory: str
-    CustomerBizType: int
+    CustomerBizType: int    #shape 取得
     picName: str
     picKanaName: str
     PicEmailAddress: str
@@ -118,8 +127,8 @@ class AbstractAllCustomerMaster:
     NDA: int  # 1:秘密保持契約書 締結済
     NDANotice: str
     otherContract: str
-    stockListingStatus: bool  # 0:非上場　1:上場
-    stockMarket: str
+    stockListingStatus: bool  # 0:非上場　1:上場 shape 取得
+    stockMarket: str    # shape 取得 Text
     MainStockholder_1: str
     MainStockholder_2: str
     MainStockholder_3: str

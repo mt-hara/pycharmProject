@@ -9,7 +9,7 @@ class GetFile(AbstractFileDialog):
         super().__init__(def_dir, fType, *args, **kw)
         self.file_list = []
 
-    @property
+    # @property
     def get_files(self):
         root = tkinter.Tk()
         root.withdraw()

@@ -1,23 +1,23 @@
 from typing import List
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 from abc import ABCMeta
 from abc import abstractmethod
 
 
-@dataclass
-class ShapesDataClass:
-    biz_type: int
-    capital_form: int
-    corp_type: int
-    stock_status: bool
-    stock_market: str
-    iso9000: str
-    iso14000: str
+# @dataclass
+# class ShapesDataClass:
+#     biz_type: int = 0
+#     capital_form: int = 0
+#     corp_type: int = 0
+#     stock_status: bool = False
+#     stock_market: str = ""
+#     iso9000: str = ""
+#     iso14000: str =""
 
 
 class ShapeDataDTO():
-    def __init__(self):
-        self.shapesdto = ShapesDataClass
+    def __init__(self,shapedata):
+        self.shapesdto = shapedata
         self.shapes_list = None
 
     def get_shape_data(self, lists):
@@ -82,6 +82,9 @@ class ShapeDataDTO():
                     self.shapesdto.iso14000 = "取得予定なし"
             elif t_pos > 800:
                 pass
+
+    def get_dict(self):
+        return asdict(self.shapesdto)
 
 # class ExcelShapesDTO():
 #     def __init__(self):

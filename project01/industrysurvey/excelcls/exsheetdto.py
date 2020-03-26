@@ -2,24 +2,24 @@ from typing import List
 from dataclasses import dataclass, fields
 from abc import ABCMeta
 from abc import abstractmethod
+from abstractdto.abscustomermstrdto import ShapesDataClass
 
-
-def singleton(class_):
-    class class_w(class_):
-        _instance = None
-        def __new__(class_, *args, **kwargs):
-            if class_w._instance is None:
-                class_w._instance = super(class_w, class_).__new__(class_, *args, **kwargs)
-                class_w._instance._sealed = False
-            return class_w._instance
-        def __init__(self, *args, **kwargs):
-            if self._sealed:
-                raise ("error")
-            super(class_w, self).__init__(*args, **kwargs)
-            self._sealed = True
-    class_w.__name__ = class_.__name__
-    return class_w
-
+# def singleton(class_):
+#     class class_w(class_):
+#         _instance = None
+#         def __new__(class_, *args, **kwargs):
+#             if class_w._instance is None:
+#                 class_w._instance = super(class_w, class_).__new__(class_, *args, **kwargs)
+#                 class_w._instance._sealed = False
+#             return class_w._instance
+#         def __init__(self, *args, **kwargs):
+#             if self._sealed:
+#                 return
+#             super(class_w, self).__init__(*args, **kwargs)
+#             self._sealed = True
+#     class_w.__name__ = class_.__name__
+#     return class_w
+#
 
 # def singleton(class_):
 #     instance = {}
@@ -30,18 +30,6 @@ def singleton(class_):
 #         return instance[class_]
 #
 #     return getinstance
-
-
-@singleton
-@dataclass
-class ShapesDataClass:
-    biz_type: int
-    capital_form: int
-    corp_type: int
-    stock_status: bool
-    stock_market: str
-    iso9000: str
-    iso14000: str
 
 
 class IShapeState(metaclass=ABCMeta):
@@ -59,7 +47,7 @@ class ConcreteState(IShapeState):
         pass
 
 
-@singleton
+# @singleton
 class VenderBizType(ConcreteState):
     def __init__(self, left_pos,dto):
         super().__init__(left_pos,dto)
@@ -91,6 +79,12 @@ class CapitalForm(ConcreteState):
             self.shapesdata.stock_status=1
         else:
             self.shapesdata.stock_status=2
+            if 180 < self.position < 235:
+                self.shapesdata.corp_type = 1
+            elif 240 < self.position < 290:
+                self.shapesdata.corp_type = 2
+            elif 295 < self.position < 400:
+                self.shapesdata.corp_type = 9
 
 
 class StockStatus(ConcreteState):
@@ -98,10 +92,16 @@ class StockStatus(ConcreteState):
         super().__init__(left_pos, dto)
 
     def choose(self, state_context):
-        if 80 < self.position < 125:
-            self.shapesdata.stock_status=1
+        if 340 < self.position < 410:
+            self.shapesdata.stock_status = 0
         else:
-            self.shapesdata.stock_status=2
+            self.shapesdata.stock_status = 1
+            if 80 < self.position < 125:
+                self.shapesdata.stock_market = "東証１部"
+            elif 150 < self.position < 190:
+                self.shapesdata.stock_market = "東証２部"
+            elif 210 < self.position < 300:
+                self.shapesdata.stock_market = "その他"
 
 
 
@@ -148,7 +148,7 @@ def set_concrete_state(top_pos, left_pos,dto):
     if 720 < top_pos < 731:
         return ISOSplan(left_pos, dto)
     if 733 < top_pos < 747:
-        return ISONoCerfit(left_pos, dto)
+        return ISONoCerfit(left_pos,dto)
 
 
 class main():
@@ -163,18 +163,20 @@ class main():
         self.left = 210
         self.top2 = 230
         self.left2= 90
-        self.dto = ShapesDataClass
+        self.dto = ShapesDataClass()
         state = StateContext(set_concrete_state(self.top,self.left,self.dto))
         state.choose()
-
-
-        self.concrete_state = set_concrete_state(self.top2, self.left2,self.dto)
-        state = StateContext(self.concrete_state)
-        state.choose()
-
         print(self.dto.biz_type)
-        print(self.dto.stock_status)
-        print(self.dto.__dict__)
+
+        #
+        # self.concrete_state = set_concrete_state(self.top2, self.left2)
+        # state = StateContext(self.concrete_state)
+        # state.choose()
+
+
+        # print(self.dto.biz_type)
+        # print(self.dto.stock_status)
+        # print(self.dto.__dict__)
         # print(self.dto.biz_type)
         # print(self.dto.capital_form)
 

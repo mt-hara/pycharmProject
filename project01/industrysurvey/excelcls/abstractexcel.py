@@ -26,7 +26,7 @@ class AbstractExcelApp(metaclass=ABCMeta):
 
     def __init__(self):
         self.__app = None
-        self.__app = xlw.App(visible=True)
+        self.__app = xlw.App(visible=False)
         self.__app.calculation = "manual"
         self.__app.display_alerts = False
 

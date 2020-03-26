@@ -16,14 +16,15 @@ class ShapesDataClass:
 
 
 class ShapeDataDTO():
-    def __init__(self, pos_list):
-        self.shapesdto = ShapesDataClass()
-        self.shapes_list = pos_list
+    def __init__(self):
+        self.shapesdto = ShapesDataClass
+        self.shapes_list = None
 
-    def get_shape_data(self):
+    def get_shape_data(self, lists):
+        self.shapes_list = lists
         for dict in self.shapes_list:
-            t_pos: float = dict["top"]
-            l_pos: float = dict["left"]
+            t_pos = dict["top"]
+            l_pos = dict["left"]
             if 210 < t_pos < 225:  # 業種分類
                 if 80 < l_pos < 125:
                     self.shapesdto.biz_type = 1  # メーカー
@@ -51,7 +52,7 @@ class ShapeDataDTO():
                         self.shapesdto.corp_type = 2  # 有限会社
                     elif 295 < l_pos < 400:
                         self.shapesdto.corp_type = 9  # その他
-            elif 237 < t_pos < 253:  # 上場区分
+            elif 246 < t_pos < 256:  # 上場区分
                 if 340 < l_pos < 410:
                     self.shapesdto.stock_status = 0  # 非上場
                 else:
@@ -81,119 +82,6 @@ class ShapeDataDTO():
                     self.shapesdto.iso14000 = "取得予定なし"
             elif t_pos > 800:
                 pass
-
-
-class ShapesState(metaclass=ABCMeta):
-    @abstractmethod
-    def choose(self):
-        pass
-
-
-class ConcreteShapesState(ShapesState):
-    def __init__(self, left_pos):
-        # self.state = state
-        self.left_pos = left_pos
-
-    def choose(self):
-        pass
-
-    def getconcretestate(self):
-        return self
-
-
-class VenderBizType(ConcreteShapesState):
-    def __init__(self, left_pos):
-        super(VenderBizType, self).__init__(left_pos)
-        # super().__init__(left_pos)
-        self.bizType = None
-
-    def choose(self):
-        if 80 < self.left_pos < 125:
-            self.bizType = 1
-        elif 145 < self.left_pos < 190:
-            self.bizType = 2
-        elif 200 < self.left_pos < 285:
-            self.bizType = 3
-        elif 298 < self.left_pos < 350:
-            self.bizType = 4
-        elif 360 < self.left_pos < 400:
-            self.bizType = 5
-        elif 422 < self.left_pos < 445:
-            self.bizType = 6
-        else:
-            raise Exception("業種取得エラー")
-        print(self.bizType)
-
-
-class CapitalForm(ConcreteShapesState):
-    def __init__(self, left_pos):
-        super().__init__(left_pos)
-        self.corptype = None
-
-    def choose(self):
-        if 180 < self.left_pos < 235:
-            self.corptype = 1
-        elif 240 < self.left_pos < 290:
-            self.corptype = 2
-        elif 295 < self.left_pos < 400:
-            self.corptype = 9
-        else:
-            raise Exception("会社形態取得エラー")
-
-
-class StockStatus(ConcreteShapesState):
-    def __init__(self, left_pos):
-        super().__init__(left_pos)
-        self.stockstatus = None
-
-
-class ISOCertifStatus(ConcreteShapesState):
-    def __init__(self, left_pos):
-        super().__init__(left_pos)
-
-
-class ISOSplan(ConcreteShapesState):
-    def __init__(self, left_pos):
-        super().__init__(left_pos)
-
-
-class ISONoCerfit(ConcreteShapesState):
-    def __init__(self, left_pos):
-        super().__init__(left_pos)
-
-
-class ShapesContext():
-    def __init__(self, stateobj):
-        self.state = stateobj
-
-    def set_state(self, obj):
-        self.state = obj
-
-    def choose(self):
-        self.state.choose(self)
-
-    def get_state(self):
-        return self.state.getconcretestate()
-
-
-def setconcstate(top_pos, left_pos):
-    if 210 < top_pos < 225:
-        return VenderBizType(left_pos)
-    if 237 < top_pos < 238:
-        return StockStatus(left_pos)
-    if 690 < top_pos < 717:
-        return ISOCertifStatus(left_pos)
-    if 720 < top_pos < 731:
-        return ISOSplan(left_pos)
-    if 733 < top_pos < 747:
-        return ISONoCerfit(left_pos)
-
-
-if __name__ == "__main__":
-    top = 215
-    left = 201
-    obj = ShapesContext(setconcstate(top, left))
-    obj.choose()
 
 # class ExcelShapesDTO():
 #     def __init__(self):

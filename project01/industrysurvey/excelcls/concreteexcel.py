@@ -5,6 +5,8 @@ import tkinter.messagebox as msgbox
 from excelcls.abstractexcel import AbstractExcelApp
 from excelcls.abstractexcel import AbstractExcelWorkBook
 
+from excelcls.excelshapes import ShapeDataDTO
+
 root = tkinter.Tk()
 root.withdraw()
 
@@ -16,8 +18,8 @@ class ExcelApp(AbstractExcelApp):
     def set_app(self):
         return self.app
 
-    def close_App(self):
-        self.app.quit()
+    # def close_App(self):
+    #     self.app.quit()
 
 
 class ExcelWorkBook(AbstractExcelWorkBook):
@@ -45,22 +47,23 @@ class ExcelWorkBook(AbstractExcelWorkBook):
 
 
 class ExcelShapesPos():
-    def __init__(self,xlsheet):
+    def __init__(self, xlsheet):
         self.shapes_pos = []
         self.xlsheet = xlsheet
 
     def get_shape_pos(self):
         shapes = self.xlsheet.shapes
         for sh in shapes:
-            var:Dict[str, Any] = {"top": sh.top, "left": sh.left}
+            var: Dict[str, Any] = {"top": sh.top, "left": sh.left}
             self.shapes_pos.append(var)
-
 
 
 if __name__ == "__main__":
     filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（㈱八木熊）.xlsx"
 
-    app = ExcelApp().app
+    baseapp = ExcelApp()
+    app = baseapp.app
+
     wb = ExcelWorkBook()
     wb.open_wb(app, filename)
     ws = wb.xlws
@@ -68,6 +71,9 @@ if __name__ == "__main__":
     exshapes = ExcelShapesPos(ws)
     exshapes.get_shape_pos()
 
-    for x in exshapes.shapes_pos:
-        print(x)
+    dto = ShapeDataDTO()
+    dto.get_shape_data(exshapes.shapes_pos)
+    print(dto.shapesdto.biz_type)
 
+    wb.close_workbook()
+    baseapp.close_App()

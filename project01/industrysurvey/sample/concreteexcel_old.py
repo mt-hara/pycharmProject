@@ -1,8 +1,7 @@
 from typing import Dict, Any, List
-import xlwings as xlw
 import tkinter
 import tkinter.messagebox as msgbox
-from excelcls.abstractexcel_old import AbstractWorkBook
+from sample.abstractexcel_old import AbstractWorkBook
 
 root = tkinter.Tk()
 root.withdraw()

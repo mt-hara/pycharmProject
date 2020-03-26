@@ -1,13 +1,12 @@
-from typing import Dict, Any, List
-import xlwings as xlw
-import tkinter
+from typing import Dict, Any
 import tkinter.messagebox as msgbox
 from excelcls.abstractexcel import AbstractExcelApp
 from excelcls.abstractexcel import AbstractExcelWorkBook
 from selectfiledir.filepicker import *
-from excelcls.excelshapes import ShapeDataDTO
 import  dataclasses
 from abstractdto.abscustomermstrdto import ShapesDataClass
+from dto.exshapesdto import ShapesDataDTO
+
 root = tkinter.Tk()
 root.withdraw()
 
@@ -18,9 +17,6 @@ class ExcelApp(AbstractExcelApp):
 
     def set_app(self):
         return self.app
-
-    # def close_App(self):
-    #     self.app.quit()
 
 
 class ExcelWorkBook(AbstractExcelWorkBook):
@@ -59,6 +55,23 @@ class ExcelShapesPos():
             self.shapes_pos.append(var)
 
 
+class ConcreteExcel():
+
+    def get_ws(self):
+        filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（㈱八木熊）.xlsx"
+        self.baseapp = ExcelApp()
+        self.app = self.baseapp.app
+
+        self.wb = ExcelWorkBook()
+        self.wb.open_wb(self.app, filename)
+        self.ws = self.wb.xlws
+        return self.ws
+
+
+
+
+
+
 if __name__ == "__main__":
     # def_dir = "DeskTop"
     # ftype = [("Excel2003ファイル", "*.xlsx")]
@@ -66,7 +79,7 @@ if __name__ == "__main__":
     # files = dialog.get_files()
 
 
-    filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（㈱八木熊）.xlsx"
+    filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（（株）清和光学製作所）.xlsx"
 
     baseapp = ExcelApp()
     app = baseapp.app
@@ -78,13 +91,11 @@ if __name__ == "__main__":
     exshapes = ExcelShapesPos(ws)
     exshapes.get_shape_pos()
     dto = ShapesDataClass()
-    dao = ShapeDataDTO(dto)
-    dao.get_shape_data(exshapes.shapes_pos)
+    dao = ShapesDataDTO(dto)
 
+    dao.get_shapes_dt(exshapes.shapes_pos)
     d = dataclasses.asdict(dto)
     print(d)
-
-    # print(dto.shapesdto.biz_type)
 
     wb.close_workbook()
     baseapp.close_App()

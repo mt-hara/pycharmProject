@@ -1,35 +1,5 @@
-from typing import List
-from dataclasses import dataclass, fields
 from abc import ABCMeta
 from abc import abstractmethod
-from abstractdto.abscustomermstrdto import ShapesDataClass
-
-# def singleton(class_):
-#     class class_w(class_):
-#         _instance = None
-#         def __new__(class_, *args, **kwargs):
-#             if class_w._instance is None:
-#                 class_w._instance = super(class_w, class_).__new__(class_, *args, **kwargs)
-#                 class_w._instance._sealed = False
-#             return class_w._instance
-#         def __init__(self, *args, **kwargs):
-#             if self._sealed:
-#                 return
-#             super(class_w, self).__init__(*args, **kwargs)
-#             self._sealed = True
-#     class_w.__name__ = class_.__name__
-#     return class_w
-#
-
-# def singleton(class_):
-#     instance = {}
-#
-#     def getinstance(*args, **kwargs):
-#         if class_ not in instance:
-#             instance[class_] = class_(*args, **kwargs)
-#         return instance[class_]
-#
-#     return getinstance
 
 
 class IShapeState(metaclass=ABCMeta):
@@ -39,7 +9,7 @@ class IShapeState(metaclass=ABCMeta):
 
 
 class ConcreteState(IShapeState):
-    def __init__(self, left_pos,dto):
+    def __init__(self, left_pos, dto):
         self.position = left_pos
         self.shapesdata = dto
 
@@ -49,8 +19,8 @@ class ConcreteState(IShapeState):
 
 # @singleton
 class VenderBizType(ConcreteState):
-    def __init__(self, left_pos,dto):
-        super().__init__(left_pos,dto)
+    def __init__(self, left_pos, dto):
+        super().__init__(left_pos, dto)
         # self.bizType = None
 
     def choose(self, state_context):
@@ -76,9 +46,9 @@ class CapitalForm(ConcreteState):
 
     def choose(self, state_context):
         if 80 < self.position < 125:
-            self.shapesdata.stock_status=1
+            self.shapesdata.capital_form = 1
         else:
-            self.shapesdata.stock_status=2
+            self.shapesdata.capital_form = 2
             if 180 < self.position < 235:
                 self.shapesdata.corp_type = 1
             elif 240 < self.position < 290:
@@ -104,17 +74,37 @@ class StockStatus(ConcreteState):
                 self.shapesdata.stock_market = "その他"
 
 
-
 class ISOCertifStatus(ConcreteState):
-    pass
+    def __init__(self, left_pos, dto):
+        super().__init__(left_pos, dto)
+
+    def choose(self, state_context):
+        if 25.5 < self.position < 100:
+            self.shapesdata.iso9000 = "取得済"
+        elif 305 < self.position < 390:
+            self.shapesdata.iso14000 = "取得済"
 
 
 class ISOSplan(ConcreteState):
-    pass
+    def __init__(self, left_pos, dto):
+        super().__init__(left_pos, dto)
+
+    def choose(self, state_context):
+        if 25.5 < self.position < 100:
+            self.shapesdata.iso9000 = "取得予定"
+        elif 305 < self.position < 390:
+            self.shapesdata.iso14000 = "取得予定"
 
 
 class ISONoCerfit(ConcreteState):
-    pass
+    def __init__(self, left_pos, dto):
+        super().__init__(left_pos, dto)
+
+    def choose(self, state_context):
+        if 25.5 < self.position < 100:
+            self.shapesdata.iso9000 = "取得予定なし"
+        elif 305 < self.position < 390:
+            self.shapesdata.iso14000 = "取得予定なし"
 
 
 class StateContext():
@@ -136,7 +126,7 @@ class StateContext():
         self.curt_state.choose(self)
 
 
-def set_concrete_state(top_pos, left_pos,dto):
+def set_concrete_state(top_pos, left_pos, dto):
     if 210 < top_pos < 225:
         return VenderBizType(left_pos, dto)
     if 222 < top_pos < 238:
@@ -148,44 +138,23 @@ def set_concrete_state(top_pos, left_pos,dto):
     if 720 < top_pos < 731:
         return ISOSplan(left_pos, dto)
     if 733 < top_pos < 747:
-        return ISONoCerfit(left_pos,dto)
+        return ISONoCerfit(left_pos, dto)
+    if top_pos > 800:
+        return False
 
 
-class main():
-    def __init__(self):
-        self.top: float = 0
-        self.left: float = 0
-        # self.dto = None
-        self.init()
+class ShapesDataDTO():
+    def __init__(self, shapadata):
+        self.shapesdto = shapadata
+        self.shapes_list = None
 
-    def init(self):
-        self.top = 215
-        self.left = 210
-        self.top2 = 230
-        self.left2= 90
-        self.dto = ShapesDataClass()
-        state = StateContext(set_concrete_state(self.top,self.left,self.dto))
-        state.choose()
-        print(self.dto.biz_type)
-
-        #
-        # self.concrete_state = set_concrete_state(self.top2, self.left2)
-        # state = StateContext(self.concrete_state)
-        # state.choose()
-
-
-        # print(self.dto.biz_type)
-        # print(self.dto.stock_status)
-        # print(self.dto.__dict__)
-        # print(self.dto.biz_type)
-        # print(self.dto.capital_form)
-
-
-if __name__ == "__main__":
-    main()
-    # top = 215
-    # left = 189
-    # dto = ShapesDataClass
-    # sc = StateContext(set_concrete_state(top,left,dto))
-    # sc.choose()
-    # print(dto.biz_type)
+    def get_shapes_dt(self, lists):
+        self.shapes_list = lists
+        for dict in self.shapes_list:
+            self.top = dict["top"]
+            self.left = dict["left"]
+            concrete_state = set_concrete_state(self.top, self.left, self.shapesdto)
+            # タカノロゴを取得した際にエラーが発生するため、フラグを立ててエラーを回避する。
+            if not concrete_state == False:
+                state = StateContext(concrete_state)
+                state.choose()

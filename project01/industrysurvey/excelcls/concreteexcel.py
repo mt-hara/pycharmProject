@@ -81,7 +81,7 @@ if __name__ == "__main__":
     # files = dialog.get_files()
 
 
-    filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（（株）清和光学製作所）.xlsx"
+    filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（ＮＣＤ NakajimaControlDesign）.xlsx"
 
     baseapp = ExcelApp()
     app = baseapp.app

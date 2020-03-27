@@ -21,7 +21,7 @@ class ExcelSheetDTO():
         self.__xlEmployeeYear: str = self.celldata(ws.range("I23").value, str)  # I23
         self.__xlEmployeeMonth: int = self.celldata(ws.range("O23").value, int)  # O23
         self.__xlCapitalForm: int = None  # shape 取得
-        self.__xlCorporateType: str = ""  # shape 取得
+        self.__xlCorporateType: str = None  # shape 取得
         self.__xlCustomerCapital: float = self.celldata(ws.range("H18").value, float)  # H18
         self.__xlEstablishedMonth: str = self.celldata(ws.range("I19").value, str)  # I19
         self.__xlEstablishedYear: int = self.celldata(ws.range("O19").value, int)  # O19
@@ -30,74 +30,74 @@ class ExcelSheetDTO():
         self.__xlISO9001Certif: str = self.celldata(ws.range("D50").value, str)  # D50 shape 取得 取得済 取得予定 取得予定なし
         self.__xlISO9001Plan: str = self.celldata(ws.range("D51").value, str)  # D51
         self.__xlISO9001NoCertif: str = self.celldata(ws.range("D52").value, str)  # D52
-        self.__xlISO9001ResistedNo: str = ""  # N50
-        self.__xlISO9001CertifPlanYear: str = ""  # N51
-        self.__xlISO9001CertifPlanMonth: str = ""  # R51
-        self.__xlISO14001Certif: str = ""  # V50 shape 取得 取得 取得済 取得予定 取得予定なし
-        self.__xlISO14001Plan: str = ""  # V51
-        self.__xlISO14001NoCertif: str = ""  # V52
-        self.__xlISO14001ResistedNo: str = ""  # AF50
-        self.__xlISO14001CertifPlanYear: str = ""  # AF51
-        self.__xlISO14001CertifPlanMonth: str = ""  # AJ51
-        self.__xlOtherCertif: str = ""  # I53
+        self.__xlISO9001ResistedNo: str = self.celldata(ws.range("N50").value, str)  # N50
+        self.__xlISO9001CertifPlanYear: str = self.celldata(ws.range("N51").value, str)  # N51
+        self.__xlISO9001CertifPlanMonth: str = self.celldata(ws.range("R51").value, str)  # R51
+        self.__xlISO14001Certif: str = self.celldata(ws.range("V50").value, str)  # V50 shape 取得 取得 取得済 取得予定 取得予定なし
+        self.__xlISO14001Plan: str = self.celldata(ws.range("V51").value, str)  # V51
+        self.__xlISO14001NoCertif: str = self.celldata(ws.range("V52").value, str)  # V52
+        self.__xlISO14001ResistedNo: str = self.celldata(ws.range("AF50").value, str)  # AF50
+        self.__xlISO14001CertifPlanYear: str = self.celldata(ws.range("AF51").value, str)  # AF51
+        self.__xlISO14001CertifPlanMonth: str = self.celldata(ws.range("AJH51").value, str)  # AJ51
+        self.__xlOtherCertif: str = self.celldata(ws.range("I53").value, str)  # I53
         #     CustomerCategory: str  # ""
         self.__xlCustomerBizType: int = None  # shape 取得
-        self.__xlPicName: str = ""  # H57
-        self.__xlPicEmailAddress: str = ""  # H58
-        self.__xlpicDept: str = ""  # H59
-        self.__xlpicPosition: str = ""  # G59
-        self.__xlContactZipCd: str = ""  # H55
-        self.__xlContactAddress: str = ""  # C56
-        self.__xlContactTel: str = ""  # H60
-        self.__xlContactFax: str  # G60
-        self.__xlStockListingStatus: int  # 0:非上場　1:上場 shape 取得
-        self.__xlStockMarket: str  # shape 取得 Text
-        self.__xlMainStockholder_1: str  # U19
-        self.__xlMainStockholder_2: str  # U20
-        self.__xlMainStockholder_3: str  # U21
-        self.__xlMainStockholder_4: str  # U22
-        self.__xlMainStockholder_5: str  # U23
-        self.__xlRatioSH_1: float  # AK19
-        self.__xlRatioSH_2: float  # AK20
-        self.__xlRatioSH_3: float  # AK21
-        self.__xlRatioSH_4: float  # AK22
-        self.__xlRatioSH_5: float  # AK23
-        self.__xlmainCustomer_1: str  # C28
-        self.__xlmainCustomer_2: str  # C29
-        self.__xlmainCustomer_3: str  # C30
-        self.__xlmainCustomer_4: str  # C31
-        self.__xlmainCustomer_5: str  # C32
-        self.__xlCurPrdYear: str  # M26
-        self.__xlCurPrdSales_1: float  # M28
-        self.__xlCurPrdSales_2: float  # M29
-        self.__xlCurPrdSales_3: float  # M30
-        self.__xlCurPrdSales_4: float  # M31
-        self.__xlCurPrdSales_5: float  # M32
-        self.__xlCurPrdSales_Our: float  # M34
-        self.__xlCurPrdSales_Other: float  # M33
-        self.__xlCurPrdSalesRatio_1: float  # S28
-        self.__xlCurPrdSalesRatio_2: float  # S29
-        self.__xlCurPrdSalesRatio_3: float  # S30
-        self.__xlCurPrdSalesRatio_4: float  # S31
-        self.__xlCurPrdSalesRatio_5: float  # S32
-        self.__xlCurPrdSalesRatio_Our: float  # S34
-        self.__xlCurPrdSalesRatio_Othor: float  # S33
-        self.__xlCurPrdSales_Sum: float  # M35
-        self.__xlCurPrdOperatingProfit: float  # M36
-        self.__xlCurPrdOrdinaryincome: float  # M37
-        self.__xlPrevPrdYear: str  # V26
-        self.__xlPrevPrdSales_1: float  # V28
-        self.__xlPrevPrdSales_2: float  # V29
-        self.__xlPrevPrdSales_3: float  # V30
-        self.__xlPrevPrdSales_4: float  # V31
-        self.__xlPrevPrdSales_5: float  # V32
-        self.__xlPrevPrdSales_Our: float  # V34
-        self.__xlPrevPrdSales_Other: float  # V33
-        self.__xlPrevPrdSalesRatio_1: float  # AB28
-        self.__xlPrevPrdSalesRatio_2: float  # AB29
-        self.__xlPrevPrdSalesRatio_3: float  # AB30
-        self.__xlPrevPrdSalesRatio_4: float  # AB31
-        self.__xlPrevPrdSalesRatio_5: float  # AB32
+        self.__xlPicName: str = self.celldata(ws.range("H57").value, str)  # H57
+        self.__xlPicEmailAddress: str = self.celldata(ws.range("H58").value, str)  # H58
+        self.__xlpicDept: str = self.celldata(ws.range("H59").value, str)  # H59
+        self.__xlpicPosition: str = self.celldata(ws.range("G59").value, str)  # G59
+        self.__xlContactZipCd: str = self.celldata(ws.range("H55").value, str)  # H55
+        self.__xlContactAddress: str = self.celldata(ws.range("C56").value, str)  # C56
+        self.__xlContactTel: str = self.celldata(ws.range("H60").value, str)  # H60
+        self.__xlContactFax: str = self.celldata(ws.range("G60").value, str)  # G60
+        self.__xlStockListingStatus: int = None  # 0:非上場　1:上場 shape 取得
+        self.__xlStockMarket: str = None  # shape 取得 Text
+        self.__xlMainStockholder_1: str = self.celldata(ws.range("U19").value, str)  # U19
+        self.__xlMainStockholder_2: str = self.celldata(ws.range("U20").value, str)  # U20
+        self.__xlMainStockholder_3: str = self.celldata(ws.range("U21").value, str)  # U21
+        self.__xlMainStockholder_4: str = self.celldata(ws.range("U22").value, str)  # U22
+        self.__xlMainStockholder_5: str = self.celldata(ws.range("U23").value, str)  # U23
+        self.__xlRatioSH_1: float = self.celldata(ws.range("AK19").value, float)  # AK19
+        self.__xlRatioSH_2: float = self.celldata(ws.range("AK20").value, float)  # AK20
+        self.__xlRatioSH_3: float = self.celldata(ws.range("AK21").value, float)  # AK21
+        self.__xlRatioSH_4: float = self.celldata(ws.range("AK22").value, float)  # AK22
+        self.__xlRatioSH_5: float = self.celldata(ws.range("AK23").value, float)  # AK23
+        self.__xlmainCustomer_1: str = self.celldata(ws.range("C28").value, str)  # C28
+        self.__xlmainCustomer_2: str = self.celldata(ws.range("C29").value, str)  # C29
+        self.__xlmainCustomer_3: str = self.celldata(ws.range("C30").value, str)  # C30
+        self.__xlmainCustomer_4: str = self.celldata(ws.range("C31").value, str)  # C31
+        self.__xlmainCustomer_5: str = self.celldata(ws.range("C32").value, str)  # C32
+        self.__xlCurPrdYear: str = self.celldata(ws.range("M26").value, str)  # M26
+        self.__xlCurPrdSales_1: float = self.celldata(ws.range("M28").value, float)  # M28
+        self.__xlCurPrdSales_2: float = self.celldata(ws.range("M29").value, float)  # M29
+        self.__xlCurPrdSales_3: float = self.celldata(ws.range("M30").value, float)  # M30
+        self.__xlCurPrdSales_4: float = self.celldata(ws.range("M31").value, float)  # M31
+        self.__xlCurPrdSales_5: float = self.celldata(ws.range("M32").value, float)  # M32
+        self.__xlCurPrdSales_Our: float = self.celldata(ws.range("M34").value, float)  # M34
+        self.__xlCurPrdSales_Other: float = self.celldata(ws.range("M33").value, float)  # M33
+        self.__xlCurPrdSalesRatio_1: float = self.celldata(ws.range("S28").value, float)  # S28
+        self.__xlCurPrdSalesRatio_2: float = self.celldata(ws.range("S29").value, float)  # S29
+        self.__xlCurPrdSalesRatio_3: float = self.celldata(ws.range("S30").value, float)  # S30
+        self.__xlCurPrdSalesRatio_4: float = self.celldata(ws.range("S31").value, float)  # S31
+        self.__xlCurPrdSalesRatio_5: float = self.celldata(ws.range("S32").value, float)  # S32
+        self.__xlCurPrdSalesRatio_Our: float = self.celldata(ws.range("S34").value, float)  # S34
+        self.__xlCurPrdSalesRatio_Othor: float = self.celldata(ws.range("S33").value, float)  # S33
+        self.__xlCurPrdSales_Sum: float = self.celldata(ws.range("M35").value, float)  # M35
+        self.__xlCurPrdOperatingProfit: float = self.celldata(ws.range("M36").value, float)  # M36
+        self.__xlCurPrdOrdinaryincome: float = self.celldata(ws.range("M37").value, float)  # M37
+        self.__xlPrevPrdYear: str = self.celldata(ws.range("V26").value, str)  # V26
+        self.__xlPrevPrdSales_1: float = self.celldata(ws.range("V28").value, float)  # V28
+        self.__xlPrevPrdSales_2: float = self.celldata(ws.range("V29").value, float)  # V29
+        self.__xlPrevPrdSales_3: float = self.celldata(ws.range("V30").value, float)  # V30
+        self.__xlPrevPrdSales_4: float = self.celldata(ws.range("V31").value, float)  # V31
+        self.__xlPrevPrdSales_5: float = self.celldata(ws.range("V32").value, float)  # V32
+        self.__xlPrevPrdSales_Our: float = self.celldata(ws.range("V34").value, float)  # V34
+        self.__xlPrevPrdSales_Other: float = self.celldata(ws.range("V33").value, float)  # V33
+        self.__xlPrevPrdSalesRatio_1: float = self.celldata(ws.range("AB28").value, float)  # AB28
+        self.__xlPrevPrdSalesRatio_2: float = self.celldata(ws.range("AB29").value, float)  # AB29
+        self.__xlPrevPrdSalesRatio_3: float = self.celldata(ws.range("AB30").value, float)  # AB30
+        self.__xlPrevPrdSalesRatio_4: float = self.celldata(ws.range("AB31").value, float)  # AB31
+        self.__xlPrevPrdSalesRatio_5: float = self.celldata(ws.range("AB32").value, float)  # AB32
         self.__xlPrevPrdSalesRatio_Our: float  # AB34
         self.__xlPrevPrdSalesRatio_Other: float  # AB33
         self.__xlPrevPrdSales_Sum: float  # V35

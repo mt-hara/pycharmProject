@@ -3,9 +3,11 @@ import tkinter.messagebox as msgbox
 from excelcls.abstractexcel import AbstractExcelApp
 from excelcls.abstractexcel import AbstractExcelWorkBook
 from selectfiledir.filepicker import *
+from dto.excelsheetdto import ExcelSheetDTO
 import  dataclasses
-from abstractdto.abscustomermstrdto import AllCustomerMaster
-from dto.exshapesdto import ShapesDataDTO
+# from abstractdto.abscustomermstrdto import CustomerMaster
+from dto.custmasterdto import CustomerDTO
+from dto.excelshapesdto import ShapesDataDTO
 
 root = tkinter.Tk()
 root.withdraw()
@@ -55,17 +57,17 @@ class ExcelShapesPos():
             self.shapes_pos.append(var)
 
 
-class ConcreteExcel():
-
-    def get_ws(self):
-        filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（㈱八木熊）.xlsx"
-        self.baseapp = ExcelApp()
-        self.app = self.baseapp.app
-
-        self.wb = ExcelWorkBook()
-        self.wb.open_wb(self.app, filename)
-        self.ws = self.wb.xlws
-        return self.ws
+# class ConcreteExcel():
+#
+#     def get_ws(self):
+#         filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（㈱八木熊）.xlsx"
+#         self.baseapp = ExcelApp()
+#         self.app = self.baseapp.app
+#
+#         self.wb = ExcelWorkBook()
+#         self.wb.open_wb(self.app, filename)
+#         self.ws = self.wb.xlws
+#         return self.ws
 
 
 
@@ -89,16 +91,18 @@ if __name__ == "__main__":
     ws = wb.xlws
 
     exshapes = ExcelShapesPos(ws)
-    exshapes.get_shape_pos()
-    dto = AllCustomerMaster()
-    dao = ShapesDataDTO(dto)
-
-
-    dao.get_shapes_dt(exshapes.shapes_pos)
-    dto.set_cell_data(ws)
-    d = dataclasses.asdict(dto)
-    for x,y in d.items():
-        print(x,y)
+    exsheetdto = ExcelSheetDTO(ws)
+    # exshapes.get_shape_pos()
+    # # dto = CustomerMaster()
+    # dto = CustomerDTO()
+    # shapes_dto = ShapesDataDTO(dto)
+    #
+    #
+    # shapes_dto.set_shapes_data(exshapes.shapes_pos)
+    # dto.set_cell_data(ws)
+    # d = dataclasses.asdict(dto)
+    # for x,y in d.items():
+    #     print(x,y)
 
     wb.close_workbook()
     baseapp.close_App()

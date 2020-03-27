@@ -98,10 +98,10 @@ class ExcelSheetDTO():
         self.__xlPrevPrdSalesRatio_3: float = self.celldata(ws.range("AB30").value, float)  # AB30
         self.__xlPrevPrdSalesRatio_4: float = self.celldata(ws.range("AB31").value, float)  # AB31
         self.__xlPrevPrdSalesRatio_5: float = self.celldata(ws.range("AB32").value, float)  # AB32
-        self.__xlPrevPrdSalesRatio_Our: float  # AB34
-        self.__xlPrevPrdSalesRatio_Other: float  # AB33
-        self.__xlPrevPrdSales_Sum: float  # V35
-        self.__xlPrevPrdOperatingProfit: float  # V36
+        self.__xlPrevPrdSalesRatio_Our: float = self.celldata(ws.range("AB34").value, float)  # AB34
+        self.__xlPrevPrdSalesRatio_Other: float = self.celldata(ws.range("AB33").value, float)  # AB33
+        self.__xlPrevPrdSales_Sum: float = self.celldata(ws.range("V35").value, float)  # V35
+        self.__xlPrevPrdOperatingProfit: float = self.celldata(ws.range("V36").value, float)  # V36
         self.__xlPrevPrdOrdinaryIncome: float  # V37
         self.__xlLastPrdYear: str  # AE26
         self.__xlLastPrdSales_1: float  # AE28

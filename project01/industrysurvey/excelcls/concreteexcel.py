@@ -92,6 +92,8 @@ if __name__ == "__main__":
 
     exshapes = ExcelShapesPos(ws)
     exsheetdto = ExcelSheetDTO(ws)
+    for k, v in exsheetdto.__dict__.items():
+        print("{} : {}".format(k,v))
     # exshapes.get_shape_pos()
     # # dto = CustomerMaster()
     # dto = CustomerDTO()

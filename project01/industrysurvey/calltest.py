@@ -1,9 +1,19 @@
-def main():
-    pass
-
+from sample.abscustomermstrdto_copy import DataCls
+from dataclasses import asdict
+def main(param):
+    data = DataCls()
+    data.customerCd=param
+    print(data.customerCd)
 
 if __name__ == "__main__":
-    main()
+    data1=DataCls()
+    data1.customerCd="123"
+    data2= DataCls()
+    data2.customerCd="AAA"
+    print(asdict(data1))
+    print(asdict(data2))
+    print(id(data1))
+    print(id(data2))
 
 
 

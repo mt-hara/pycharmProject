@@ -185,7 +185,10 @@ class AbstractExcelSheetDTO:
     def xlHeadOfficeAddress(self, param):
         self.__xlHeadOfficeAddress = param
 
-
+    # xlCustomerCd
+    # xlCustomerName
+    # xlCustomerKanaName
+    # xlHeadOfficeZipCd
     # xlHeadOfficeAddress
     # xlHeadOfficeTel
     # xlHeadOfficeFax
@@ -323,10 +326,3 @@ class AbstractExcelSheetDTO:
     # xlMainProducts_3
     # xlMainProducts_4
     # xlMainProducts_5
-
-
-    # xlCustomerCd
-    # xlCustomerName
-    # xlCustomerKanaName
-    # xlHeadOfficeZipCd
-    # xlHeadOfficeAddress

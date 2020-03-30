@@ -12,8 +12,8 @@ class ShapesDataClass:
     iso14000: str = ""
 
 @dataclass
-class DataCls:
-    __customerCd: str
+class DataCls():
+    __customerCd: str = None
 
     @property
     def customerCd(self):

@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class AbstractExcelSheetDTO:
+class AbstractExcelSheetDTO():
     __xlCustomerCd: str = None  # H3
     __xlCustomerName: str = None  # H5
     __xlCustomerKanaName: str = None  # H4
@@ -193,18 +193,95 @@ class AbstractExcelSheetDTO:
     def xlHeadOfficeTel(self, param):
         self.__xlHeadOfficeTel = param
 
-    #
-    # xlHeadOfficeFax
-    # xlBranchOfficeZipCd
-    # xlBranchOfficeAddress
-    # xlBranchOfficeTel
-    # xlBranchOfficeFax
-    # xlRepName
-    # xlRepKanaName
-    # xlRepJobTitle
-    # xlRepBirthYear
-    # xlRepBirthMonth
-    # xlRepBirthDay
+    @property
+    def xlHeadOfficeFax(self):
+        return self.__xlHeadOfficeFax
+
+    @xlHeadOfficeFax.setter
+    def xlHeadOfficeFax(self, param):
+        self.__xlHeadOfficeFax = param
+
+    @property
+    def xlBranchOfficeZipCd(self):
+        return self.__xlBranchOfficeZipCd
+
+    @xlBranchOfficeZipCd.setter
+    def xlBranchOfficeZipCd(self, param):
+        self.__xlBranchOfficeZipCd = param
+
+    @property
+    def xlBranchOfficeAddress(self):
+        return self.__xlBranchOfficeAddress
+
+    @xlBranchOfficeAddress.setter
+    def xlBranchOfficeAddress(self, param):
+        self.__xlBranchOfficeAddress = param
+
+    @property
+    def xlBranchOfficeTel(self):
+        return self.__xlBranchOfficeTel
+
+    @xlBranchOfficeTel.setter
+    def xlBranchOfficeTel(self, param):
+        self.__xlBranchOfficeTel = param
+
+    @property
+    def xlBranchOfficeFax(self):
+        return  self.__xlBranchOfficeFax
+
+    @xlBranchOfficeFax.setter
+    def xlBranchOfficeFax(self, param):
+        self.__xlBranchOfficeFax = param
+
+    @property
+    def xlRepName(self):
+        return  self.__xlRepName
+
+    @xlRepName.setter
+    def xlRepName(self, param):
+        self.__xlRepName = param
+
+    @property
+    def xlRepKanaName(self):
+        return self.__xlRepKanaName
+
+    @xlRepKanaName.setter
+    def xlRepKanaName(self, param):
+        self.__xlRepKanaName = param
+
+    @property
+    def xlRepJobTitle(self):
+        return self.__xlRepJobTitle
+
+    @xlRepJobTitle.setter
+    def xlRepJobTitle(self, param):
+        self.__xlRepJobTitle = param
+
+    @property
+    def xlRepBirthYear(self):
+        return self.__xlRepBirthYear
+
+    @xlRepBirthYear.setter
+    def xlRepBirthYear(self, param):
+        self.__xlRepBirthYear = param
+
+    @property
+    def xlRepBirthMonth(self):
+        return self.__xlRepBirthMonth
+
+    @xlRepBirthMonth.setter
+    def xlRepBirthMonth(self, param):
+        self.__xlRepBirthMonth = param
+
+    @property
+    def xlRepBirthDay(self):
+        return self.__xlRepBirthDay
+
+    @xlRepBirthDay.setter
+    def xlRepBirthDay(self, param):
+        self.__xlRepBirthDay = param
+
+
     # xlEmployees
     # xlEmployeeYear
     # xlEmployeeMonth
@@ -329,10 +406,3 @@ class AbstractExcelSheetDTO:
     # xlMainProducts_3
     # xlMainProducts_4
     # xlMainProducts_5
-
-
-    # xlCustomerCd
-    # xlCustomerName
-    # xlCustomerKanaName
-    # xlHeadOfficeZipCd
-    # xlHeadOfficeAddress

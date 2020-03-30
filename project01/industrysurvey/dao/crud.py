@@ -19,9 +19,21 @@ class Customers(BaseSession):
                                                                                             keyword + '%')):
                 return i.customerCd
 
+    def update(self,keyword,param):
+        with self.transaction() as session:
+            i =  self.session.query(CustomerData).filter(CustomerData.customerCd ==
+                                                             keyword).first()
+            print(":{}:{}:{}".format(i.customerCd,i.customerName,i.fld1))
+            i.fld1=param
+            print(":{}:{}:{}".format(i.customerCd, i.customerName, i.fld1))
+
 if __name__ == "__main__":
-    sqlite_patrh = "G:\\97.ACCESS\\sqlite3db\\BizSurvey.sqlite3"
+    # sqlite_patrh = "G:\\97.ACCESS\\sqlite3db\\BizSurvey.sqlite3"
+    sqlite_patrh = "C:\\dev\\sqlite3\\BizSurvey.sqlite3"
+
+    # "C:\dev\sqlite3\BizSurvey.sqlite3"
     cli = Customers(sqlite_patrh)
     # cli.select()
-    strfld = cli.like_select("シーシーエス")
-    print(str(strfld))
+    # strfld = cli.like_select("シーシーエス")
+    # print(str(strfld))
+    cli.update("001002",None)

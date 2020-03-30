@@ -1,4 +1,6 @@
 from sample.abscustomermstrdto_copy import DataCls
+from abstractdto.abs_excel_sheet_dto import AbstractExcelSheetDTO
+
 from dataclasses import asdict
 def main(param):
     data = DataCls()
@@ -6,14 +8,13 @@ def main(param):
     print(data.customerCd)
 
 if __name__ == "__main__":
-    data1=DataCls()
-    data1.customerCd="123"
-    data2= DataCls()
-    data2.customerCd="AAA"
-    print(asdict(data1))
-    print(asdict(data2))
-    print(id(data1))
-    print(id(data2))
+    data = AbstractExcelSheetDTO()
+    # data.xlCustomerCd = 12345
+    # data.xlEmployees=12
+    for k, v in data.__dict__.items():
+        print(k,v)
+
+    print(type(data.xlCustomerCd))
 
 
 

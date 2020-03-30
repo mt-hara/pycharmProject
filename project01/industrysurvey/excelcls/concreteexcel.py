@@ -3,11 +3,9 @@ import tkinter.messagebox as msgbox
 from excelcls.abstractexcel import AbstractExcelApp
 from excelcls.abstractexcel import AbstractExcelWorkBook
 from selectfiledir.filepicker import *
-from dto.excelsheetdto import ExcelSheetDTO
-import  dataclasses
+from dto.excel_sheet_dto import ExcelSheetDTO
+
 # from abstractdto.abscustomermstrdto import CustomerMaster
-from dto.custmasterdto import CustomerDTO
-from dto.excelshapesdto import ShapesDataDTO
 
 root = tkinter.Tk()
 root.withdraw()

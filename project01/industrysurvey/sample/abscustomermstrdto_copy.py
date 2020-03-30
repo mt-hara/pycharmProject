@@ -11,6 +11,22 @@ class ShapesDataClass:
     iso9000: str = ""
     iso14000: str = ""
 
+@dataclass
+class DataCls:
+    __customerCd: str
+
+    @property
+    def customerCd(self):
+        return self.__customerCd
+
+    @customerCd.setter
+    def customerCd(self, param):
+        self.__customerCd = param
+
+
+
+
+
 
 # @dataclass
 # class AbsCustomerMasterDTO:

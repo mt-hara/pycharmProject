@@ -26,8 +26,8 @@ class AbstractExcelSheetDTO():
     __xlCapitalForm: int = None  # shape 取得
     __xlCorporateType: str = None  # shape 取得
     __xlCustomerCapital: float = None  # H18
-    __xlEstablishedMonth: str = None  # I19
-    __xlEstablishedYear: int = None  # O19
+    __xlEstablishedYear: str = None  # O19
+    __xlEstablishedMonth: int = None  # I19
     __xlAccountClosingMonth: int = None  # M21
     __xlReturnOnEquity: float = None  # I20
     __xlISO9001Certif: str = None  # D50 shape 取得 取得済 取得予定 取得予定なし
@@ -122,7 +122,7 @@ class AbstractExcelSheetDTO():
     __xlLastPrdSalesRatio_Other: float = None  # AK33
     __xlLastPrdSales_sum: float = None  # AE35
     __xlLastPrdOperatingProfit: float = None  # AE36
-    __xlLastPrdOrdinaryincome: float = None  # AE37
+    __xlLastPrdOrdinaryIncome: float = None  # AE37
     __xlCurPrdMainProducts: str = None  # M38
     __xlMainSupplier_1: str = None  # W42
     __xlMainSupplier_2: str = None  # W43
@@ -150,7 +150,7 @@ class AbstractExcelSheetDTO():
         return self.__xlCustomerCd
 
     @xlCustomerCd.setter
-    def xlCustomerCd(self, param):
+    def xlCustomerCd(self, param: str):
         self.__xlCustomerCd = param
 
     @property
@@ -158,7 +158,7 @@ class AbstractExcelSheetDTO():
         return self.__xlCustomerName
 
     @xlCustomerName.setter
-    def xlCustomerName(self, param):
+    def xlCustomerName(self, param: str):
         self.__xlCustomerName = param
 
     @property
@@ -166,7 +166,7 @@ class AbstractExcelSheetDTO():
         return self.__xlCustomerKanaName
 
     @xlCustomerKanaName.setter
-    def xlCustomerKanaName(self, param):
+    def xlCustomerKanaName(self, param: str):
         self.__xlCustomerKanaName = param
 
     @property
@@ -174,7 +174,7 @@ class AbstractExcelSheetDTO():
         return self.__xlHeadOfficeZipCd
 
     @xlHeadOfficeZipCd.setter
-    def xlHeadOfficeZipCd(self, param):
+    def xlHeadOfficeZipCd(self, param: str):
         self.__xlHeadOfficeZipCd = param
 
     @property
@@ -182,7 +182,7 @@ class AbstractExcelSheetDTO():
         return self.__xlHeadOfficeAddress
 
     @xlHeadOfficeAddress.setter
-    def xlHeadOfficeAddress(self, param):
+    def xlHeadOfficeAddress(self, param: str):
         self.__xlHeadOfficeAddress = param
 
     @property
@@ -190,7 +190,7 @@ class AbstractExcelSheetDTO():
         return self.__xlHeadOfficeTel
 
     @xlHeadOfficeTel.setter
-    def xlHeadOfficeTel(self, param):
+    def xlHeadOfficeTel(self, param: str):
         self.__xlHeadOfficeTel = param
 
     @property
@@ -198,7 +198,7 @@ class AbstractExcelSheetDTO():
         return self.__xlHeadOfficeFax
 
     @xlHeadOfficeFax.setter
-    def xlHeadOfficeFax(self, param):
+    def xlHeadOfficeFax(self, param: str):
         self.__xlHeadOfficeFax = param
 
     @property
@@ -206,7 +206,7 @@ class AbstractExcelSheetDTO():
         return self.__xlBranchOfficeZipCd
 
     @xlBranchOfficeZipCd.setter
-    def xlBranchOfficeZipCd(self, param):
+    def xlBranchOfficeZipCd(self, param: str):
         self.__xlBranchOfficeZipCd = param
 
     @property
@@ -214,7 +214,7 @@ class AbstractExcelSheetDTO():
         return self.__xlBranchOfficeAddress
 
     @xlBranchOfficeAddress.setter
-    def xlBranchOfficeAddress(self, param):
+    def xlBranchOfficeAddress(self, param: str):
         self.__xlBranchOfficeAddress = param
 
     @property
@@ -222,23 +222,23 @@ class AbstractExcelSheetDTO():
         return self.__xlBranchOfficeTel
 
     @xlBranchOfficeTel.setter
-    def xlBranchOfficeTel(self, param):
+    def xlBranchOfficeTel(self, param: str):
         self.__xlBranchOfficeTel = param
 
     @property
     def xlBranchOfficeFax(self):
-        return  self.__xlBranchOfficeFax
+        return self.__xlBranchOfficeFax
 
     @xlBranchOfficeFax.setter
-    def xlBranchOfficeFax(self, param):
+    def xlBranchOfficeFax(self, param: str):
         self.__xlBranchOfficeFax = param
 
     @property
     def xlRepName(self):
-        return  self.__xlRepName
+        return self.__xlRepName
 
     @xlRepName.setter
-    def xlRepName(self, param):
+    def xlRepName(self, param: str):
         self.__xlRepName = param
 
     @property
@@ -246,7 +246,7 @@ class AbstractExcelSheetDTO():
         return self.__xlRepKanaName
 
     @xlRepKanaName.setter
-    def xlRepKanaName(self, param):
+    def xlRepKanaName(self, param: str):
         self.__xlRepKanaName = param
 
     @property
@@ -254,7 +254,7 @@ class AbstractExcelSheetDTO():
         return self.__xlRepJobTitle
 
     @xlRepJobTitle.setter
-    def xlRepJobTitle(self, param):
+    def xlRepJobTitle(self, param: str):
         self.__xlRepJobTitle = param
 
     @property
@@ -262,7 +262,7 @@ class AbstractExcelSheetDTO():
         return self.__xlRepBirthYear
 
     @xlRepBirthYear.setter
-    def xlRepBirthYear(self, param):
+    def xlRepBirthYear(self, param: str):
         self.__xlRepBirthYear = param
 
     @property
@@ -270,7 +270,7 @@ class AbstractExcelSheetDTO():
         return self.__xlRepBirthMonth
 
     @xlRepBirthMonth.setter
-    def xlRepBirthMonth(self, param):
+    def xlRepBirthMonth(self, param: str):
         self.__xlRepBirthMonth = param
 
     @property
@@ -278,24 +278,122 @@ class AbstractExcelSheetDTO():
         return self.__xlRepBirthDay
 
     @xlRepBirthDay.setter
-    def xlRepBirthDay(self, param):
+    def xlRepBirthDay(self, param: str):
         self.__xlRepBirthDay = param
 
+    @property
+    def xlEmployees(self):
+        return self.__xlEmployees
 
-    # xlEmployees
-    # xlEmployeeYear
-    # xlEmployeeMonth
-    # xlCapitalForm
-    # xlCorporateType
-    # xlCustomerCapital
-    # xlEstablishedMonth
-    # xlEstablishedYear
-    # xlAccountClosingMonth
-    # xlReturnOnEquity
-    # xlISO9001Certif
-    # xlISO9001Plan
-    # xlISO9001NoCertif
-    # xlISO9001ResistedNo
+    @xlEmployees.setter
+    def xlEmployees(self, param: int):
+        self.__xlEmployees = param
+
+    @property
+    def xlEmployeeYear(self):
+        return self.__xlEmployeeYear
+
+    @xlEmployeeYear.setter
+    def xlEmployeeYear(self, param: str):
+        self.__xlEmployeeYear = param
+
+    @property
+    def xlEmployeeMonth(self):
+        return self.__xlEmployeeMonth
+
+    @xlEmployeeMonth.setter
+    def xlEmployeeMonth(self, param: int):
+        self.__xlEmployeeMonth = param
+
+    @property
+    def xlCapitalForm(self):
+        return self.__xlCapitalForm
+
+    @xlCapitalForm.setter
+    def xlCapitalForm(self, param :int):
+        self.__xlCapitalForm = param
+
+    @property
+    def xlCorporateType(self):
+        return  self.__xlCorporateType
+
+    @xlCorporateType.setter
+    def xlCorporateType(self, param: str):
+        self.__xlCorporateType = param
+
+    @property
+    def xlCustomerCapital(self):
+        return self.__xlCustomerCapital
+
+    @xlCustomerCapital.setter
+    def xlCustomerCapital(self, param: float):
+        self.__xlCustomerCapital = param
+
+    @property
+    def xlEstablishedYear(self):
+        return  self.__xlEstablishedYear
+
+    @xlEstablishedYear.setter
+    def xlEstablishedYear(self, param: str):
+        self.__xlEstablishedYear = param
+
+    @property
+    def xlEstablishedMonth(self):
+        return self.__xlEstablishedMonth
+
+    @xlEstablishedMonth.setter
+    def xlEstablishedMonth(self, param: int):
+        self.__xlEstablishedMonth = param
+
+    @property
+    def xlAccountClosingMonth(self):
+        return self.__xlAccountClosingMonth
+
+    @xlAccountClosingMonth.setter
+    def xlAccountClosingMonth(self, param: int):
+        self.__xlAccountClosingMonth = param
+
+    @property
+    def xlReturnOnEquity(self):
+        return self.__xlReturnOnEquity
+
+    @xlReturnOnEquity.setter
+    def xlReturnOnEquity(self, param: float):
+        self.__xlReturnOnEquity = param
+
+    @property
+    def xlISO9001Certif(self):
+        return self.__xlISO9001Certif
+
+    @xlISO9001Certif.setter
+    def xlISO9001Certif(self, param: str):
+        self.__xlISO9001Certif = param
+
+    @property
+    def xlISO9001Plan(self):
+        return self.__xlISO9001Plan
+
+    @xlISO9001Plan.setter
+    def xlISO9001Plan(self, param: str):
+        self.__xlISO9001Plan = param
+
+    @property
+    def xlISO9001NoCertif(self):
+        return self.__xlISO9001NoCertif
+
+    @xlISO9001NoCertif.setter
+    def xlISO9001NoCertif(self, param: str):
+        self.__xlISO9001NoCertif = param
+
+    @property
+    def xlISO9001ResistedNo(self):
+        return self.__xlISO9001ResistedNo
+
+    @xlISO9001ResistedNo.setter
+    def xlISO9001ResistedNo(self, param: str):
+        self.__xlISO9001ResistedNo = param
+
+
     # xlISO9001CertifPlanYear
     # xlISO9001CertifPlanMonth
     # xlISO14001Certif

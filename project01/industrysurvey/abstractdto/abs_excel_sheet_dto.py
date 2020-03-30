@@ -1,6 +1,6 @@
 class AbstractExcelSheetDTO():
     def __init__(self):
-        self.__xlCustomerCd = None  # H3
+        self.__xlCustomerCd: str = ""  # H3
         self.__xlCustomerName: str = ""  # H5
         self.__xlCustomerKanaName: str = ""  # H4
         self.__xlHeadOfficeZipCd: str = ""  # I7
@@ -151,19 +151,105 @@ class AbstractExcelSheetDTO():
     def xlCustomerCd(self, param: str):
         self.__xlCustomerCd = param
 
+    @property
+    def xlCustomerName(self):
+        return self.__xlCustomerName
+
+    @xlCustomerName.setter
+    def xlCustomerName(self, param: str):
+        self.__xlCustomerName = param
+
+    @property
+    def xlCustomerKanaName(self):
+        return self.__xlCustomerKanaName
+
+    @xlCustomerKanaName.setter
+    def xlCustomerKanaName(self, param: str):
+        self.__xlCustomerKanaName = param
+
+    @property
+    def xlHeadOfficeZipCd(self):
+        return self.__xlHeadOfficeZipCd
+
+    @xlHeadOfficeZipCd.setter
+    def xlHeadOfficeZipCd(self, param: str):
+        self.__xlHeadOfficeZipCd = param
+
+    @property
+    def xlHeadOfficeAddress(self):
+        return self.__xlHeadOfficeAddress
+
+    @xlHeadOfficeAddress.setter
+    def xlHeadOfficeAddress(self, param: str):
+        self.__xlHeadOfficeAddress = param
+
+    @property
+    def xlHeadOfficeTel(self):
+        return self.__xlHeadOfficeTel
+
+    @xlHeadOfficeTel.setter
+    def xlHeadOfficeTel(self, param: str):
+        self.__xlHeadOfficeTel = param
+
+    @property
+    def xlHeadOfficeFax(self):
+        return self.__xlHeadOfficeFax
+
+    @xlHeadOfficeFax.setter
+    def xlHeadOfficeFax(self, param: str):
+        self.__xlHeadOfficeFax = param
+
+    @property
+    def xlBranchOfficeZipCd(self):
+        return  self.__xlBranchOfficeZipCd
+
+    @xlBranchOfficeZipCd.setter
+    def xlBranchOfficeZipCd(self, param: str):
+        self.__xlBranchOfficeZipCd = param
+
+    @property
+    def xlBranchOfficeAddress(self):
+        return self.__xlBranchOfficeAddress
+
+    @xlBranchOfficeAddress.setter
+    def xlBranchOfficeAddress(self, param: str):
+        self.xlBranchOfficeAddress = param
+
+    @property
+    def xlBranchOfficeTel(self):
+        return self.__xlBranchOfficeTel
+
+    @xlBranchOfficeTel.setter
+    def xlBranchOfficeTel(self, param: str):
+        self.__xlBranchOfficeTel = param
+
+    @property
+    def xlBranchOfficeFax(self):
+        return self.__xlBranchOfficeFax
+
+    @xlBranchOfficeFax.setter
+    def xlBranchOfficeFax(self, param: str):
+        self.__xlBranchOfficeFax = param
+
+    @property
+    def xlRepName(self):
+        return self.__xlRepName
+
+    @xlRepName.setter
+    def xlRepName(self, param: str):
+        self.__xlRepName = param
+
+    @property
+    def xlRepKanaName(self):
+        return self.__xlRepKanaName
+
+    @xlRepKanaName.setter
+    def xlRepKanaName(self, param: str):
+        self.__xlRepKanaName = param
+
     #
-    # xlCustomerName
-    # xlCustomerKanaName
-    # xlHeadOfficeZipCd
-    # xlHeadOfficeAddress
-    # xlHeadOfficeTel
-    # xlHeadOfficeFax
-    # xlBranchOfficeZipCd
-    # xlBranchOfficeAddress
-    # xlBranchOfficeTel
-    # xlBranchOfficeFax
-    # xlRepName
-    # xlRepKanaName
+    #
+    #
     # xlRepJobTitle
     # xlRepBirthYear
     # xlRepBirthMonth

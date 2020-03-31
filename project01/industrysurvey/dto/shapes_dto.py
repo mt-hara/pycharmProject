@@ -99,6 +99,3 @@ class ShapesDto():
     @shISO14001NoCertif.setter
     def shISO14001NoCertif(self, param: str):
         self.__shISO14001NoCertif = param
-
-    def choose_add_field(self,shapesdto):
-        pass

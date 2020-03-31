@@ -1,10 +1,7 @@
-from excelcls.concreteexcel import ExcelApp, ExcelWorkBook, ExcelShapesPosOld
-from excelcls.excel_shapes_utility import GetExcelShapePos,ShapePosToValue
+from excelapp.concreteexcel import ExcelApp, ExcelWorkBook
+from excelapp.shape_state import GetExcelShapePos,ShapePosToValue
 from dto.excel_sheet_dto import ExcelSheetDTO
 from dto.shapes_dto import ShapesDto
-
-
-from dataclasses import asdict
 
 
 class main():
@@ -50,15 +47,18 @@ if __name__ == "__main__":
     excls = main(filename)
     ws = excls.ws
     data = ExcelSheetDTO(ws)
-    shapesdto = ShapesDto()
+    shape_dto = ShapesDto()
 
-    exshapescls = GetExcelShapePos(ws)
-    result = exshapescls.shapes_position()
+    shapeposcls = GetExcelShapePos()
+    result = shapeposcls.shapes_position(ws)
     # for i in result:
     #     print(i)
 
-    shapeposval = ShapePosToValue(shapesdto)
-    shapeposval.set_shapes_data(result)
+    posvalcls = ShapePosToValue(shape_dto)
+    posvalcls.set_shapes_data(result)
+    print(shape_dto.shCustomerBizType)
+    print(shape_dto.shCapitalForm)
+    print(shape_dto.shCorporateType)
     # for x in r:
     #     print(x)
 

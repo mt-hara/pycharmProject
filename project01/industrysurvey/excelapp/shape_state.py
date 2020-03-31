@@ -2,6 +2,7 @@ from abc import ABCMeta
 from abc import abstractmethod
 from typing import Dict, Any
 
+
 class IShapeState(metaclass=ABCMeta):
     @abstractmethod
     def choose(self, state_context):
@@ -11,13 +12,12 @@ class IShapeState(metaclass=ABCMeta):
 class ConcreteState(IShapeState):
     def __init__(self, left_pos, dto):
         self.position = left_pos
-        self.shapesdata = dto
+        self.shapes_dto = dto
 
     def choose(self, state_context):
         pass
 
 
-# @singleton
 class VenderBizType(ConcreteState):
     """
     業種分類取得
@@ -28,6 +28,7 @@ class VenderBizType(ConcreteState):
     biztype = 5 : 卸売
     biztype = 6 : その他
     """
+
     def __init__(self, left_pos, dto):
         super().__init__(left_pos, dto)
         self.biztype: int = 0
@@ -47,8 +48,7 @@ class VenderBizType(ConcreteState):
             self.biztype = 6
         else:
             raise Exception("業種取得エラー")
-
-        # self.shapesdata.set_shapes_data("CustomerBizType", self.biztype)
+        self.shapes_dto.shCustomerBizType=self.biztype
 
 
 class CapitalForm(ConcreteState):
@@ -60,6 +60,7 @@ class CapitalForm(ConcreteState):
     corp_type = 2 : 有限会社
     corp_type = 9 : その他
     """
+
     def __init__(self, left_pos, dto):
         super().__init__(left_pos, dto)
         self.capital_form: int = 0
@@ -68,6 +69,7 @@ class CapitalForm(ConcreteState):
     def choose(self, state_context):
         if 80 < self.position < 125:
             self.capital_form = 1
+            self.corp_type = None
         elif 160 < self.position < 235:
             self.capital_form = 2
             self.corp_type = 1
@@ -78,6 +80,8 @@ class CapitalForm(ConcreteState):
             self.capital_form = 2
             self.corp_type = 9
 
+        self.shapes_dto.shCapitalForm = self.capital_form
+        self.shapes_dto.shCorporateType = self.corp_type
         # self.shapesdata.set_shapes_data("CapitalForm", self.capital_form)
         # self.shapesdata.set_shapes_data("CorporateType", self.corp_type)
 
@@ -90,6 +94,7 @@ class StockStatus(ConcreteState):
     stock_market = 東証１部、東証2部、その他
 
     """
+
     def __init__(self, left_pos, dto):
         super().__init__(left_pos, dto)
         self.stock_status: int = 0
@@ -114,14 +119,14 @@ class StockStatus(ConcreteState):
 class ISOCertifStatus(ConcreteState):
     def __init__(self, left_pos, dto):
         super().__init__(left_pos, dto)
-        self.iso9000: str = ""
-        self.iso14000: str = ""
+        self.iso9000_certif: str = ""
+        self.iso14000_certif: str = ""
 
     def choose(self, state_context):
         if 25.5 < self.position < 100:
-            self.iso9000 = "取得済"
+            self.iso9000_certif = "取得済"
         elif 305 < self.position < 390:
-            self.iso14000 = "取得済"
+            self.iso14000_certif = "取得済"
 
         # self.shapesdata.set_shapes_data("ISO9001Certif", self.iso9000)
         # self.shapesdata.set_shapes_data("ISO14001Certif", self.iso14000)
@@ -130,15 +135,15 @@ class ISOCertifStatus(ConcreteState):
 class ISOSplan(ConcreteState):
     def __init__(self, left_pos, dto):
         super().__init__(left_pos, dto)
-        self.iso9000: str = ""
-        self.iso14000: str = ""
+        self.iso9000_plan: str = ""
+        self.iso14000_plan: str = ""
 
     def choose(self, state_context):
         if 25.5 < self.position < 100:
-            self.iso9000 = "取得予定"
+            self.iso9000_plan = "取得予定"
             # self.shapesdata.ISO9001Certif = "取得予定"
         elif 305 < self.position < 390:
-            self.iso14000 = "取得予定"
+            self.iso14000_plan = "取得予定"
             # self.shapesdata.ISO14001Certif = "取得予定"
 
         # self.shapesdata.set_shapes_data("ISO9001Certif", self.iso9000)
@@ -148,15 +153,15 @@ class ISOSplan(ConcreteState):
 class ISONoCerfit(ConcreteState):
     def __init__(self, left_pos, dto):
         super().__init__(left_pos, dto)
-        self.iso9000: str = ""
-        self.iso14000: str = ""
+        self.iso9000_no_certif: str = ""
+        self.iso14000_no_certif: str = ""
 
     def choose(self, state_context):
         if 25.5 < self.position < 100:
-            self.iso9000 = "取得予定なし"
+            self.iso9000_no_certif = "取得予定なし"
             # self.shapesdata.ISO9001Certif = "取得予定なし"
         elif 305 < self.position < 390:
-            self.iso14000 = "取得予定なし"
+            self.iso14000_no_certif = "取得予定なし"
             # self.shapesdata.ISO14001Certif = "取得予定なし"
 
         # self.shapesdata.set_shapes_data("ISO9001Certif", self.iso9000)
@@ -200,14 +205,14 @@ def set_concrete_state(top_pos, left_pos, dto):
 
 
 class ShapePosToValue():
-    def __init__(self, shapesdto):
-        self.shapesdto = shapesdto
-        self.shapes_list = None
+    def __init__(self, shape_dto):
+        self.shapesdto = shape_dto
+        self.shape_list = None
 
-    def set_shapes_data(self, lists):
-        self.shapes_list = lists
+    def set_shapes_data(self, shape_pos_list):
+        self.shape_list = shape_pos_list
         self.datalist = ""
-        for dict in self.shapes_list:
+        for dict in self.shape_list:
             self.top = dict["top"]
             self.left = dict["left"]
             concrete_state = set_concrete_state(self.top, self.left, self.shapesdto)
@@ -216,12 +221,14 @@ class ShapePosToValue():
                 state = StateContext(concrete_state)
                 state.choose()
 
-class GetExcelShapePos():
-    def __init__(self, xlsheet):
-        self.shapes_pos = []
-        self.xlsheet = xlsheet
 
-    def shapes_position(self):
+class GetExcelShapePos():
+    def __init__(self):
+        self.shapes_pos = []
+        self.xlsheet = None
+
+    def shapes_position(self, xlws):
+        self.xlsheet = xlws
         shapes = self.xlsheet.shapes
         for sh in shapes:
             var: Dict[str, Any] = {"top": sh.top, "left": sh.left}

@@ -19,6 +19,15 @@ class ConcreteState(IShapeState):
 
 # @singleton
 class VenderBizType(ConcreteState):
+    """
+    業種分類取得
+    biztype = l : メーカー
+    biztype = 2 : 商社
+    biztype = 3 : メーカー＆商社
+    biztype = 4 : 代理店
+    biztype = 5 : 卸売
+    biztype = 6 : その他
+    """
     def __init__(self, left_pos, dto):
         super().__init__(left_pos, dto)
         self.biztype: int = 0
@@ -43,6 +52,14 @@ class VenderBizType(ConcreteState):
 
 
 class CapitalForm(ConcreteState):
+    """
+    資本形態　会社形態
+    capital_form = 1 : 個人
+    capital_form = 2 : 法人
+    corp_type = 1 : 株式会社
+    corp_type = 2 : 有限会社
+    corp_type = 9 : その他
+    """
     def __init__(self, left_pos, dto):
         super().__init__(left_pos, dto)
         self.capital_form: int = 0
@@ -62,10 +79,17 @@ class CapitalForm(ConcreteState):
             self.corp_type = 9
 
         self.shapesdata.set_shapes_data("CapitalForm", self.capital_form)
-        self.shapesdata.set_shapes_data("CorporateType",self.corp_type)
+        self.shapesdata.set_shapes_data("CorporateType", self.corp_type)
 
 
 class StockStatus(ConcreteState):
+    """
+    株式の状況
+    stock_status = 0 : 非上場
+    stock_status = 1 : 上場
+    stock_market = 東証１部、東証2部、その他
+
+    """
     def __init__(self, left_pos, dto):
         super().__init__(left_pos, dto)
         self.stock_status: int = 0
@@ -83,7 +107,7 @@ class StockStatus(ConcreteState):
             elif 210 < self.position < 300:
                 self.stock_market = "その他"
 
-        self.shapesdata.set_shapes_data("stockListingStatus",self.stock_status)
+        self.shapesdata.set_shapes_data("stockListingStatus", self.stock_status)
         self.shapesdata.set_shapes_data("stockMarket", self.stock_market)
 
 
@@ -99,7 +123,7 @@ class ISOCertifStatus(ConcreteState):
         elif 305 < self.position < 390:
             self.iso14000 = "取得済"
 
-        self.shapesdata.set_shapes_data("ISO9001Certif",self.iso9000)
+        self.shapesdata.set_shapes_data("ISO9001Certif", self.iso9000)
         self.shapesdata.set_shapes_data("ISO14001Certif", self.iso14000)
 
 
@@ -117,8 +141,9 @@ class ISOSplan(ConcreteState):
             self.iso14000 = "取得予定"
             # self.shapesdata.ISO14001Certif = "取得予定"
 
-        self.shapesdata.set_shapes_data("ISO9001Certif",self.iso9000)
+        self.shapesdata.set_shapes_data("ISO9001Certif", self.iso9000)
         self.shapesdata.set_shapes_data("ISO14001Certif", self.iso14000)
+
 
 class ISONoCerfit(ConcreteState):
     def __init__(self, left_pos, dto):
@@ -136,6 +161,7 @@ class ISONoCerfit(ConcreteState):
 
         self.shapesdata.set_shapes_data("ISO9001Certif", self.iso9000)
         self.shapesdata.set_shapes_data("ISO14001Certif", self.iso14000)
+
 
 class StateContext():
     def __init__(self, state_type):

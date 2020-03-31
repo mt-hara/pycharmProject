@@ -3,17 +3,19 @@ from abstractdto.abs_excel_sheet_dto import AbstractExcelSheetDTO
 
 from dataclasses import asdict
 def main(param):
-    data = DataCls()
-    data.customerCd=param
-    print(data.customerCd)
+    # data = DataCls()
+    # data.customerCd=param
+    # print(data.customerCd)
+    pass
 
 if __name__ == "__main__":
     data = AbstractExcelSheetDTO()
-    # data.xlCustomerCd = 12345
-    # data.xlEmployees=12
-    for k, v in data.__dict__.items():
-        print(k,v)
+    data.xlCustomerCd = "12345"
+    data.xlCustomerName="test name"
+    # for k, v in data.__dict__.items():
+    #     print(k,v)
 
+    print(data.xlCustomerName)
     print(type(data.xlCustomerCd))
 
 

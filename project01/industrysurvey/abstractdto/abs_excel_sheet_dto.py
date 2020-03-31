@@ -19,12 +19,12 @@ class AbstractExcelSheetDTO():
         self.__xlRepBirthDay: str = ""  # AK14
         self.__xlEmployees: int = 0  # k22
         self.__xlEmployeeYear: str = ""  # I23
-        self.__xlEmployeeMonth: int = 0  # O23
+        self.__xlEmployeeMonth: str = ""  # O23
         self.__xlCapitalForm: int = 0  # shape 取得
         self.__xlCorporateType: str = ""  # shape 取得
         self.__xlCustomerCapital: float = 0  # H18
         self.__xlEstablishedYear: str = ""  # O19
-        self.__xlEstablishedMonth: int = 0  # I19
+        self.__xlEstablishedMonth: str = ""  # I19
         self.__xlAccountClosingMonth: int = 0  # M21
         self.__xlReturnOnEquity: float = 0  # I20
         self.__xlISO9001Certif: str = ""  # D50 shape 取得 取得済 取得予定 取得予定なし
@@ -84,7 +84,7 @@ class AbstractExcelSheetDTO():
         self.__xlCurPrdSalesRatio_Othor: float = 0  # S33
         self.__xlCurPrdSales_Sum: float = 0  # M35
         self.__xlCurPrdOperatingProfit: float = 0  # M36
-        self.__xlCurPrdOrdinaryincome: float = 0  # M37
+        self.__xlCurPrdOrdinaryIncome: float = 0  # M37
         self.__xlPrevPrdYear: str = ""  # V26
         self.__xlPrevPrdSales_1: float = 0  # V28
         self.__xlPrevPrdSales_2: float = 0  # V29
@@ -201,7 +201,7 @@ class AbstractExcelSheetDTO():
 
     @property
     def xlBranchOfficeZipCd(self):
-        return  self.__xlBranchOfficeZipCd
+        return self.__xlBranchOfficeZipCd
 
     @xlBranchOfficeZipCd.setter
     def xlBranchOfficeZipCd(self, param: str):
@@ -247,135 +247,1034 @@ class AbstractExcelSheetDTO():
     def xlRepKanaName(self, param: str):
         self.__xlRepKanaName = param
 
-    #
-    #
-    #
-    # xlRepJobTitle
-    # xlRepBirthYear
-    # xlRepBirthMonth
-    # xlRepBirthDay
-    # xlEmployees
-    # xlEmployeeYear
-    # xlEmployeeMonth
-    # xlCapitalForm
-    # xlCorporateType
-    # xlCustomerCapital
-    # xlEstablishedYear
-    # xlEstablishedMonth
-    # xlAccountClosingMonth
-    # xlReturnOnEquity
-    # xlISO9001Certif
-    # xlISO9001Plan
-    # xlISO9001NoCertif
-    # xlISO9001ResistedNo
-    # xlISO9001CertifPlanYear
-    # xlISO9001CertifPlanMonth
-    # xlISO14001Certif
-    # xlISO14001Plan
-    # xlISO14001NoCertif
-    # xlISO14001ResistedNo
-    # xlISO14001CertifPlanYear
-    # xlISO14001CertifPlanMonth
-    # xlOtherCertif
-    # xlCustomerBizType
-    # xlOtherBizType
-    # xlPicName
-    # xlPicEmailAddress
-    # xlpicDept
-    # xlpicPosition
-    # xlContactZipCd
-    # xlContactAddress
-    # xlContactTel
-    # xlContactFax
-    # xlStockListingStatus
-    # xlStockMarket
-    # xlMainStockholder_1
-    # xlMainStockholder_2
-    # xlMainStockholder_3
-    # xlMainStockholder_4
-    # xlMainStockholder_5
-    # xlRatioSH_1
-    # xlRatioSH_2
-    # xlRatioSH_3
-    # xlRatioSH_4
-    # xlRatioSH_5
-    # xlmainCustomer_1
-    # xlmainCustomer_2
-    # xlmainCustomer_3
-    # xlmainCustomer_4
-    # xlmainCustomer_5
-    # xlCurPrdYear
-    # xlCurPrdSales_1
-    # xlCurPrdSales_2
-    # xlCurPrdSales_3
-    # xlCurPrdSales_4
-    # xlCurPrdSales_5
-    # xlCurPrdSales_Our
-    # xlCurPrdSales_Other
-    # xlCurPrdSalesRatio_1
-    # xlCurPrdSalesRatio_2
-    # xlCurPrdSalesRatio_3
-    # xlCurPrdSalesRatio_4
-    # xlCurPrdSalesRatio_5
-    # xlCurPrdSalesRatio_Our
-    # xlCurPrdSalesRatio_Othor
-    # xlCurPrdSales_Sum
-    # xlCurPrdOperatingProfit
-    # xlCurPrdOrdinaryincome
-    # xlPrevPrdYear
-    # xlPrevPrdSales_1
-    # xlPrevPrdSales_2
-    # xlPrevPrdSales_3
-    # xlPrevPrdSales_4
-    # xlPrevPrdSales_5
-    # xlPrevPrdSales_Our
-    # xlPrevPrdSales_Other
-    # xlPrevPrdSalesRatio_1
-    # xlPrevPrdSalesRatio_2
-    # xlPrevPrdSalesRatio_3
-    # xlPrevPrdSalesRatio_4
-    # xlPrevPrdSalesRatio_5
-    # xlPrevPrdSalesRatio_Our
-    # xlPrevPrdSalesRatio_Other
-    # xlPrevPrdSales_Sum
-    # xlPrevPrdOperatingProfit
-    # xlPrevPrdOrdinaryIncome
-    # xlLastPrdYear
-    # xlLastPrdSales_1
-    # xlLastPrdSales_2
-    # xlLastPrdSales_3
-    # xlLastPrdSales_4
-    # xlLastPrdSales_5
-    # xlLastPrdSales_Our
-    # xlLastPrdSales_Other
-    # xlLastPrdSalesRatio_1
-    # xlLastPrdSalesRatio_2
-    # xlLastPrdSalesRatio_3
-    # xlLastPrdSalesRatio_4
-    # xlLastPrdSalesRatio_5
-    # xlLastPrdSalesRatio_Our
-    # xlLastPrdSalesRatio_Other
-    # xlLastPrdSales_sum
-    # xlLastPrdOperatingProfit
-    # xlLastPrdOrdinaryIncome
-    # xlCurPrdMainProducts
-    # xlMainSupplier_1
-    # xlMainSupplier_2
-    # xlMainSupplier_3
-    # xlMainSupplier_4
-    # xlMainSupplier_5
-    # xlMainSupplierValue_1
-    # xlMainSupplierValue_2
-    # xlMainSupplierValue_3
-    # xlMainSupplierValue_4
-    # xlMainSupplierValue_5
-    # xlMainSupplierRatio_1
-    # xlMainSupplierRatio_2
-    # xlMainSupplierRatio_3
-    # xlMainSupplierRatio_4
-    # xlMainSupplierRatio_5
-    # xlMainProducts_1
-    # xlMainProducts_2
-    # xlMainProducts_3
-    # xlMainProducts_4
-    # xlMainProducts_5
+    @property
+    def xlRepJobTitle(self):
+        return self.__xlRepJobTitle
+
+    @xlRepJobTitle.setter
+    def xlRepJobTitle(self, param: str):
+        self.__xlRepJobTitle = param
+
+    @property
+    def xlRepBirthYear(self):
+        return self.__xlRepBirthYear
+
+    @xlRepBirthYear.setter
+    def xlRepBirthYear(self, param: str):
+        self.__xlRepBirthYear = param
+
+    @property
+    def xlRepBirthMonth(self):
+        return self.__xlRepBirthMonth
+
+    @xlRepBirthMonth.setter
+    def xlRepBirthMonth(self, param: str):
+        self.__xlRepBirthMonth = param
+
+    @property
+    def xlRepBirthDay(self):
+        return self.__xlRepBirthDay
+
+    @xlRepBirthDay.setter
+    def xlRepBirthDay(self, param: str):
+        self.__xlRepBirthDay = param
+
+    @property
+    def xlEmployees(self):
+        return self.__xlEmployees
+
+    @xlEmployees.setter
+    def xlEmployees(self, param: int):
+        self.__xlEmployees = param
+
+    @property
+    def xlEmployeeYear(self):
+        return self.__xlEmployeeYear
+
+    @xlEmployeeYear.setter
+    def xlEmployeeYear(self, param: str):
+        self.__xlEmployeeYear = param
+
+    @property
+    def xlEmployeeMonth(self):
+        return self.__xlEmployeeMonth
+
+    @xlEmployeeMonth.setter
+    def xlEmployeeMonth(self, param: str):
+        self.__xlEmployeeMonth = param
+
+    @property
+    def xlCapitalForm(self):
+        return self.__xlCapitalForm
+
+    @xlCapitalForm.setter
+    def xlCapitalForm(self, param: int):
+        self.__xlCapitalForm = param
+
+    @property
+    def xlCorporateType(self):
+        return self.__xlCorporateType
+
+    @xlCorporateType.setter
+    def xlCorporateType(self, param: str):
+        self.__xlCorporateType = param
+
+    @property
+    def xlCustomerCapital(self):
+        return self.__xlCustomerCapital
+
+    @xlCustomerCapital.setter
+    def xlCustomerCapital(self, param: float):
+        self.__xlCustomerCapital = param
+
+    @property
+    def xlEstablishedYear(self):
+        return self.__xlEstablishedYear
+
+    @xlEstablishedYear.setter
+    def xlEstablishedYear(self, param: str):
+        self.__xlEstablishedYear = param
+
+    @property
+    def xlEstablishedMonth(self):
+        return self.__xlEstablishedMonth
+
+    @xlEstablishedMonth.setter
+    def xlEstablishedMonth(self, param: str):
+        self.__xlEstablishedMonth = param
+
+    @property
+    def xlAccountClosingMonth(self):
+        return self.__xlAccountClosingMonth
+
+    @xlAccountClosingMonth.setter
+    def xlAccountClosingMonth(self, param: int):
+        self.__xlAccountClosingMonth = param
+
+    @property
+    def xlReturnOnEquity(self):
+        return self.__xlReturnOnEquity
+
+    @xlReturnOnEquity.setter
+    def xlReturnOnEquity(self, param: float):
+        self.__xlReturnOnEquity = param
+
+    @property
+    def xlISO9001Certif(self):
+        return self.__xlISO9001Certif
+
+    @xlISO9001Certif.setter
+    def xlISO9001Certif(self, param: str):
+        self.__xlISO9001Certif = param
+
+    @property
+    def xlISO9001Plan(self):
+        return self.__xlISO9001Plan
+
+    @xlISO9001Plan.setter
+    def xlISO9001Plan(self, param: str):
+        self.__xlISO9001Plan = param
+
+    @property
+    def xlISO9001NoCertif(self):
+        return self.__xlISO9001NoCertif
+
+    @xlISO9001NoCertif.setter
+    def xlISO9001NoCertif(self, param: str):
+        self.__xlISO9001NoCertif = param
+
+    @property
+    def xlISO9001ResistedNo(self):
+        return self.__xlISO9001ResistedNo
+
+    @xlISO9001ResistedNo.setter
+    def xlISO9001ResistedNo(self, param: str):
+        self.__xlISO9001ResistedNo = param
+
+    @property
+    def xlISO9001CertifPlanYear(self):
+        return self.__xlISO9001CertifPlanYear
+
+    @xlISO9001CertifPlanYear.setter
+    def xlISO9001CertifPlanYear(self, param: str):
+        self.__xlISO9001CertifPlanYear = param
+
+    @property
+    def xlISO9001CertifPlanMonth(self):
+        return self.__xlISO9001CertifPlanMonth
+
+    @xlISO9001CertifPlanMonth.setter
+    def xlISO9001CertifPlanMonth(self, param: str):
+        self.__xlISO9001CertifPlanMonth = param
+
+    @property
+    def xlISO14001Certif(self):
+        return self.__xlISO14001Certif
+
+    @xlISO14001Certif.setter
+    def xlISO14001Certif(self, param: str):
+        self.__xlISO14001Certif = param
+
+    @property
+    def xlISO14001Plan(self):
+        return self.__xlISO14001Plan
+
+    @xlISO14001Plan.setter
+    def xlISO14001Plan(self, param: str):
+        self.__xlISO14001Plan = param
+
+    @property
+    def xlISO14001NoCertif(self):
+        return self.__xlISO14001NoCertif
+
+    @xlISO14001NoCertif.setter
+    def xlISO14001NoCertif(self, param: str):
+        self.__xlISO14001NoCertif = param
+
+    @property
+    def xlISO14001ResistedNo(self):
+        return self.__xlISO14001ResistedNo
+
+    @xlISO14001ResistedNo.setter
+    def xlISO14001ResistedNo(self, param: str):
+        self.__xlISO14001ResistedNo = param
+
+    @property
+    def xlISO14001CertifPlanYear(self):
+        return self.__xlISO14001CertifPlanYear
+
+    @xlISO14001CertifPlanYear.setter
+    def xlISO14001CertifPlanYear(self, param: str):
+        self.__xlISO14001CertifPlanYear = param
+
+    @property
+    def xlISO14001CertifPlanMonth(self):
+        return self.__xlISO14001CertifPlanMonth
+
+    @xlISO14001CertifPlanMonth.setter
+    def xlISO14001CertifPlanMonth(self, param: str):
+        self.__xlISO14001CertifPlanMonth = param
+
+    @property
+    def xlOtherCertif(self):
+        return self.__xlOtherCertif
+
+    @xlOtherCertif.setter
+    def xlOtherCertif(self, param: str):
+        self.__xlOtherCertif = param
+
+    @property
+    def xlCustomerBizType(self):
+        return self.__xlCustomerBizType
+
+    @xlCustomerBizType.setter
+    def xlCustomerBizType(self, param: str):
+        self.__xlCustomerBizType = param
+
+    @property
+    def xlOtherBizType(self):
+        return self.__xlOtherBizType
+
+    @xlOtherBizType.setter
+    def xlOtherBizType(self, param: str):
+        self.__xlOtherBizType = param
+
+    @property
+    def xlPicName(self):
+        return self.__xlPicName
+
+    @xlPicName.setter
+    def xlPicName(self, param: str):
+        self.__xlPicName = param
+
+    @property
+    def xlPicEmailAddress(self):
+        return self.__xlPicEmailAddress
+
+    @xlPicEmailAddress.setter
+    def xlPicEmailAddress(self, param: str):
+        self.__xlPicEmailAddress = param
+
+    @property
+    def xlpicDept(self):
+        return self.__xlpicDept
+
+    @xlpicDept.setter
+    def xlpicDept(self, param: str):
+        self.__xlpicDept = param
+
+    @property
+    def xlpicPosition(self):
+        return self.__xlpicPosition
+
+    @xlpicPosition.setter
+    def xlpicPosition(self, param: str):
+        self.__xlpicPosition = param
+
+    @property
+    def xlContactZipCd(self):
+        return self.__xlContactZipCd
+
+    @xlContactZipCd.setter
+    def xlContactZipCd(self, param: str):
+        self.__xlContactZipCd = param
+
+    @property
+    def xlContactAddress(self):
+        return self.__xlContactAddress
+
+    @xlContactAddress.setter
+    def xlContactAddress(self, param: str):
+        self.__xlContactAddress = param
+
+    @property
+    def xlContactTel(self):
+        return self.__xlContactTel
+
+    @xlContactTel.setter
+    def xlContactTel(self, param: str):
+        self.__xlContactTel = param
+
+    @property
+    def xlContactFax(self):
+        return self.__xlContactFax
+
+    @xlContactFax.setter
+    def xlContactFax(self, param: str):
+        self.__xlContactFax = param
+
+    @property
+    def xlStockListingStatus(self):
+        return self.__xlStockListingStatus
+
+    @xlStockListingStatus.setter
+    def xlStockListingStatus(self, param: int):
+        self.__xlStockListingStatus = param
+
+    @property
+    def xlStockMarket(self):
+        return self.__xlStockMarket
+
+    @xlStockMarket.setter
+    def xlStockMarket(self, param: str):
+        self.__xlStockMarket = param
+
+    @property
+    def xlMainStockholder_1(self):
+        return self.__xlMainStockholder_1
+
+    @xlMainStockholder_1.setter
+    def xlMainStockholder_1(self, param: str):
+        self.__xlMainStockholder_1 = param
+
+    @property
+    def xlMainStockholder_2(self):
+        return self.__xlMainStockholder_2
+
+    @xlMainStockholder_2.setter
+    def xlMainStockholder_2(self, param: str):
+        self.__xlMainStockholder_2 = param
+
+    @property
+    def xlMainStockholder_3(self):
+        return self.__xlMainStockholder_3
+
+    @xlMainStockholder_3.setter
+    def xlMainStockholder_3(self, param: str):
+        self.__xlMainStockholder_3 = param
+
+    @property
+    def xlMainStockholder_4(self):
+        return self.__xlMainStockholder_4
+
+    @xlMainStockholder_4.setter
+    def xlMainStockholder_4(self, param: str):
+        self.__xlMainStockholder_4 = param
+
+    @property
+    def xlMainStockholder_5(self):
+        return self.__xlMainStockholder_5
+
+    @xlMainStockholder_5.setter
+    def xlMainStockholder_5(self, param: str):
+        self.__xlMainStockholder_5 = param
+
+    @property
+    def xlRatioSH_1(self):
+        return self.__xlRatioSH_1
+
+    @xlRatioSH_1.setter
+    def xlRatioSH_1(self, param: float):
+        self.__xlRatioSH_1 = param
+
+    @property
+    def xlRatioSH_2(self):
+        return self.__xlRatioSH_2
+
+    @xlRatioSH_2.setter
+    def xlRatioSH_2(self, param: float):
+        self.__xlRatioSH_2 = param
+
+    @property
+    def xlRatioSH_3(self):
+        return self.__xlRatioSH_3
+
+    @xlRatioSH_3.setter
+    def xlRatioSH_3(self, param: float):
+        self.__xlRatioSH_3 = param
+
+    @property
+    def xlRatioSH_4(self):
+        return self.__xlRatioSH_4
+
+    @xlRatioSH_4.setter
+    def xlRatioSH_4(self, param: float):
+        self.__xlRatioSH_4 = param
+
+    @property
+    def xlRatioSH_5(self):
+        return self.__xlRatioSH_5
+
+    @xlRatioSH_5.setter
+    def xlRatioSH_5(self, param: float):
+        self.__xlRatioSH_5 = param
+
+    @property
+    def xlmainCustomer_1(self):
+        return self.__xlmainCustomer_1
+
+    @xlmainCustomer_1.setter
+    def xlmainCustomer_1(self, param: str):
+        self.__xlmainCustomer_1 = param
+
+    @property
+    def xlmainCustomer_2(self):
+        return self.__xlmainCustomer_2
+
+    @xlmainCustomer_2.setter
+    def xlmainCustomer_2(self, param: str):
+        self.__xlmainCustomer_2 = param
+
+    @property
+    def xlmainCustomer_3(self):
+        return self.__xlmainCustomer_3
+
+    @xlmainCustomer_3.setter
+    def xlmainCustomer_3(self, param: str):
+        self.__xlmainCustomer_3 = param
+
+    @property
+    def xlmainCustomer_4(self):
+        return self.__xlmainCustomer_4
+
+    @xlmainCustomer_4.setter
+    def xlmainCustomer_4(self, param: str):
+        self.__xlmainCustomer_4 = param
+
+    @property
+    def xlmainCustomer_5(self):
+        return self.__xlmainCustomer_5
+
+    @xlmainCustomer_5.setter
+    def xlmainCustomer_5(self, param: str):
+        self.__xlmainCustomer_5 = param
+
+    @property
+    def xlCurPrdYear(self):
+        return self.__xlCurPrdYear
+
+    @xlCurPrdYear.setter
+    def xlCurPrdYear(self, param: str):
+        self.__xlCurPrdYear = param
+
+    @property
+    def xlCurPrdSales_1(self):
+        return self.__xlCurPrdSales_1
+
+    @xlCurPrdSales_1.setter
+    def xlCurPrdSales_1(self, param: float):
+        self.__xlCurPrdSales_1 = param
+
+    @property
+    def xlCurPrdSales_2(self):
+        return self.__xlCurPrdSales_2
+
+    @xlCurPrdSales_2.setter
+    def xlCurPrdSales_2(self, param: float):
+        self.__xlCurPrdSales_2 = param
+
+    @property
+    def xlCurPrdSales_3(self):
+        return self.__xlCurPrdSales_3
+
+    @xlCurPrdSales_3.setter
+    def xlCurPrdSales_3(self, param: float):
+        self.__xlCurPrdSales_3 = param
+
+    @property
+    def xlCurPrdSales_4(self):
+        return self.__xlCurPrdSales_4
+
+    @xlCurPrdSales_4.setter
+    def xlCurPrdSales_4(self, param: float):
+        self.__xlCurPrdSales_4 = param
+
+    @property
+    def xlCurPrdSales_5(self):
+        return self.__xlCurPrdSales_5
+
+    @xlCurPrdSales_5.setter
+    def xlCurPrdSales_5(self, param: float):
+        self.__xlCurPrdSales_5 = param
+
+    @property
+    def xlCurPrdSales_Our(self):
+        return self.__xlCurPrdSales_Our
+
+    @xlCurPrdSales_Our.setter
+    def xlCurPrdSales_Our(self, param: float):
+        self.__xlCurPrdSales_Our = param
+
+    @property
+    def xlCurPrdSales_Other(self):
+        return self.__xlCurPrdSales_Other
+
+    @xlCurPrdSales_Other.setter
+    def xlCurPrdSales_Other(self, param: float):
+        self.__xlCurPrdSales_Other = param
+
+    @property
+    def xlCurPrdSalesRatio_1(self):
+        return self.__xlCurPrdSalesRatio_1
+
+    @xlCurPrdSalesRatio_1.setter
+    def xlCurPrdSalesRatio_1(self, param: float):
+        self.__xlCurPrdSalesRatio_1 = param
+
+    @property
+    def xlCurPrdSalesRatio_2(self):
+        return self.__xlCurPrdSalesRatio_2
+
+    @xlCurPrdSalesRatio_2.setter
+    def xlCurPrdSalesRatio_2(self, param: float):
+        self.__xlCurPrdSalesRatio_2 = param
+
+    @property
+    def xlCurPrdSalesRatio_3(self):
+        return self.__xlCurPrdSalesRatio_3
+
+    @xlCurPrdSalesRatio_3.setter
+    def xlCurPrdSalesRatio_3(self, param: float):
+        self.__xlCurPrdSalesRatio_3 = param
+
+    @property
+    def xlCurPrdSalesRatio_4(self):
+        return self.__xlCurPrdSalesRatio_4
+
+    @xlCurPrdSalesRatio_4.setter
+    def xlCurPrdSalesRatio_4(self, param: float):
+        self.__xlCurPrdSalesRatio_4 = param
+
+    @property
+    def xlCurPrdSalesRatio_5(self):
+        return self.__xlCurPrdSalesRatio_5
+
+    @xlCurPrdSalesRatio_5.setter
+    def xlCurPrdSalesRatio_5(self, param: float):
+        self.__xlCurPrdSalesRatio_5 = param
+
+    @property
+    def xlCurPrdSalesRatio_Our(self):
+        return self.__xlCurPrdSalesRatio_Our
+
+    @xlCurPrdSalesRatio_Our.setter
+    def xlCurPrdSalesRatio_Our(self, param: float):
+        self.__xlCurPrdSalesRatio_Our = param
+
+    @property
+    def xlCurPrdSalesRatio_Othor(self):
+        return self.__xlCurPrdSalesRatio_Othor
+
+    @xlCurPrdSalesRatio_Othor.setter
+    def xlCurPrdSalesRatio_Othor(self, param: float):
+        self.__xlCurPrdSalesRatio_Othor = param
+
+    @property
+    def xlCurPrdSales_Sum(self):
+        return self.__xlCurPrdSales_Sum
+
+    @xlCurPrdSales_Sum.setter
+    def xlCurPrdSales_Sum(self, param: float):
+        self.__xlCurPrdSales_Sum = param
+
+    @property
+    def xlCurPrdOperatingProfit(self):
+        return self.__xlCurPrdOperatingProfit
+
+    @xlCurPrdOperatingProfit.setter
+    def xlCurPrdOperatingProfit(self, param: float):
+        self.__xlCurPrdOperatingProfit = param
+
+    @property
+    def xlCurPrdOrdinaryIncome(self):
+        return self.__xlCurPrdOrdinaryIncome
+
+    @xlCurPrdOrdinaryIncome.setter
+    def xlCurPrdOrdinaryIncome(self, param: float):
+        self.__xlCurPrdOrdinaryIncome = param
+
+    @property
+    def xlPrevPrdYear(self):
+        return self.__xlPrevPrdYear
+
+    @xlPrevPrdYear.setter
+    def xlPrevPrdYear(self, param: str):
+        self.__xlPrevPrdYear = param
+
+    @property
+    def xlPrevPrdSales_1(self):
+        return self.__xlPrevPrdSales_1
+
+    @xlPrevPrdSales_1.setter
+    def xlPrevPrdSales_1(self, param: float):
+        self.__xlPrevPrdSales_1 = param
+
+    @property
+    def xlPrevPrdSales_2(self):
+        return self.__xlPrevPrdSales_2
+
+    @xlPrevPrdSales_2.setter
+    def xlPrevPrdSales_2(self, param: float):
+        self.__xlPrevPrdSales_2 = param
+
+    @property
+    def xlPrevPrdSales_3(self):
+        return self.__xlPrevPrdSales_3
+
+    @xlPrevPrdSales_3.setter
+    def xlPrevPrdSales_3(self, param: float):
+        self.__xlPrevPrdSales_3 = param
+
+    @property
+    def xlPrevPrdSales_4(self):
+        return self.__xlPrevPrdSales_4
+
+    @xlPrevPrdSales_4.setter
+    def xlPrevPrdSales_4(self, param: float):
+        self.__xlPrevPrdSales_4 = param
+
+    @property
+    def xlPrevPrdSales_5(self):
+        return self.__xlPrevPrdSales_5
+
+    @xlPrevPrdSales_5.setter
+    def xlPrevPrdSales_5(self, param: float):
+        self.__xlPrevPrdSales_5 = param
+
+    @property
+    def xlPrevPrdSales_Our(self):
+        return self.__xlPrevPrdSales_Our
+
+    @xlPrevPrdSales_Our.setter
+    def xlPrevPrdSales_Our(self, param: float):
+        self.__xlPrevPrdSales_Our = param
+
+    @property
+    def xlPrevPrdSales_Other(self):
+        return self.__xlPrevPrdSales_Other
+
+    @xlPrevPrdSales_Other.setter
+    def xlPrevPrdSales_Other(self, param: float):
+        self.__xlPrevPrdSales_Other = param
+
+    @property
+    def xlPrevPrdSalesRatio_1(self):
+        return self.__xlPrevPrdSalesRatio_1
+
+    @xlPrevPrdSalesRatio_1.setter
+    def xlPrevPrdSalesRatio_1(self, param: float):
+        self.__xlPrevPrdSalesRatio_1 = param
+
+    @property
+    def xlPrevPrdSalesRatio_2(self):
+        return self.__xlPrevPrdSalesRatio_2
+
+    @xlPrevPrdSalesRatio_2.setter
+    def xlPrevPrdSalesRatio_2(self, param: float):
+        self.__xlPrevPrdSalesRatio_2 = param
+
+    @property
+    def xlPrevPrdSalesRatio_3(self):
+        return self.__xlPrevPrdSalesRatio_3
+
+    @xlPrevPrdSalesRatio_3.setter
+    def xlPrevPrdSalesRatio_3(self, param: float):
+        self.__xlPrevPrdSalesRatio_3 = param
+
+    @property
+    def xlPrevPrdSalesRatio_4(self):
+        return self.__xlPrevPrdSalesRatio_4
+
+    @xlPrevPrdSalesRatio_4.setter
+    def xlPrevPrdSalesRatio_4(self, param: float):
+        self.__xlPrevPrdSalesRatio_4 = param
+
+    @property
+    def xlPrevPrdSalesRatio_5(self):
+        return self.__xlPrevPrdSalesRatio_5
+
+    @xlPrevPrdSalesRatio_5.setter
+    def xlPrevPrdSalesRatio_5(self, param: float):
+        self.__xlPrevPrdSalesRatio_5 = param
+
+    @property
+    def xlPrevPrdSalesRatio_Our(self):
+        return self.__xlPrevPrdSalesRatio_Our
+
+    @xlPrevPrdSalesRatio_Our.setter
+    def xlPrevPrdSalesRatio_Our(self, param: float):
+        self.__xlPrevPrdSalesRatio_Our = param
+
+    @property
+    def xlPrevPrdSalesRatio_Other(self):
+        return self.__xlPrevPrdSalesRatio_Other
+
+    @xlPrevPrdSalesRatio_Other.setter
+    def xlPrevPrdSalesRatio_Other(self, param: float):
+        self.__xlPrevPrdSalesRatio_Other = param
+
+    @property
+    def xlPrevPrdSales_Sum(self):
+        return self.__xlPrevPrdSales_Sum
+
+    @xlPrevPrdSales_Sum.setter
+    def xlPrevPrdSales_Sum(self, param: float):
+        self.__xlPrevPrdSales_Sum = param
+
+    @property
+    def xlPrevPrdOperatingProfit(self):
+        return self.__xlPrevPrdOperatingProfit
+
+    @xlPrevPrdOperatingProfit.setter
+    def xlPrevPrdOperatingProfit(self, param: float):
+        self.__xlPrevPrdOperatingProfit = param
+
+    @property
+    def xlPrevPrdOrdinaryIncome(self):
+        return self.__xlPrevPrdOrdinaryIncome
+
+    @xlPrevPrdOrdinaryIncome.setter
+    def xlPrevPrdOrdinaryIncome(self, param: float):
+        self.__xlPrevPrdOrdinaryIncome = param
+
+    @property
+    def xlLastPrdYear(self):
+        return self.__xlLastPrdYear
+
+    @xlLastPrdYear.setter
+    def xlLastPrdYear(self, param: str):
+        self.__xlLastPrdYear = param
+
+    @property
+    def xlLastPrdSales_1(self):
+        return self.__xlLastPrdSales_1
+
+    @xlLastPrdSales_1.setter
+    def xlLastPrdSales_1(self, param: float):
+        self.__xlLastPrdSales_1 = param
+
+    @property
+    def xlLastPrdSales_2(self):
+        return self.__xlLastPrdSales_2
+
+    @xlLastPrdSales_2.setter
+    def xlLastPrdSales_2(self, param: float):
+        self.__xlLastPrdSales_2 = param
+
+    @property
+    def xlLastPrdSales_3(self):
+        return self.__xlLastPrdSales_3
+
+    @xlLastPrdSales_3.setter
+    def xlLastPrdSales_3(self, param: float):
+        self.__xlLastPrdSales_3 = param
+
+    @property
+    def xlLastPrdSales_4(self):
+        return self.__xlLastPrdSales_4
+
+    @xlLastPrdSales_4.setter
+    def xlLastPrdSales_4(self, param: float):
+        self.__xlLastPrdSales_4 = param
+
+    @property
+    def xlLastPrdSales_5(self):
+        return self.__xlLastPrdSales_5
+
+    @xlLastPrdSales_5.setter
+    def xlLastPrdSales_5(self, param: float):
+        self.__xlLastPrdSales_5 = param
+
+    @property
+    def xlLastPrdSales_Our(self):
+        return self.__xlLastPrdSales_Our
+
+    @xlLastPrdSales_Our.setter
+    def xlLastPrdSales_Our(self, param: float):
+        self.__xlLastPrdSales_Our = param
+
+    @property
+    def xlLastPrdSales_Other(self):
+        return self.__xlLastPrdSales_Other
+
+    @xlLastPrdSales_Other.setter
+    def xlLastPrdSales_Other(self, param: float):
+        self.__xlLastPrdSales_Other = param
+
+    @property
+    def xlLastPrdSalesRatio_1(self):
+        return self.__xlLastPrdSalesRatio_1
+
+    @xlLastPrdSalesRatio_1.setter
+    def xlLastPrdSalesRatio_1(self, param: float):
+        self.__xlLastPrdSalesRatio_1 = param
+
+    @property
+    def xlLastPrdSalesRatio_2(self):
+        return self.__xlLastPrdSalesRatio_2
+
+    @xlLastPrdSalesRatio_2.setter
+    def xlLastPrdSalesRatio_2(self, param: float):
+        self.__xlLastPrdSalesRatio_2 = param
+
+    @property
+    def xlLastPrdSalesRatio_3(self):
+        return self.__xlLastPrdSalesRatio_3
+
+    @xlLastPrdSalesRatio_3.setter
+    def xlLastPrdSalesRatio_3(self, param: float):
+        self.__xlLastPrdSalesRatio_3 = param
+
+    @property
+    def xlLastPrdSalesRatio_4(self):
+        return self.__xlLastPrdSalesRatio_4
+
+    @xlLastPrdSalesRatio_4.setter
+    def xlLastPrdSalesRatio_4(self, param: float):
+        self.__xlLastPrdSalesRatio_4 = param
+
+    @property
+    def xlLastPrdSalesRatio_5(self):
+        return self.__xlLastPrdSalesRatio_5
+
+    @xlLastPrdSalesRatio_5.setter
+    def xlLastPrdSalesRatio_5(self, param: float):
+        self.__xlLastPrdSalesRatio_5 = param
+
+    @property
+    def xlLastPrdSalesRatio_Our(self):
+        return self.__xlLastPrdSalesRatio_Our
+
+    @xlLastPrdSalesRatio_Our.setter
+    def xlLastPrdSalesRatio_Our(self, param: float):
+        self.__xlLastPrdSalesRatio_Our = param
+
+    @property
+    def xlLastPrdSalesRatio_Other(self):
+        return self.__xlLastPrdSalesRatio_Other
+
+    @xlLastPrdSalesRatio_Other.setter
+    def xlLastPrdSalesRatio_Other(self, param: float):
+        self.__xlLastPrdSalesRatio_Other = param
+
+    @property
+    def xlLastPrdSales_sum(self):
+        return self.__xlLastPrdSales_sum
+
+    @xlLastPrdSales_sum.setter
+    def xlLastPrdSales_sum(self, param: float):
+        self.__xlLastPrdSales_sum = param
+
+    @property
+    def xlLastPrdOperatingProfit(self):
+        return self.__xlLastPrdOperatingProfit
+
+    @xlLastPrdOperatingProfit.setter
+    def xlLastPrdOperatingProfit(self, param: float):
+        self.__xlLastPrdOperatingProfit = param
+
+    @property
+    def xlLastPrdOrdinaryIncome(self):
+        return self.__xlLastPrdOrdinaryIncome
+
+    @xlLastPrdOrdinaryIncome.setter
+    def xlLastPrdOrdinaryIncome(self, param: float):
+        self.__xlLastPrdOrdinaryIncome = param
+
+    @property
+    def xlCurPrdMainProducts(self):
+        return self.__xlCurPrdMainProducts
+
+    @xlCurPrdMainProducts.setter
+    def xlCurPrdMainProducts(self, param: str):
+        self.__xlCurPrdMainProducts = param
+
+    @property
+    def xlMainSupplier_1(self):
+        return self.__xlMainSupplier_1
+
+    @xlMainSupplier_1.setter
+    def xlMainSupplier_1(self, param: str):
+        self.__xlMainSupplier_1 = param
+
+    @property
+    def xlMainSupplier_2(self):
+        return self.__xlMainSupplier_2
+
+    @xlMainSupplier_2.setter
+    def xlMainSupplier_2(self, param: str):
+        self.__xlMainSupplier_2 = param
+
+    @property
+    def xlMainSupplier_3(self):
+        return self.__xlMainSupplier_3
+
+    @xlMainSupplier_3.setter
+    def xlMainSupplier_3(self, param: str):
+        self.__xlMainSupplier_3 = param
+
+    @property
+    def xlMainSupplier_4(self):
+        return self.__xlMainSupplier_4
+
+    @xlMainSupplier_4.setter
+    def xlMainSupplier_4(self, param: str):
+        self.__xlMainSupplier_4 = param
+
+    @property
+    def xlMainSupplier_5(self):
+        return self.__xlMainSupplier_5
+
+    @xlMainSupplier_5.setter
+    def xlMainSupplier_5(self, param: str):
+        self.__xlMainSupplier_5 = param
+
+    @property
+    def xlMainSupplierValue_1(self):
+        return self.__xlMainSupplierValue_1
+
+    @xlMainSupplierValue_1.setter
+    def xlMainSupplierValue_1(self, param: float):
+        self.__xlMainSupplierValue_1 = param
+
+    @property
+    def xlMainSupplierValue_2(self):
+        return self.__xlMainSupplierValue_2
+
+    @xlMainSupplierValue_2.setter
+    def xlMainSupplierValue_2(self, param: float):
+        self.__xlMainSupplierValue_2 = param
+
+    @property
+    def xlMainSupplierValue_3(self):
+        return self.__xlMainSupplierValue_3
+
+    @xlMainSupplierValue_3.setter
+    def xlMainSupplierValue_3(self, param: float):
+        self.__xlMainSupplierValue_3 = param
+
+    @property
+    def xlMainSupplierValue_4(self):
+        return self.__xlMainSupplierValue_4
+
+    @xlMainSupplierValue_4.setter
+    def xlMainSupplierValue_4(self, param: float):
+        self.__xlMainSupplierValue_4 = param
+
+    @property
+    def xlMainSupplierValue_5(self):
+        return self.__xlMainSupplierValue_5
+
+    @xlMainSupplierValue_5.setter
+    def xlMainSupplierValue_5(self, param: float):
+        self.__xlMainSupplierValue_5 = param
+
+    @property
+    def xlMainSupplierRatio_1(self):
+        return self.__xlMainSupplierRatio_1
+
+    @xlMainSupplierRatio_1.setter
+    def xlMainSupplierRatio_1(self, param: float):
+        self.__xlMainSupplierRatio_1 = param
+
+    @property
+    def xlMainSupplierRatio_2(self):
+        return self.__xlMainSupplierRatio_2
+
+    @xlMainSupplierRatio_2.setter
+    def xlMainSupplierRatio_2(self, param: float):
+        self.__xlMainSupplierRatio_2 = param
+
+    @property
+    def xlMainSupplierRatio_3(self):
+        return self.__xlMainSupplierRatio_3
+
+    @xlMainSupplierRatio_3.setter
+    def xlMainSupplierRatio_3(self, param: float):
+        self.__xlMainSupplierRatio_3 = param
+
+    @property
+    def xlMainSupplierRatio_4(self):
+        return self.__xlMainSupplierRatio_4
+
+    @xlMainSupplierRatio_4.setter
+    def xlMainSupplierRatio_4(self, param: float):
+        self.__xlMainSupplierRatio_4 = param
+
+    @property
+    def xlMainSupplierRatio_5(self):
+        return self.__xlMainSupplierRatio_5
+
+    @xlMainSupplierRatio_5.setter
+    def xlMainSupplierRatio_5(self, param: float):
+        self.__xlMainSupplierRatio_5 = param
+
+    @property
+    def xlMainProducts_1(self):
+        return self.__xlMainProducts_1
+
+    @xlMainProducts_1.setter
+    def xlMainProducts_1(self, param: str):
+        self.__xlMainProducts_1 = param
+
+    @property
+    def xlMainProducts_2(self):
+        return self.__xlMainProducts_2
+
+    @xlMainProducts_2.setter
+    def xlMainProducts_2(self, param: str):
+        self.__xlMainProducts_2 = param
+
+    @property
+    def xlMainProducts_3(self):
+        return self.__xlMainProducts_3
+
+    @xlMainProducts_3.setter
+    def xlMainProducts_3(self, param: str):
+        self.__xlMainProducts_3 = param
+
+    @property
+    def xlMainProducts_4(self):
+        return self.__xlMainProducts_4
+
+    @xlMainProducts_4.setter
+    def xlMainProducts_4(self, param: str):
+        self.__xlMainProducts_4 = param
+
+    @property
+    def xlMainProducts_5(self):
+        return self.__xlMainProducts_5
+
+    @xlMainProducts_5.setter
+    def xlMainProducts_5(self, param: str):
+        self.__xlMainProducts_5 = param

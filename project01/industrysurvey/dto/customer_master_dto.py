@@ -4,7 +4,7 @@ class CustomerDTO(CustomerMaster):
         super(CustomerDTO, self).__init__()
         pass
 
-    def select_add_field(self, fieldname, data):
+    def select_add_field_old(self, fieldname, data):
         if fieldname == "CustomerBizType":
             self.CustomerBizType = data
         elif fieldname == "CapitalForm":

@@ -1,23 +1,23 @@
 class ShapesDto():
     def __init__(self):
-        self.__shCustomerBizType: int = 0
-        self.__shCapitalForm: int = 0
-        self.__shCorporateType: str = ""
-        self.__shStockListingStatus: int = 0
-        self.__shStockMarket: str = ""
-        self.__shISO9001Certif: str = ""
-        self.__shISO9001Plan: str = ""
-        self.__shISO9001NoCertif: str = ""
-        self.__shISO14001Certif: str = ""
-        self.__shISO14001Plan: str = ""
-        self.__shISO14001NoCertif: str = ""
+        self.__shCustomerBizType: int = 0  # shape only
+        self.__shCapitalForm: int = 0  # shape only
+        self.__shCorporateType: str = ""  # shape only
+        self.__shStockListingStatus: int = 0  # shape only
+        self.__shStockMarket: str = ""  # shape only
+        self.__shISO9001Certif: str = ""  # shape or celldata
+        self.__shISO9001Plan: str = ""  # shape or celldata
+        self.__shISO9001NoCertif: str = ""  # shape or celldata
+        self.__shISO14001Certif: str = ""  # shape or celldata
+        self.__shISO14001Plan: str = ""  # shape or celldata
+        self.__shISO14001NoCertif: str = ""  # shape or celldata
 
     @property
     def shCustomerBizType(self):
         return self.__shCustomerBizType
 
     @shCustomerBizType.setter
-    def shCustomerBizType(self,param: int):
+    def shCustomerBizType(self, param: int):
         self.__shCustomerBizType = param
 
     @property
@@ -60,11 +60,45 @@ class ShapesDto():
     def shISO9001Certif(self, param: str):
         self.__shISO9001Certif = param
 
+    @property
+    def shISO9001Plan(self):
+        return self.__shISO9001Plan
 
-        # : str = ""
-        # : str = ""
-        # shISO9001Plan: str = ""
-        # shISO9001NoCertif: str = ""
-        # shISO14001Certif: str = ""
-        # shISO14001Plan: str = ""
-        # shISO14001NoCertif: str = ""
+    @shISO9001Plan.setter
+    def shISO9001Plan(self, param: str):
+        self.__shISO9001Plan = param
+
+    @property
+    def shISO9001NoCertif(self):
+        return self.__shISO9001NoCertif
+
+    @shISO9001NoCertif.setter
+    def shISO9001NoCertif(self, param: str):
+        self.__shISO9001NoCertif = param
+
+    @property
+    def shISO14001Certif(self):
+        return self.__shISO14001Certif
+
+    @shISO14001Certif.setter
+    def shISO14001Certif(self, param: str):
+        self.__shISO14001Certif = param
+
+    @property
+    def shISO14001Plan(self):
+        return self.__shISO14001Plan
+
+    @shISO14001Plan.setter
+    def shISO14001Plan(self, param: str):
+        self.__shISO14001Plan = param
+
+    @property
+    def shISO14001NoCertif(self):
+        return self.__shISO14001NoCertif
+
+    @shISO14001NoCertif.setter
+    def shISO14001NoCertif(self, param: str):
+        self.__shISO14001NoCertif = param
+
+    def choose_add_field(self,shapesdto):
+        pass

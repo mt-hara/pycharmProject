@@ -200,8 +200,8 @@ def set_concrete_state(top_pos, left_pos, dto):
 
 
 class ShapePosToValue():
-    def __init__(self, shapadata):
-        self.shapesdto = shapadata
+    def __init__(self, shapesdto):
+        self.shapesdto = shapesdto
         self.shapes_list = None
 
     def set_shapes_data(self, lists):

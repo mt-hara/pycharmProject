@@ -39,7 +39,7 @@ class AbstractExcelApp(metaclass=ABCMeta):
         self.__app = application
 
     def close_App(self):
-        self.app.quit()
+        self.app.kill()
 
 
 class AbstractExcelWorkBook(metaclass=ABCMeta):

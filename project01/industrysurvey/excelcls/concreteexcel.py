@@ -4,8 +4,8 @@ from excelcls.abstractexcel import AbstractExcelApp
 from excelcls.abstractexcel import AbstractExcelWorkBook
 from selectfiledir.filepicker import *
 from dto.excel_sheet_dto import ExcelSheetDTO
+from excelcls.excel_shapes_utility import ShapePosToValue
 
-# from abstractdto.abscustomermstrdto import CustomerMaster
 
 root = tkinter.Tk()
 root.withdraw()
@@ -43,7 +43,7 @@ class ExcelWorkBook(AbstractExcelWorkBook):
         self.xlwb.close()
 
 
-class ExcelShapesPos():
+class ExcelShapesPosOld():
     def __init__(self, xlsheet):
         self.shapes_pos = []
         self.xlsheet = xlsheet
@@ -55,47 +55,29 @@ class ExcelShapesPos():
             self.shapes_pos.append(var)
 
 
-# class ConcreteExcel():
-#
-#     def get_ws(self):
-#         filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（㈱八木熊）.xlsx"
-#         self.baseapp = ExcelApp()
-#         self.app = self.baseapp.app
-#
-#         self.wb = ExcelWorkBook()
-#         self.wb.open_wb(self.app, filename)
-#         self.ws = self.wb.xlws
-#         return self.ws
-
-
-
-
-
-
-if __name__ == "__main__":
     # def_dir = "DeskTop"
     # ftype = [("Excel2003ファイル", "*.xlsx")]
     # dialog = GetFile(def_dir,ftype)
     # files = dialog.get_files()
 
 
-    filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（ＮＣＤ NakajimaControlDesign）.xlsx"
-
-    baseapp = ExcelApp()
-    app = baseapp.app
-
-    wb = ExcelWorkBook()
-    wb.open_wb(app, filename)
-    ws = wb.xlws
-
-    exshapes = ExcelShapesPos(ws)
-    exsheetdto = ExcelSheetDTO(ws)
-    for k, v in exsheetdto.__dict__.items():
-        print("{} : {}: type-{}".format(k,v,type(v)))
+    # filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（ＮＣＤ NakajimaControlDesign）.xlsx"
+    #
+    # baseapp = ExcelApp()
+    # app = baseapp.app
+    #
+    # wb = ExcelWorkBook()
+    # wb.open_wb(app, filename)
+    # ws = wb.xlws
+    #
+    # exshapes = ExcelShapesPosOld(ws)
+    # exsheetdto = ExcelSheetDTO(ws)
+    # for k, v in exsheetdto.__dict__.items():
+    #     print("{} : {}: type-{}".format(k,v,type(v)))
     # exshapes.get_shape_pos()
-    # # dto = CustomerMaster()
-    # dto = CustomerDTO()
-    # shapes_dto = ShapesDataDTO(dto)
+    # dto = CustomerMaster()
+    # dto = ExcelSheetDTO(ws)
+    # shapes_dto = ShapePosToValue(dto)
     #
     #
     # shapes_dto.set_shapes_data(exshapes.shapes_pos)
@@ -104,5 +86,5 @@ if __name__ == "__main__":
     # for x,y in d.items():
     #     print(x,y)
 
-    wb.close_workbook()
-    baseapp.close_App()
+    # wb.close_workbook()
+    # baseapp.close_App()

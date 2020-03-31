@@ -1,25 +1,74 @@
-from sample.abscustomermstrdto_copy import DataCls
-from abstractdto.abs_excel_sheet_dto import AbstractExcelSheetDTO
+from excelcls.concreteexcel import ExcelApp, ExcelWorkBook, ExcelShapesPosOld
+from excelcls.excel_shapes_utility import GetExcelShapePos,ShapePosToValue
+from dto.excel_sheet_dto import ExcelSheetDTO
+
 
 from dataclasses import asdict
-def main(param):
-    # data = DataCls()
-    # data.customerCd=param
-    # print(data.customerCd)
-    pass
+
+
+class main():
+    def __init__(self, filename):
+        self.baseapp = ExcelApp()
+        self.app = self.baseapp.app
+        self.wb = ExcelWorkBook()
+        self.wb.open_wb(self.app, filename)
+        self.ws = self.wb.xlws
+
+    def close(self):
+        self.wb.close_workbook()
+        self.baseapp.close_App()
+
+    # @property
+    # def ws(self):
+    #     return self.ws
+    #
+    # @ws.setter
+    # def ws(self,param):
+    #     self.ws = param
+
+
+# def myfunc(filername):
+#     baseapp = ExcelApp()
+#     app = baseapp.app
+#
+#     wb = ExcelWorkBook()
+#     wb.open_wb(app,filename)
+#     ws = wb.xlws
+#
+#     # Shapeポジション取得
+#     shapes_pos = ExcelShapePos(ws)
+#     sheet_dto = ExcelSheetDTO(ws)
+#
+#
+#     # Shapes_posから選択値を取得
+
+
 
 if __name__ == "__main__":
-    data = AbstractExcelSheetDTO()
-    data.xlCustomerCd = "12345"
-    data.xlCustomerName="test name"
+    filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（ＮＣＤ NakajimaControlDesign）.xlsx"
+    excls = main(filename)
+    ws = excls.ws
+    data = ExcelSheetDTO(ws)
+
+    exshapescls = GetExcelShapePos(ws)
+    result = exshapescls.shapes_position()
+    # for i in result:
+    #     print(i)
+
+    shapeposval = ShapePosToValue(data)
+    shapeposval.set_shapes_data(result)
+    # for x in r:
+    #     print(x)
+
+    # data.xlCustomerCd = "12345"
+    # data.xlCustomerName = "test name"
     # for k, v in data.__dict__.items():
     #     print(k,v)
 
-    print(data.xlCustomerName)
-    print(type(data.xlCustomerCd))
+    # print(data.xlCustomerCd)
+    # print(data.xlCustomerName)
 
-
-
+    excls.close()
 
     # filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（㈱八木熊）.xlsx"
     # filename = ["C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（㈱八木熊）.xlsx", \
@@ -27,5 +76,3 @@ if __name__ == "__main__":
     # app = ExcelApp().app
     # wb = ExcelWorkBook()
     # wb.open_wb(app,filename)
-
-

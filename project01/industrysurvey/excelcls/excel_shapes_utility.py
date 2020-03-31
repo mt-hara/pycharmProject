@@ -1,6 +1,6 @@
 from abc import ABCMeta
 from abc import abstractmethod
-
+from typing import Dict, Any
 
 class IShapeState(metaclass=ABCMeta):
     @abstractmethod
@@ -48,7 +48,7 @@ class VenderBizType(ConcreteState):
         else:
             raise Exception("業種取得エラー")
 
-        self.shapesdata.set_shapes_data("CustomerBizType", self.biztype)
+        # self.shapesdata.set_shapes_data("CustomerBizType", self.biztype)
 
 
 class CapitalForm(ConcreteState):
@@ -78,8 +78,8 @@ class CapitalForm(ConcreteState):
             self.capital_form = 2
             self.corp_type = 9
 
-        self.shapesdata.set_shapes_data("CapitalForm", self.capital_form)
-        self.shapesdata.set_shapes_data("CorporateType", self.corp_type)
+        # self.shapesdata.set_shapes_data("CapitalForm", self.capital_form)
+        # self.shapesdata.set_shapes_data("CorporateType", self.corp_type)
 
 
 class StockStatus(ConcreteState):
@@ -107,8 +107,8 @@ class StockStatus(ConcreteState):
             elif 210 < self.position < 300:
                 self.stock_market = "その他"
 
-        self.shapesdata.set_shapes_data("stockListingStatus", self.stock_status)
-        self.shapesdata.set_shapes_data("stockMarket", self.stock_market)
+        # self.shapesdata.set_shapes_data("stockListingStatus", self.stock_status)
+        # self.shapesdata.set_shapes_data("stockMarket", self.stock_market)
 
 
 class ISOCertifStatus(ConcreteState):
@@ -123,8 +123,8 @@ class ISOCertifStatus(ConcreteState):
         elif 305 < self.position < 390:
             self.iso14000 = "取得済"
 
-        self.shapesdata.set_shapes_data("ISO9001Certif", self.iso9000)
-        self.shapesdata.set_shapes_data("ISO14001Certif", self.iso14000)
+        # self.shapesdata.set_shapes_data("ISO9001Certif", self.iso9000)
+        # self.shapesdata.set_shapes_data("ISO14001Certif", self.iso14000)
 
 
 class ISOSplan(ConcreteState):
@@ -141,8 +141,8 @@ class ISOSplan(ConcreteState):
             self.iso14000 = "取得予定"
             # self.shapesdata.ISO14001Certif = "取得予定"
 
-        self.shapesdata.set_shapes_data("ISO9001Certif", self.iso9000)
-        self.shapesdata.set_shapes_data("ISO14001Certif", self.iso14000)
+        # self.shapesdata.set_shapes_data("ISO9001Certif", self.iso9000)
+        # self.shapesdata.set_shapes_data("ISO14001Certif", self.iso14000)
 
 
 class ISONoCerfit(ConcreteState):
@@ -159,8 +159,8 @@ class ISONoCerfit(ConcreteState):
             self.iso14000 = "取得予定なし"
             # self.shapesdata.ISO14001Certif = "取得予定なし"
 
-        self.shapesdata.set_shapes_data("ISO9001Certif", self.iso9000)
-        self.shapesdata.set_shapes_data("ISO14001Certif", self.iso14000)
+        # self.shapesdata.set_shapes_data("ISO9001Certif", self.iso9000)
+        # self.shapesdata.set_shapes_data("ISO14001Certif", self.iso14000)
 
 
 class StateContext():
@@ -199,7 +199,7 @@ def set_concrete_state(top_pos, left_pos, dto):
         return False
 
 
-class ShapesDataDTO():
+class ShapePosToValue():
     def __init__(self, shapadata):
         self.shapesdto = shapadata
         self.shapes_list = None
@@ -215,3 +215,15 @@ class ShapesDataDTO():
             if not concrete_state == False:
                 state = StateContext(concrete_state)
                 state.choose()
+
+class GetExcelShapePos():
+    def __init__(self, xlsheet):
+        self.shapes_pos = []
+        self.xlsheet = xlsheet
+
+    def shapes_position(self):
+        shapes = self.xlsheet.shapes
+        for sh in shapes:
+            var: Dict[str, Any] = {"top": sh.top, "left": sh.left}
+            self.shapes_pos.append(var)
+        return self.shapes_pos

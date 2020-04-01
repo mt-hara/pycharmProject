@@ -1,7 +1,7 @@
 from abc import ABCMeta
 from abc import abstractmethod
 from typing import Dict, Any
-
+from dto.shapes_dto import ShapesDto
 
 class IShapeState(metaclass=ABCMeta):
     @abstractmethod
@@ -92,7 +92,6 @@ class StockStatus(ConcreteState):
     stock_status = 0 : 非上場
     stock_status = 1 : 上場
     stock_market = 東証１部、東証2部、その他
-
     """
 
     def __init__(self, left_pos, dto):
@@ -112,6 +111,8 @@ class StockStatus(ConcreteState):
             elif 210 < self.position < 300:
                 self.stock_market = "その他"
 
+        self.shapes_dto.shStockListingStatus = self.stock_status
+        self.shapes_dto.shStockMarket = self.stock_market
         # self.shapesdata.set_shapes_data("stockListingStatus", self.stock_status)
         # self.shapesdata.set_shapes_data("stockMarket", self.stock_market)
 
@@ -127,6 +128,7 @@ class ISOCertifStatus(ConcreteState):
             self.iso9000_certif = "取得済"
         elif 305 < self.position < 390:
             self.iso14000_certif = "取得済"
+
 
         # self.shapesdata.set_shapes_data("ISO9001Certif", self.iso9000)
         # self.shapesdata.set_shapes_data("ISO14001Certif", self.iso14000)

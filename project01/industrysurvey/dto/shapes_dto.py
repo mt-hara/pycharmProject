@@ -5,12 +5,12 @@ class ShapesDto():
         self.__shCorporateType: str = ""  # shape only
         self.__shStockListingStatus: int = 0  # shape only
         self.__shStockMarket: str = ""  # shape only
-        self.__shISO9001Certif: str = ""  # shape or celldata
-        self.__shISO9001Plan: str = ""  # shape or celldata
-        self.__shISO9001NoCertif: str = ""  # shape or celldata
-        self.__shISO14001Certif: str = ""  # shape or celldata
-        self.__shISO14001Plan: str = ""  # shape or celldata
-        self.__shISO14001NoCertif: str = ""  # shape or celldata
+        self.__shISO9001Certif: str = ""  # shape or cell data
+        self.__shISO9001Plan: str = ""  # shape or cell data
+        self.__shISO9001NoCertif: str = ""  # shape or cell data
+        self.__shISO14001Certif: str = ""  # shape or cell data
+        self.__shISO14001Plan: str = ""  # shape or cell data
+        self.__shISO14001NoCertif: str = ""  # shape or cell data
 
     @property
     def shCustomerBizType(self):

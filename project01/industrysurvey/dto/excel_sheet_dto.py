@@ -2,11 +2,12 @@ from abstractdto.abs_excel_sheet_dto import AbstractExcelSheetDTO
 class ExcelSheetDTO(AbstractExcelSheetDTO):
     def __init__(self, ws):
         super().__init__()
-        self.xlCustomerCd = self.celldata(ws.range("H3").value, str)  # H3
-        self.xlCustomerName = self.celldata(ws.range("H5").value, str)  # H5
-        # self.__xlCustomerKanaName: str = ""  # H4
-        # self.__xlHeadOfficeZipCd: str = ""  # I7
-        # self.__xlHeadOfficeAddress: str = ""  # H8
+        self.xlCustomerCd: str = self.celldata(ws.range("H3").value, str)  # H3
+        self.xlCustomerName: str = self.celldata(ws.range("H5").value, str)  # H5
+        self.xlCustomerKanaName: str = self.celldata(ws.range("H4").value, str)  # H4
+        self.xlHeadOfficeZipCd: str = self.celldata(ws.range("I7").value, str)  # I7
+        self.xlHeadOfficeAddress: str = self.celldata(ws.range("H8").value, str)  # H8
+
         # self.__xlHeadOfficeTel: str = ""  # X7
         # self.__xlHeadOfficeFax: str = ""  # AH7
         # self.__xlBranchOfficeZipCd: str = ""  # I10
@@ -166,7 +167,3 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
                 return float(param)
             elif datatype == str:
                 return str(param)
-
-
-    def select_shapes_field(self,fieldname,data):
-        pass

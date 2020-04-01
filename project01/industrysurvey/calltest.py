@@ -43,10 +43,12 @@ class main():
 
 
 if __name__ == "__main__":
-    filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（ＮＣＤ NakajimaControlDesign）.xlsx"
+    filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（イヌイ株式会社）.xlsx"
     excls = main(filename)
     ws = excls.ws
     data = ExcelSheetDTO(ws)
+    for x,y in data.__dict__.items():
+        print(x,y)
     shape_dto = ShapesDto()
 
     shapeposcls = GetExcelShapePos()
@@ -56,9 +58,7 @@ if __name__ == "__main__":
 
     posvalcls = ShapePosToValue(shape_dto)
     posvalcls.set_shapes_data(result)
-    print(shape_dto.shCustomerBizType)
-    print(shape_dto.shCapitalForm)
-    print(shape_dto.shCorporateType)
+    print("finish")
     # for x in r:
     #     print(x)
 

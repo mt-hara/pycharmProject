@@ -47,6 +47,8 @@ if __name__ == "__main__":
     filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（（株）清和光学製作所）.xlsx"
     excls = main(filename)
     ws = excls.ws
+    shape_dto = ShapesDto()
+    shapeposcls = GetExcelShapePos()
     try:
         data = ExcelSheetDTO(ws)
         for x, y in data.__dict__.items():
@@ -57,9 +59,7 @@ if __name__ == "__main__":
         excls.close()
         quit()
 
-    shape_dto = ShapesDto()
 
-    shapeposcls = GetExcelShapePos()
     result = shapeposcls.shapes_position(ws)
     # for i in result:
     #     print(i)

@@ -1,4 +1,6 @@
 from abstractdto.abs_excel_sheet_dto import AbstractExcelSheetDTO
+from excelapp.shape_state import GetExcelShapePos, ShapePosToValue
+from dto.shapes_dto import ShapesDto
 
 
 class ExcelSheetDTO(AbstractExcelSheetDTO):
@@ -143,7 +145,8 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
         self.xlMainProducts_4: str = self.cells("C45", str)  # C45
         self.xlMainProducts_5: str = self.cells("C46", str)  # C46
 
-
+        self.get_shapes_value()
+        # self.xlCapitalForm: int = shapesdto.shCapitalForm
 
 
 
@@ -180,21 +183,8 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
             elif datatype == str:
                 return str(param)
 
-    # def celldata(self, param, datatype):
-    #     if param == None:
-    #         return None
-    #     elif type(param) == int or type(param) == float:
-    #         if datatype == int:
-    #             return int(param)
-    #         elif datatype == float:
-    #             return float(param)
-    #         elif datatype == str:
-    #             # 小数点以下を削除
-    #             return str(int(param))
-    #     else:
-    #         if datatype == int:
-    #             return int(param)
-    #         elif datatype == float:
-    #             return float(param)
-    #         elif datatype == str:
-    #             return str(param)
+
+    def get_shapes_value(self):
+        self.shapes_dto = ShapesDto()
+        self.shape_pos_value = GetExcelShapePos().shapes_position(self.ws)
+

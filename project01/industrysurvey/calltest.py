@@ -49,6 +49,10 @@ if __name__ == "__main__":
     ws = excls.ws
     shape_dto = ShapesDto()
     shapeposcls = GetExcelShapePos()
+    shapes_pos_value = shapeposcls.shapes_position(ws)
+    pos_to_val_cls = ShapePosToValue(shape_dto)
+    pos_to_val_cls.set_shapes_data(shapes_pos_value)
+
     try:
         data = ExcelSheetDTO(ws)
         for x, y in data.__dict__.items():
@@ -60,12 +64,12 @@ if __name__ == "__main__":
         quit()
 
 
-    result = shapeposcls.shapes_position(ws)
+    # result = shapeposcls.shapes_position(ws)
     # for i in result:
     #     print(i)
 
-    posvalcls = ShapePosToValue(shape_dto)
-    posvalcls.set_shapes_data(result)
+    # posvalcls = ShapePosToValue(shape_dto)
+    # posvalcls.set_shapes_data(result)
     print("finish")
     # for x in r:
     #     print(x)

@@ -1,3 +1,5 @@
+import sys
+import traceback
 from excelapp.concreteexcel import ExcelApp, ExcelWorkBook
 from excelapp.shape_state import GetExcelShapePos, ShapePosToValue
 from dto.excel_sheet_dto import ExcelSheetDTO
@@ -42,15 +44,16 @@ class main():
 
 
 if __name__ == "__main__":
-    filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（イヌイ株式会社）.xlsx"
+    filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（（株）清和光学製作所）.xlsx"
     excls = main(filename)
     ws = excls.ws
     try:
         data = ExcelSheetDTO(ws)
         for x, y in data.__dict__.items():
             print("{}:{}".format(x, y))
-    except AttributeError:
-        print("Error")
+    except AttributeError as e:
+        type_, value, traceback_ = sys.exc_info()
+        print(traceback.format_exception(type_, value, traceback_))
         excls.close()
         quit()
 

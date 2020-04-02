@@ -44,8 +44,8 @@ class AbstractExcelSheetDTO():
         self.__xlOtherBizType: str = ""  # 手入力
         self.__xlPicName: str = ""  # H57
         self.__xlPicEmailAddress: str = ""  # H58
-        self.__xlpicDept: str = ""  # H59
-        self.__xlpicPosition: str = ""  # G59
+        self.__xlPicDept: str = ""  # H59
+        self.__xlPicPosition: str = ""  # G59
         self.__xlContactZipCd: str = ""  # H55
         self.__xlContactAddress: str = ""  # C56
         self.__xlContactTel: str = ""  # H60
@@ -68,13 +68,13 @@ class AbstractExcelSheetDTO():
         self.__xlmainCustomer_4: str = ""  # C31
         self.__xlmainCustomer_5: str = ""  # C32
         self.__xlCurPrdYear: str = ""  # M26
-        self.__xlCurPrdSales_1: float = 0  # M28
-        self.__xlCurPrdSales_2: float = 0  # M29
-        self.__xlCurPrdSales_3: float = 0  # M30
-        self.__xlCurPrdSales_4: float = 0  # M31
-        self.__xlCurPrdSales_5: float = 0  # M32
-        self.__xlCurPrdSales_Our: float = 0  # M34
-        self.__xlCurPrdSales_Other: float = 0  # M33
+        self.__xlCurPrdSales_1: int = 0  # M28
+        self.__xlCurPrdSales_2: int = 0  # M29
+        self.__xlCurPrdSales_3: int = 0  # M30
+        self.__xlCurPrdSales_4: int = 0  # M31
+        self.__xlCurPrdSales_5: int = 0  # M32
+        self.__xlCurPrdSales_Our: int = 0  # M34
+        self.__xlCurPrdSales_Other: int = 0  # M33
         self.__xlCurPrdSalesRatio_1: float = 0  # S28
         self.__xlCurPrdSalesRatio_2: float = 0  # S29
         self.__xlCurPrdSalesRatio_3: float = 0  # S30
@@ -82,17 +82,17 @@ class AbstractExcelSheetDTO():
         self.__xlCurPrdSalesRatio_5: float = 0  # S32
         self.__xlCurPrdSalesRatio_Our: float = 0  # S34
         self.__xlCurPrdSalesRatio_Othor: float = 0  # S33
-        self.__xlCurPrdSales_Sum: float = 0  # M35
-        self.__xlCurPrdOperatingProfit: float = 0  # M36
-        self.__xlCurPrdOrdinaryIncome: float = 0  # M37
+        self.__xlCurPrdSales_Sum: int = 0  # M35
+        self.__xlCurPrdOperatingProfit: int = 0  # M36
+        self.__xlCurPrdOrdinaryIncome: int = 0  # M37
         self.__xlPrevPrdYear: str = ""  # V26
-        self.__xlPrevPrdSales_1: float = 0  # V28
-        self.__xlPrevPrdSales_2: float = 0  # V29
-        self.__xlPrevPrdSales_3: float = 0  # V30
-        self.__xlPrevPrdSales_4: float = 0  # V31
-        self.__xlPrevPrdSales_5: float = 0  # V32
-        self.__xlPrevPrdSales_Our: float = 0  # V34
-        self.__xlPrevPrdSales_Other: float = 0  # V33
+        self.__xlPrevPrdSales_1: int = 0  # V28
+        self.__xlPrevPrdSales_2: int = 0  # V29
+        self.__xlPrevPrdSales_3: int = 0  # V30
+        self.__xlPrevPrdSales_4: int = 0  # V31
+        self.__xlPrevPrdSales_5: int = 0  # V32
+        self.__xlPrevPrdSales_Our: int = 0  # V34
+        self.__xlPrevPrdSales_Other: int = 0  # V33
         self.__xlPrevPrdSalesRatio_1: float = 0  # AB28
         self.__xlPrevPrdSalesRatio_2: float = 0  # AB29
         self.__xlPrevPrdSalesRatio_3: float = 0  # AB30
@@ -100,17 +100,17 @@ class AbstractExcelSheetDTO():
         self.__xlPrevPrdSalesRatio_5: float = 0  # AB32
         self.__xlPrevPrdSalesRatio_Our: float = 0  # AB34
         self.__xlPrevPrdSalesRatio_Other: float = 0  # AB33
-        self.__xlPrevPrdSales_Sum: float = 0  # V35
-        self.__xlPrevPrdOperatingProfit: float = 0  # V36
-        self.__xlPrevPrdOrdinaryIncome: float = 0  # V37
+        self.__xlPrevPrdSales_Sum: int = 0  # V35
+        self.__xlPrevPrdOperatingProfit: int = 0  # V36
+        self.__xlPrevPrdOrdinaryIncome: int = 0  # V37
         self.__xlLastPrdYear: str = ""  # AE26
-        self.__xlLastPrdSales_1: float = 0  # AE28
-        self.__xlLastPrdSales_2: float = 0  # AE29
-        self.__xlLastPrdSales_3: float = 0  # AE30
-        self.__xlLastPrdSales_4: float = 0  # AE31
-        self.__xlLastPrdSales_5: float = 0  # AE32
-        self.__xlLastPrdSales_Our: float = 0  # AE34
-        self.__xlLastPrdSales_Other: float = 0  # AE33
+        self.__xlLastPrdSales_1: int = 0  # AE28
+        self.__xlLastPrdSales_2: int = 0  # AE29
+        self.__xlLastPrdSales_3: int = 0  # AE30
+        self.__xlLastPrdSales_4: int = 0  # AE31
+        self.__xlLastPrdSales_5: int = 0  # AE32
+        self.__xlLastPrdSales_Our: int = 0  # AE34
+        self.__xlLastPrdSales_Other: int = 0  # AE33
         self.__xlLastPrdSalesRatio_1: float = 0  # AK28
         self.__xlLastPrdSalesRatio_2: float = 0  # AK29
         self.__xlLastPrdSalesRatio_3: float = 0  # AK30
@@ -118,20 +118,20 @@ class AbstractExcelSheetDTO():
         self.__xlLastPrdSalesRatio_5: float = 0  # AK32
         self.__xlLastPrdSalesRatio_Our: float = 0  # AK34
         self.__xlLastPrdSalesRatio_Other: float = 0  # AK33
-        self.__xlLastPrdSales_sum: float = 0  # AE35
-        self.__xlLastPrdOperatingProfit: float = 0  # AE36
-        self.__xlLastPrdOrdinaryIncome: float = 0  # AE37
+        self.__xlLastPrdSales_sum: int = 0  # AE35
+        self.__xlLastPrdOperatingProfit: int = 0  # AE36
+        self.__xlLastPrdOrdinaryIncome: int = 0  # AE37
         self.__xlCurPrdMainProducts: str = ""  # M38
         self.__xlMainSupplier_1: str = ""  # W42
         self.__xlMainSupplier_2: str = ""  # W43
         self.__xlMainSupplier_3: str = ""  # W44
         self.__xlMainSupplier_4: str = ""  # W45
         self.__xlMainSupplier_5: str = ""  # W46
-        self.__xlMainSupplierValue_1: float = 0  # AG42
-        self.__xlMainSupplierValue_2: float = 0  # AG43
-        self.__xlMainSupplierValue_3: float = 0  # AG44
-        self.__xlMainSupplierValue_4: float = 0  # AG45
-        self.__xlMainSupplierValue_5: float = 0  # AG46
+        self.__xlMainSupplierValue_1: int = 0  # AG42
+        self.__xlMainSupplierValue_2: int = 0  # AG43
+        self.__xlMainSupplierValue_3: int = 0  # AG44
+        self.__xlMainSupplierValue_4: int = 0  # AG45
+        self.__xlMainSupplierValue_5: int = 0  # AG46
         self.__xlMainSupplierRatio_1: float = 0  # AK42
         self.__xlMainSupplierRatio_2: float = 0  # AK43
         self.__xlMainSupplierRatio_3: float = 0  # AK44
@@ -496,20 +496,20 @@ class AbstractExcelSheetDTO():
         self.__xlPicEmailAddress = param
 
     @property
-    def xlpicDept(self):
-        return self.__xlpicDept
+    def xlPicDept(self):
+        return self.__xlPicDept
 
-    @xlpicDept.setter
-    def xlpicDept(self, param: str):
-        self.__xlpicDept = param
+    @xlPicDept.setter
+    def xlPicDept(self, param: str):
+        self.__xlPicDept = param
 
     @property
-    def xlpicPosition(self):
-        return self.__xlpicPosition
+    def xlPicPosition(self):
+        return self.__xlPicPosition
 
-    @xlpicPosition.setter
-    def xlpicPosition(self, param: str):
-        self.__xlpicPosition = param
+    @xlPicPosition.setter
+    def xlPicPosition(self, param: str):
+        self.__xlPicPosition = param
 
     @property
     def xlContactZipCd(self):

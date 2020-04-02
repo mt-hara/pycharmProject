@@ -1,49 +1,52 @@
 from abstractdto.abs_excel_sheet_dto import AbstractExcelSheetDTO
+
+
 class ExcelSheetDTO(AbstractExcelSheetDTO):
     def __init__(self, ws):
-        super().__init__()
+        super(ExcelSheetDTO, self).__init__()
         self.xlCustomerCd: str = self.celldata(ws.range("H3").value, str)  # H3
         self.xlCustomerName: str = self.celldata(ws.range("H5").value, str)  # H5
         self.xlCustomerKanaName: str = self.celldata(ws.range("H4").value, str)  # H4
         self.xlHeadOfficeZipCd: str = self.celldata(ws.range("I7").value, str)  # I7
         self.xlHeadOfficeAddress: str = self.celldata(ws.range("H8").value, str)  # H8
+        self.xlHeadOfficeTel: str = self.celldata(ws.range("X7").value, str)  # X7
+        self.xlHeadOfficeFax: str = self.celldata(ws.range("AH7").value, str)  # AH7
+        self.xlBranchOfficeZipCd: str = self.celldata(ws.range("I10").value, str)  # I10
+        self.xlBranchOfficeAddress: str = self.celldata(ws.range("H11").value, str)  # H11
+        self.xlBranchOfficeTel :str = self.celldata(ws.range("X10").value, str)  # X10
+        self.xlBranchOfficeFax: str = self.celldata(ws.range("AH10").value, str)  # AH10
+        self.xlRepName: str = self.celldata(ws.range("H14").value, str)  # H14
+        self.xlRepKanaName: str = self.celldata(ws.range("H13").value, str)   # H13
+        self.xlRepJobTitle: str = self.celldata(ws.range("HAD13").value, str)  # AD13
+        self.xlRepBirthYear: str = self.celldata(ws.range("AD14").value, str)  # AD14
+        self.xlRepBirthMonth: str = self.celldata(ws.range("AH14").value, str)  # AH14
+        self.xlRepBirthDay: str = self.celldata(ws.range("AK14").value, str)  # AK14
+        self.xlEmployees: int = self.celldata(ws.range("K22").value, int)  # K22
+        self.xlEmployeeYear: str = self.celldata(ws.range("I23").value, str)  # I23
 
-        # self.__xlHeadOfficeTel: str = ""  # X7
-        # self.__xlHeadOfficeFax: str = ""  # AH7
-        # self.__xlBranchOfficeZipCd: str = ""  # I10
-        # self.__xlBranchOfficeAddress: str = ""  # H11
-        # self.__xlBranchOfficeTel: str = ""  # X10
-        # self.__xlBranchOfficeFax: str = ""  # AH10
-        # self.__xlRepName: str = ""  # H14
-        # self.__xlRepKanaName: str = ""  # H13
-        # self.__xlRepJobTitle: str = ""  # AD13
-        # self.__xlRepBirthYear: str = ""  # AD14
-        # self.__xlRepBirthMonth: str = ""  # AH14
-        # self.__xlRepBirthDay: str = ""  # AK14
-        # self.__xlEmployees: int = 0  # k22
         # self.__xlEmployeeYear: str = ""  # I23
         # self.__xlEmployeeMonth: str = ""  # O23
-        self.__xlCapitalForm: int = 0  # shape 取得
-        self.__xlCorporateType: str = ""  # shape 取得
+#        self.__xlCapitalForm: int = 0  # shape 取得
+#        self.__xlCorporateType: str = ""  # shape 取得
         # self.__xlCustomerCapital: float = 0  # H18
         # self.__xlEstablishedYear: str = ""  # O19
         # self.__xlEstablishedMonth: str = ""  # I19
         # self.__xlAccountClosingMonth: int = 0  # M21
         # self.__xlReturnOnEquity: float = 0  # I20
-        self.__xlISO9001Certif: str = ""  # D50 shape 取得 取得済 取得予定 取得予定なし
-        self.__xlISO9001Plan: str = ""  # D51
-        self.__xlISO9001NoCertif: str = ""  # D52
+#        self.__xlISO9001Certif: str = ""  # D50 shape 取得 取得済 取得予定 取得予定なし
+#        self.__xlISO9001Plan: str = ""  # D51
+#        self.__xlISO9001NoCertif: str = ""  # D52
         # self.__xlISO9001ResistedNo: str = ""  # N50
         # self.__xlISO9001CertifPlanYear: str = ""  # N51
         # self.__xlISO9001CertifPlanMonth: str = ""  # R51
-        self.__xlISO14001Certif: str = ""  # V50 shape 取得 取得 取得済 取得予定 取得予定なし
-        self.__xlISO14001Plan: str = ""  # V51
-        self.__xlISO14001NoCertif: str = ""  # V52
+#        self.__xlISO14001Certif: str = ""  # V50 shape 取得 取得 取得済 取得予定 取得予定なし
+#        self.__xlISO14001Plan: str = ""  # V51
+#        self.__xlISO14001NoCertif: str = ""  # V52
         # self.__xlISO14001ResistedNo: str = ""  # AF50
         # self.__xlISO14001CertifPlanYear: str = ""  # AF51
         # self.__xlISO14001CertifPlanMonth: str = ""  # AJ51
         # self.__xlOtherCertif: str = ""  # I53
-        self.__xlCustomerBizType: int = 0  # shape 取得
+#        self.__xlCustomerBizType: int = 0  # shape 取得
         # self.__xlOtherBizType: str = ""  # 手入力
         # self.__xlPicName: str = ""  # H57
         # self.__xlPicEmailAddress: str = ""  # H58
@@ -53,8 +56,8 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
         # self.__xlContactAddress: str = ""  # C56
         # self.__xlContactTel: str = ""  # H60
         # self.__xlContactFax: str = ""  # G60
-        self.__xlStockListingStatus: int = 0  # 0:非上場　1:上場 shape 取得
-        self.__xlStockMarket: str = ""  # shape 取得 Text
+#        self.__xlStockListingStatus: int = 0  # 0:非上場　1:上場 shape 取得
+#        self.__xlStockMarket: str = ""  # shape 取得 Text
         # self.__xlMainStockholder_1: str = ""  # U19
         # self.__xlMainStockholder_2: str = ""  # U20
         # self.__xlMainStockholder_3: str = ""  # U21
@@ -145,9 +148,6 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
         # self.__xlMainProducts_3: str = ""  # C44
         # self.__xlMainProducts_4: str = ""  # C45
         # self.__xlMainProducts_5: str = ""  # C46
-
-
-
 
     def celldata(self, param, datatype):
         if param == None:

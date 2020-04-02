@@ -1,5 +1,5 @@
 from excelapp.concreteexcel import ExcelApp, ExcelWorkBook
-from excelapp.shape_state import GetExcelShapePos,ShapePosToValue
+from excelapp.shape_state import GetExcelShapePos, ShapePosToValue
 from dto.excel_sheet_dto import ExcelSheetDTO
 from dto.shapes_dto import ShapesDto
 
@@ -41,14 +41,19 @@ class main():
 #     # Shapes_posから選択値を取得
 
 
-
 if __name__ == "__main__":
     filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（イヌイ株式会社）.xlsx"
     excls = main(filename)
     ws = excls.ws
-    data = ExcelSheetDTO(ws)
-    for x,y in data.__dict__.items():
-        print(x,y)
+    try:
+        data = ExcelSheetDTO(ws)
+        for x, y in data.__dict__.items():
+            print("{}:{}".format(x, y))
+    except AttributeError:
+        print("Error")
+        excls.close()
+        quit()
+
     shape_dto = ShapesDto()
 
     shapeposcls = GetExcelShapePos()

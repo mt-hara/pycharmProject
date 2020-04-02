@@ -213,7 +213,7 @@ class AbstractExcelSheetDTO():
 
     @xlBranchOfficeAddress.setter
     def xlBranchOfficeAddress(self, param: str):
-        self.xlBranchOfficeAddress = param
+        self.__xlBranchOfficeAddress = param
 
     @property
     def xlBranchOfficeTel(self):

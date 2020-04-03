@@ -1,6 +1,6 @@
 from abstractdto.AbstractExcelSheetDTO import AbstractExcelSheetDTO
-from excelapp.shapeState import ExcelShapePosition, ConvertPosToValue
-from dto.ExcelShapesDTO import ShapesDto
+from excelapp.shapeState import ShapesPosToValue
+# from dto.ExcelShapesDTO import ShapesDto
 
 
 class ExcelSheetDTO(AbstractExcelSheetDTO):
@@ -145,17 +145,8 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
         self.xlMainProducts_4: str = self.cells("C45", str)  # C45
         self.xlMainProducts_5: str = self.cells("C46", str)  # C46
 
-        # self.get_shapes_value()
-        # self.xlCapitalForm: int = shapesdto.shCapitalForm
+        self.get_shapes_value()
 
-
-
-
-    #        self.__xlCapitalForm: int = 0  # shape 取得
-    #        self.__xlCorporateType: str = ""  # shape 取得
-    #        self.__xlCustomerBizType: int = 0  # shape 取得
-    #        self.__xlStockListingStatus: int = 0  # 0:非上場　1:上場 shape 取得
-    #        self.__xlStockMarket: str = ""  # shape 取得 Text
 
     def __get_cell(self, range_value: str):
         return self.ws.range(range_value).value
@@ -185,6 +176,22 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
 
 
     def get_shapes_value(self):
-        self.shapes_dto = ShapesDto()
-        self.shape_pos_value = ExcelShapePosition(self.ws).shapes_position()
+        shapes_data_factory = ShapesPosToValue(self.ws)
+        self.shapes_dto = shapes_data_factory.shapes_dto
+        self.xlCustomerBizType: int = self.shapes_dto.shCustomerBizType
+        self.xlCapitalForm: int = self.shapes_dto.shCapitalForm
+        self.xlCorporateType: str = self.shapes_dto.shCorporateType
+        self.xlStockListingStatus: int = self.shapes_dto.shStockListingStatus
+        self.xlStockMarket: str = self.shapes_dto.shStockMarket
+        self.iso9001certif_vslue()
+    #X        self.__xlCapitalForm: int = 0  # shape 取得
+    #X        self.__xlCorporateType: str = ""  # shape 取得
+    #        self.__xlCustomerBizType: int = 0  # shape 取得
+    #        self.__xlStockListingStatus: int = 0  # 0:非上場　1:上場 shape 取得
+    #        self.__xlStockMarket: str = ""  # shape 取得 Text
 
+    def iso9001certif_vslue(self):
+        if not self.xlISO9001Certif == "":
+            self.xlISO9001Certif: str = "取得済"
+        # if self.xlISO9001Certif is None and self.shapes_dto.shISO9001Certif
+        print(self.shapes_dto.shISO9001Certif == "")

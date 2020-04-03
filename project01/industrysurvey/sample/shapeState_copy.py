@@ -72,7 +72,7 @@ class CapitalForm(ConcreteState):
         if 80 < self.position < 125:
             self.capital_form = 1
             self.corp_type = None
-        elif 150 < self.position < 235:
+        elif 160 < self.position < 235:
             self.capital_form = 2
             self.corp_type = 1
         elif 240 < self.position < 290:
@@ -124,11 +124,11 @@ class ISOCertifStatus(ConcreteState):
     def choose(self, state_context):
         if 25.5 < self.position < 100:
             self.iso9000_certif = "取得済"
-        elif 290 < self.position < 345:
+        elif 305 < self.position < 390:
             self.iso14000_certif = "取得済"
 
         self.shapes_dto.shISO9001Certif = self.iso9000_certif
-        self.shapes_dto.shISO14001Certif = self.iso14000_certif
+        self.shapes_dto.shISO9001Certif = self.iso14000_certif
 
 
 class ISOSplan(ConcreteState):
@@ -140,7 +140,7 @@ class ISOSplan(ConcreteState):
     def choose(self, state_context):
         if 25.5 < self.position < 100:
             self.iso9000_plan = "取得予定"
-        elif 290 < self.position < 345:
+        elif 305 < self.position < 390:
             self.iso14000_plan = "取得予定"
 
         self.shapes_dto.shISO9001Plan = self.iso9000_plan
@@ -156,7 +156,7 @@ class ISONoCerfit(ConcreteState):
     def choose(self, state_context):
         if 25.5 < self.position < 100:
             self.iso9000_no_certif = "取得予定なし"
-        elif 290 < self.position < 345:
+        elif 305 < self.position < 390:
             self.iso14000_no_certif = "取得予定なし"
 
         self.shapes_dto.shISO9001NoCertif = self.iso9000_no_certif
@@ -187,20 +187,20 @@ class SetConcreteState():
         self.top_pos = top
         self.left_pos = left
         self.shapes = dto
-        self.state = self._set_concrete_state()
+        self.state = self.set_concrete_state()
 
-    def _set_concrete_state(self):
+    def set_concrete_state(self):
         if 210 < self.top_pos < 225:
             return VenderBizType(self.left_pos, self.shapes)
         if 222 < self.top_pos < 238:
             return CapitalForm(self.left_pos, self.shapes)
         if 246 < self.top_pos < 256:
             return StockStatus(self.left_pos, self.shapes)
-        if 715 < self.top_pos < 730:
+        if 690 < self.top_pos < 717:
             return ISOCertifStatus(self.left_pos, self.shapes)
-        if 735 < self.top_pos < 745:
+        if 720 < self.top_pos < 731:
             return ISOSplan(self.left_pos, self.shapes)
-        if 750 < self.top_pos < 765:
+        if 733 < self.top_pos < 747:
             return ISONoCerfit(self.left_pos, self.shapes)
         if self.top_pos > 800:
             return False
@@ -225,18 +225,18 @@ class SetConcreteState():
 class ShapesPosToValue():
     def __init__(self, xlws):
         self.__shape_dto = ShapesDto()
-        self.__shape_pos_list = self.__get_shapes_position(xlws)
-        self.__get_shapes_data(self.__shape_dto)
+        self.__shape_pos_list = self.get_shapes_position(xlws)
+        self.get_shapes_data(self.__shape_dto)
 
     @property
     def shapes_dto(self):
         return self.__shape_dto
 
-    def __get_shapes_position(self, xlws):
+    def get_shapes_position(self, xlws):
         shape_pos_cls = ExcelShapePosition(xlws)
         return shape_pos_cls.shapes_pos
 
-    def __get_shapes_data(self, dto):
+    def get_shapes_data(self, dto):
         conv_pos_cls = ConvertPosToValue(dto, self.__shape_pos_list)
         conv_pos_cls.set_shapes_data()
 

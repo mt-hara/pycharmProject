@@ -181,50 +181,95 @@ class StateContext():
         self.curt_state.choose(self)
 
 
-def set_concrete_state(top_pos, left_pos, dto):
-    if 210 < top_pos < 225:
-        return VenderBizType(left_pos, dto)
-    if 222 < top_pos < 238:
-        return CapitalForm(left_pos, dto)
-    if 246 < top_pos < 256:
-        return StockStatus(left_pos, dto)
-    if 690 < top_pos < 717:
-        return ISOCertifStatus(left_pos, dto)
-    if 720 < top_pos < 731:
-        return ISOSplan(left_pos, dto)
-    if 733 < top_pos < 747:
-        return ISONoCerfit(left_pos, dto)
-    if top_pos > 800:
-        return False
+class SetConcreteState():
+    def __init__(self, top, left , dto):
+        self.top_pos = top
+        self.left_pos = left
+        self.shapes = dto
+        self.state = self.set_concrete_state()
+    
+    def set_concrete_state(self):
+        if 210 < self.top_pos < 225:
+            return VenderBizType(self.left_pos, self.shapes)
+        if 222 < self.top_pos < 238:
+            return CapitalForm(self.left_pos, self.shapes)
+        if 246 < self.top_pos < 256:
+            return StockStatus(self.left_pos, self.shapes)
+        if 690 < self.top_pos < 717:
+            return ISOCertifStatus(self.left_pos, self.shapes)
+        if 720 < self.top_pos < 731:
+            return ISOSplan(self.left_pos, self.shapes)
+        if 733 < self.top_pos < 747:
+            return ISONoCerfit(self.left_pos, self.shapes)
+        if self.top_pos > 800:
+            return False
 
 
-class ShapePosToValue():
-    def __init__(self, shape_dto):
+# def set_concrete_state(top_pos, left_pos, dto):
+#     if 210 < top_pos < 225:
+#         return VenderBizType(left_pos, dto)
+#     if 222 < top_pos < 238:
+#         return CapitalForm(left_pos, dto)
+#     if 246 < top_pos < 256:
+#         return StockStatus(left_pos, dto)
+#     if 690 < top_pos < 717:
+#         return ISOCertifStatus(left_pos, dto)
+#     if 720 < top_pos < 731:
+#         return ISOSplan(left_pos, dto)
+#     if 733 < top_pos < 747:
+#         return ISONoCerfit(left_pos, dto)
+#     if top_pos > 800:
+#         return False
+
+class ShapesPosToValue():
+    def __init__(self,xlws):
+        self.__shape_pos_list = ExcelShapePosition(xlws).shapes_pos
+
+    @property
+    def shape_pos_list(self):
+        return  self.__shape_pos_list
+
+    @shape_pos_list.setter
+    def shape_pos_list(self, param):
+        self.__shape_pos_list = param
+
+
+
+
+class ConvertPosToValue():
+    def __init__(self, shape_dto, shape_pos_list):
         self.shapesdto = shape_dto
-        self.shape_list = None
-
-    def set_shapes_data(self, shape_pos_list):
+        # self.shape_list = None
         self.shape_list = shape_pos_list
-        # self.datalist = ""
+        self.set_shapes_data()
+
+    def set_shapes_data(self):
+        # self.shape_list = shape_pos_list
         for dict in self.shape_list:
             self.top = dict["top"]
             self.left = dict["left"]
-            concrete_state = set_concrete_state(self.top, self.left, self.shapesdto)
+            concrete_state = SetConcreteState(self.top, self.left, self.shapesdto).state
             # タカノロゴを取得した際にエラーが発生するため、フラグを立ててエラーを回避する。
             if not concrete_state == False:
                 state = StateContext(concrete_state)
                 state.choose()
 
+        return self.shapesdto
 
-class GetExcelShapePos():
-    def __init__(self):
+
+class ExcelShapePosition():
+    def __init__(self,xlws):
         self.shapes_pos = []
-        self.xlsheet = None
+        self.xlws = xlws
+        self.shapes_position()
 
-    def shapes_position(self, xlws):
-        self.xlsheet = xlws
-        shapes = self.xlsheet.shapes
+
+    def shapes_position(self):
+        # self.xlws = xlws
+        shapes = self.xlws.shapes
         for sh in shapes:
             var: Dict[str, Any] = {"top": sh.top, "left": sh.left}
             self.shapes_pos.append(var)
         return self.shapes_pos
+
+

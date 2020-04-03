@@ -1,6 +1,6 @@
-from abstractdto.abs_excel_sheet_dto import AbstractExcelSheetDTO
-from excelapp.shape_state import GetExcelShapePos, ShapePosToValue
-from dto.shapes_dto import ShapesDto
+from abstractdto.AbstractExcelSheetDTO import AbstractExcelSheetDTO
+from excelapp.shapeState import ExcelShapePosition, ConvertPosToValue
+from dto.ExcelShapesDTO import ShapesDto
 
 
 class ExcelSheetDTO(AbstractExcelSheetDTO):
@@ -145,7 +145,7 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
         self.xlMainProducts_4: str = self.cells("C45", str)  # C45
         self.xlMainProducts_5: str = self.cells("C46", str)  # C46
 
-        self.get_shapes_value()
+        # self.get_shapes_value()
         # self.xlCapitalForm: int = shapesdto.shCapitalForm
 
 
@@ -186,5 +186,5 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
 
     def get_shapes_value(self):
         self.shapes_dto = ShapesDto()
-        self.shape_pos_value = GetExcelShapePos().shapes_position(self.ws)
+        self.shape_pos_value = ExcelShapePosition(self.ws).shapes_position()
 

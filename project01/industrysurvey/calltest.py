@@ -1,9 +1,10 @@
 import sys
 import traceback
-from excelapp.concreteexcel import ExcelApp, ExcelWorkBook
-from excelapp.shape_state import GetExcelShapePos, ShapePosToValue
-from dto.excel_sheet_dto import ExcelSheetDTO
-from dto.shapes_dto import ShapesDto
+from excelapp.ExcelApp import ExcelApp, ExcelWorkBook
+from excelapp.shapeState import ExcelShapePosition, ConvertPosToValue
+from dto.ExcelSheetDTO import ExcelSheetDTO
+from dto.ExcelShapesDTO import ShapesDto
+from excelapp.shapeState import ShapesPosToValue
 
 
 class main():
@@ -48,21 +49,29 @@ if __name__ == "__main__":
     excls = main(filename)
     ws = excls.ws
     shape_dto = ShapesDto()
-    shapeposcls = GetExcelShapePos()
-    shapes_pos_value = shapeposcls.shapes_position(ws)
-    pos_to_val_cls = ShapePosToValue(shape_dto)
-    pos_to_val_cls.set_shapes_data(shapes_pos_value)
+    # shapeposcls = ExcelShapePosition(ws)
+    # shapes_pos_value = shapeposcls.shapes_position()
+    shape_pos_cls = ExcelShapePosition(ws)
+    shape_pos = shape_pos_cls.shapes_pos
+    ConvertPosToValue(shape_dto, shape_pos)
+    # pos_to_val_cls.set_shapes_data()
 
     try:
         data = ExcelSheetDTO(ws)
-        for x, y in data.__dict__.items():
-            print("{}:{}".format(x, y))
+        # for x, y in data.__dict__.items():
+        #     print("{}:{}".format(x, y))
     except AttributeError as e:
         type_, value, traceback_ = sys.exc_info()
         print(traceback.format_exception(type_, value, traceback_))
         excls.close()
         quit()
 
+    # for x1, y1 in shape_dto.__dict__.items():
+    #     print("{}:{}".format(x1, y1))
+
+    v = ShapesPosToValue(ws).shape_pos_list
+    for x in v:
+        print(x)
 
     # result = shapeposcls.shapes_position(ws)
     # for i in result:

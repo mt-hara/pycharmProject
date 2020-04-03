@@ -1,7 +1,7 @@
 from typing import Dict, Any
 import tkinter.messagebox as msgbox
-from excelapp.abstractexcel import AbstractExcelApp
-from excelapp.abstractexcel import AbstractExcelWorkBook
+from excelapp.AbstractExcelApp import AbstractExcelApp
+from excelapp.AbstractExcelApp import AbstractExcelWorkBook
 from selectfiledir.filepicker import *
 
 root = tkinter.Tk()
@@ -40,16 +40,16 @@ class ExcelWorkBook(AbstractExcelWorkBook):
         self.xlwb.close()
 
 
-class ExcelShapesPosOld():
-    def __init__(self, xlsheet):
-        self.shapes_pos = []
-        self.xlsheet = xlsheet
-
-    def get_shape_pos(self):
-        shapes = self.xlsheet.shapes
-        for sh in shapes:
-            var: Dict[str, Any] = {"top": sh.top, "left": sh.left}
-            self.shapes_pos.append(var)
+# class ExcelShapesPosOld():
+#     def __init__(self, xlsheet):
+#         self.shapes_pos = []
+#         self.xlsheet = xlsheet
+#
+#     def get_shape_pos(self):
+#         shapes = self.xlsheet.shapes
+#         for sh in shapes:
+#             var: Dict[str, Any] = {"top": sh.top, "left": sh.left}
+#             self.shapes_pos.append(var)
 
 
     # def_dir = "DeskTop"

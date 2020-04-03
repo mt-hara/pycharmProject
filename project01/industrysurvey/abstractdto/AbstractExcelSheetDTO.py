@@ -118,7 +118,7 @@ class AbstractExcelSheetDTO():
         self.__xlLastPrdSalesRatio_5: float = 0  # AK32
         self.__xlLastPrdSalesRatio_Our: float = 0  # AK34
         self.__xlLastPrdSalesRatio_Other: float = 0  # AK33
-        self.__xlLastPrdSales_sum: int = 0  # AE35
+        self.__xlLastPrdSales_Sum: int = 0  # AE35
         self.__xlLastPrdOperatingProfit: int = 0  # AE36
         self.__xlLastPrdOrdinaryIncome: int = 0  # AE37
         self.__xlCurPrdMainProducts: str = ""  # M38
@@ -1088,12 +1088,12 @@ class AbstractExcelSheetDTO():
         self.__xlLastPrdSalesRatio_Other = param
 
     @property
-    def xlLastPrdSales_sum(self):
-        return self.__xlLastPrdSales_sum
+    def xlLastPrdSales_Sum(self):
+        return self.__xlLastPrdSales_Sum
 
-    @xlLastPrdSales_sum.setter
-    def xlLastPrdSales_sum(self, param: float):
-        self.__xlLastPrdSales_sum = param
+    @xlLastPrdSales_Sum.setter
+    def xlLastPrdSales_Sum(self, param: float):
+        self.__xlLastPrdSales_Sum = param
 
     @property
     def xlLastPrdOperatingProfit(self):

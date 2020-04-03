@@ -48,12 +48,12 @@ if __name__ == "__main__":
     filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（（株）清和光学製作所）.xlsx"
     excls = main(filename)
     ws = excls.ws
-    shape_dto = ShapesDto()
+    # shape_dto = ShapesDto()
     # shapeposcls = ExcelShapePosition(ws)
     # shapes_pos_value = shapeposcls.shapes_position()
-    shape_pos_cls = ExcelShapePosition(ws)
-    shape_pos = shape_pos_cls.shapes_pos
-    ConvertPosToValue(shape_dto, shape_pos)
+    # shape_pos_cls = ExcelShapePosition(ws)
+    # shape_pos = shape_pos_cls.shapes_pos
+    # ConvertPosToValue(shape_dto, shape_pos)
     # pos_to_val_cls.set_shapes_data()
 
     try:
@@ -69,9 +69,17 @@ if __name__ == "__main__":
     # for x1, y1 in shape_dto.__dict__.items():
     #     print("{}:{}".format(x1, y1))
 
-    v = ShapesPosToValue(ws).shape_pos_list
-    for x in v:
+    v = ShapesPosToValue(ws, ShapesDto())
+    shape_list = v.pos_list()
+    for x in shape_list:
         print(x)
+
+    shapes_dto = v.shape_dto()
+    x = shapes_dto.__dict__
+    print(x)
+    # for x in shapes_dto.__dict__:
+    #     print(x)
+
 
     # result = shapeposcls.shapes_position(ws)
     # for i in result:

@@ -120,7 +120,7 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
         self.xlLastPrdSalesRatio_5: float = self.cells("AK32", float)  # AK32
         self.xlLastPrdSalesRatio_Our: float = self.cells("AK34", float)  # AK34
         self.xlLastPrdSalesRatio_Other: float = self.cells("AK33", float)  # AK33
-        self.xlLastPrdSales_sum: int = self.cells("AE35", int)  # AE35
+        self.xlLastPrdSales_Sum: int = self.cells("AE35", int)  # AE35
         self.xlLastPrdOperatingProfit: int = self.cells("AE36", int)  # AE36
         self.xlLastPrdOrdinaryIncome: int = self.cells("AE37", int)  # AE37
         self.xlCurPrdMainProducts: str = self.cells("M38", str)  # M38

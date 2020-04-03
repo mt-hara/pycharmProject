@@ -222,16 +222,23 @@ class SetConcreteState():
 #         return False
 
 class ShapesPosToValue():
-    def __init__(self,xlws):
-        self.__shape_pos_list = ExcelShapePosition(xlws).shapes_pos
+    def __init__(self,xlws, dto):
+        self.__shape_pos_list = self.get_shapes_position(xlws)
+        self.__shape_dto = self.get_shapes_data(dto,self.__shape_pos_list)
 
-    @property
-    def shape_pos_list(self):
-        return  self.__shape_pos_list
+    def get_shapes_position(self,xlws):
+        shape_pos_cls = ExcelShapePosition(xlws)
+        return shape_pos_cls.shapes_pos
 
-    @shape_pos_list.setter
-    def shape_pos_list(self, param):
-        self.__shape_pos_list = param
+    def get_shapes_data(self,dto,shape_pos_list):
+        conv_pos_cls = ConvertPosToValue(dto, shape_pos_list)
+        return conv_pos_cls.set_shapes_data()
+
+    def pos_list(self):
+        return self.__shape_pos_list
+
+    def shape_dto(self):
+        return self.__shape_dto
 
 
 
@@ -241,7 +248,7 @@ class ConvertPosToValue():
         self.shapesdto = shape_dto
         # self.shape_list = None
         self.shape_list = shape_pos_list
-        self.set_shapes_data()
+        # self.set_shapes_data()
 
     def set_shapes_data(self):
         # self.shape_list = shape_pos_list

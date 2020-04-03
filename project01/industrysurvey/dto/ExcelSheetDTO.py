@@ -183,15 +183,39 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
         self.xlCorporateType: str = self.shapes_dto.shCorporateType
         self.xlStockListingStatus: int = self.shapes_dto.shStockListingStatus
         self.xlStockMarket: str = self.shapes_dto.shStockMarket
-        self.iso9001certif_vslue()
+        self.xlISO9001Certif = self.iso_certif_vslue(self.xlISO9001Certif,
+                                               self.shapes_dto.shISO9001Certif)
+
+
     #X        self.__xlCapitalForm: int = 0  # shape 取得
     #X        self.__xlCorporateType: str = ""  # shape 取得
     #        self.__xlCustomerBizType: int = 0  # shape 取得
     #        self.__xlStockListingStatus: int = 0  # 0:非上場　1:上場 shape 取得
     #        self.__xlStockMarket: str = ""  # shape 取得 Text
 
-    def iso9001certif_vslue(self):
-        if not self.xlISO9001Certif == "":
-            self.xlISO9001Certif: str = "取得済"
-        # if self.xlISO9001Certif is None and self.shapes_dto.shISO9001Certif
-        print(self.shapes_dto.shISO9001Certif == "")
+    def iso_certif_vslue(self,xlvalue, shapesval):
+        if xlvalue != "" or xlvalue is not None:
+            return "取得済"
+        else:
+            if shapesval != "":
+                return "取得済"
+            else:
+                return None
+
+    def iso_plan_value(selfs,xlvalue, shapesval):
+        if xlvalue != "" or xlvalue is not None:
+            return "取得予定"
+        else:
+            if shapesval != "":
+                return "取得予定"
+            else:
+                return None
+
+    def iso_no_certif_value(self, xlvalue, shapesval):
+        if xlvalue != "" or xlvalue is not None:
+            return "取得予定なし"
+        else:
+            if shapesval != "":
+                return "取得予定なし"
+            else:
+                return None

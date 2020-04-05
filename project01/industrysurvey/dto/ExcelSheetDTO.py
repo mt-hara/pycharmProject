@@ -185,13 +185,9 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
         self.xlStockMarket: str = self.shapes_dto.shStockMarket
         self.xlISO9001Certif = self.iso_certif_vslue(self.xlISO9001Certif,
                                                self.shapes_dto.shISO9001Certif)
+        self.xlISO9001Plan: str = self.iso_plan_value(self.xlISO9001Plan, self.shapes_dto.shISO9001Plan)
 
 
-    #X        self.__xlCapitalForm: int = 0  # shape 取得
-    #X        self.__xlCorporateType: str = ""  # shape 取得
-    #        self.__xlCustomerBizType: int = 0  # shape 取得
-    #        self.__xlStockListingStatus: int = 0  # 0:非上場　1:上場 shape 取得
-    #        self.__xlStockMarket: str = ""  # shape 取得 Text
 
     def iso_certif_vslue(self,xlvalue, shapesval):
         if xlvalue != "" or xlvalue is not None:

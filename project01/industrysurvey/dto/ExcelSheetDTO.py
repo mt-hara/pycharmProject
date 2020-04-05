@@ -1,6 +1,6 @@
 from abstractdto.AbstractExcelSheetDTO import AbstractExcelSheetDTO
 from excelapp.shapeState import ShapesPosToValue
-# from dto.ExcelShapesDTO import ShapesDto
+from abc import ABCMeta, abstractmethod
 
 
 class ExcelSheetDTO(AbstractExcelSheetDTO):
@@ -147,7 +147,6 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
 
         self.get_shapes_value()
 
-
     def __get_cell(self, range_value: str):
         return self.ws.range(range_value).value
 
@@ -174,7 +173,6 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
             elif datatype == str:
                 return str(param)
 
-
     def get_shapes_value(self):
         shapes_data_factory = ShapesPosToValue(self.ws)
         self.shapes_dto = shapes_data_factory.shapes_dto
@@ -183,35 +181,119 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
         self.xlCorporateType: str = self.shapes_dto.shCorporateType
         self.xlStockListingStatus: int = self.shapes_dto.shStockListingStatus
         self.xlStockMarket: str = self.shapes_dto.shStockMarket
-        self.xlISO9001Certif = self.iso_certif_vslue(self.xlISO9001Certif,
-                                               self.shapes_dto.shISO9001Certif)
-        self.xlISO9001Plan: str = self.iso_plan_value(self.xlISO9001Plan, self.shapes_dto.shISO9001Plan)
+        i_status = ISOCertifStatus()
+        self.xlISO9001Certif = i_status.iso_status("certif", self.xlISO9001Certif, self.shapes_dto.shISO9001Certif)
+        self.xlISO9001Plan = i_status.iso_status("plan", self.xlISO9001Plan, self.shapes_dto.shISO9001Plan)
+        self.xlISO9001NoCertif = i_status.iso_status("no_certif", self.xlISO9001NoCertif, self.shapes_dto.shISO9001NoCertif)
+        self.xlISO14001Certif = i_status.iso_status("certif", self.xlISO14001Certif, self.shapes_dto.shISO14001Certif)
+        self.xlISO14001Plan = i_status.iso_status("plan", self.xlISO14001Plan, self.shapes_dto.shISO14001Plan)
+        self.xlISO14001NoCertif = i_status.iso_status("no_certif", self.xlISO14001NoCertif, self.shapes_dto.shISO14001NoCertif)
 
 
+class ISOCertifStatus():
+    def __init__(self):
+        self.checktype = ""
+        self.cellval = ""
+        self.shapesval = ""
 
-    def iso_certif_vslue(self,xlvalue, shapesval):
-        if xlvalue != "" or xlvalue is not None:
-            return "取得済"
+    def _set_iso_context_state(self, checktype, cellval, shapesval):
+        self.checktype = checktype
+        self.cellval =cellval
+        self.shapesval = shapesval
+        if checktype == "certif":
+            return ISOCetif(self.cellval, self.shapesval)
+        elif checktype == "plan":
+            return ISOPlan(self.cellval, self.shapesval)
+        elif checktype == "no_certif":
+            return ISONoCertif(self.cellval, self.shapesval)
+
+    def iso_status(self, checktype, cellval, shapesval):
+        iso_context = self._set_iso_context_state(checktype, cellval, shapesval)
+        return StateContext(iso_context).iso_value()
+
+
+class ISOState(metaclass=ABCMeta):
+    @abstractmethod
+    def iso_value(self, state_context):
+        pass
+
+
+class ConcreteISOState(ISOState):
+    def __init__(self, cellval, shapesval):
+        self.cellVal = cellval
+        self.shapeval = shapesval
+
+    def iso_value(self, state_context):
+        pass
+
+
+class StateContext():
+    def __init__(self, state_type):
+        self.set_state(state_type)
+
+    @property
+    def current_state(self):
+        return self.__current_state
+
+    @current_state.setter
+    def current_state(self, obj):
+        self.current_state = obj
+
+    def set_state(self, new_state):
+        self.__current_state = new_state
+
+    def iso_value(self):
+        return self.current_state.iso_value(self)
+
+
+class ISOCetif(ConcreteISOState):
+    def __init__(self, cellval, shapesval):
+        super().__init__(cellval, shapesval)
+        self.iso_certif_val = ""
+
+    def iso_value(self, state_context):
+        if self.cellVal == "○" or self.cellVal is not None:
+            self.iso_certif_val = "取得済"
         else:
-            if shapesval != "":
-                return "取得済"
+            if self.shapeval is not None:
+                self.iso_certif_val = "取得済"
             else:
-                return None
+                self.iso_certif_val = None
 
-    def iso_plan_value(selfs,xlvalue, shapesval):
-        if xlvalue != "" or xlvalue is not None:
-            return "取得予定"
-        else:
-            if shapesval != "":
-                return "取得予定"
-            else:
-                return None
+        return self.iso_certif_val
 
-    def iso_no_certif_value(self, xlvalue, shapesval):
-        if xlvalue != "" or xlvalue is not None:
-            return "取得予定なし"
+
+class ISOPlan(ConcreteISOState):
+    def __init__(self, cellval, shapesval):
+        super().__init__(cellval, shapesval)
+        self.iso_plan_val = ""
+
+    def iso_value(self, state_context):
+        if self.cellVal == "○" or self.cellVal is not None:
+            self.iso_plan_val = "取得予定"
         else:
-            if shapesval != "":
-                return "取得予定なし"
+            if self.shapeval != "":
+                self.iso_plan_val = "取得予定"
             else:
-                return None
+                self.iso_plan_val = None
+
+        return self.iso_plan_val
+
+
+class ISONoCertif(ConcreteISOState):
+    def __init__(self, cellval, shapesval):
+        super().__init__(cellval, shapesval)
+        self.iso_no_certif = ""
+
+    def iso_value(self, state_context):
+        if self.cellVal == "○" or self.cellVal is not None:
+            self.iso_no_certif = "取得予定なし"
+        else:
+            if self.shapeval != "":
+                self.iso_no_certif = "取得予定なし"
+            else:
+                self.iso_no_certif = None
+
+        return self.iso_no_certif
+
+

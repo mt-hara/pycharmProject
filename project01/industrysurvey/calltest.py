@@ -26,42 +26,22 @@ class main():
     #     self.ws = param
 
 
-# def myfunc(filername):
-#     baseapp = ExcelApp()
-#     app = baseapp.app
-#
-#     wb = ExcelWorkBook()
-#     wb.open_wb(app,filename)
-#     ws = wb.xlws
-#
-#     # Shapeポジション取得
-#     shapes_pos = ExcelShapePos(ws)
-#     sheet_dto = ExcelSheetDTO(ws)
-#
-#
-#     # Shapes_posから選択値を取得
-
 
 if __name__ == "__main__":
     filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（（株）清和光学製作所）.xlsx"
     excls = main(filename)
     ws = excls.ws
-    # shape_dto = ShapesDto()
-    # shapeposcls = ExcelShapePosition(ws)
-    # shapes_pos_value = shapeposcls.shapes_position()
-    # shape_pos_cls = ExcelShapePosition(ws)
-    # shape_pos = shape_pos_cls.shapes_pos
-    # ConvertPosToValue(shape_dto, shape_pos)
-    # pos_to_val_cls.set_shapes_data()
 
     try:
         data = ExcelSheetDTO(ws)
+
     except AttributeError as e:
         type_, value, traceback_ = sys.exc_info()
         print(traceback.format_exception(type_, value, traceback_))
         excls.close()
         quit()
     else:
+
         print("biztype : {}".format(data.xlCustomerBizType))
         print("capitalform : {}".format(data.xlCapitalForm))
         print("corptype : {}".format(data.xlCorporateType))

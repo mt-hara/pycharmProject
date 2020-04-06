@@ -24,6 +24,14 @@ if __name__ == "__main__":
  engine = create_engine(sqlpath)
  metadata = MetaData(engine)
  print(vars(metadata))
+
+ # db = create_engine('sqlite:///test.db')
+ # metadata = MetaData(bind=db, reflect=True)
+ # for tables in metadata.tables:
+ #     for row in tables.select().execute():
+ #         print(row)
+
+
 # 	TEXT
 # ringiNo	TEXT
 # CustomerName	TEXT

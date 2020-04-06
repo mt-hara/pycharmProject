@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, Boolean, MetaData
+from sqlalchemy import Column, Integer, String, Float, Boolean, Numeric
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 
@@ -15,25 +15,21 @@ class CustomerData(Base):
 class AllCustomerMaster(Base):
     __tablename__ = 'AllCustomerMaster'
     CustomerCd = Column(String, primary_key=True)
+    CustomerName = Column(String)
 
-# "sqlite:///"
-# "G:\\97.ACCESS\\sqlite3db\\BizSurvey.sqlite3"
-if __name__ == "__main__":
 
- sqlpath = "sqlite:///" + "G:\\97.ACCESS\\sqlite3db\\BizSurvey.sqlite3"
- engine = create_engine(sqlpath)
- metadata = MetaData(engine)
- print(vars(metadata))
+class DTOtoColumns():
+    def __init__(self,**kwargs):
+        # self.dtoval = None
+        self.CustomerCd = kwargs["cd"]
+        self.CustomerName = kwargs["name"]
 
- # db = create_engine('sqlite:///test.db')
- # metadata = MetaData(bind=db, reflect=True)
- # for tables in metadata.tables:
- #     for row in tables.select().execute():
- #         print(row)
+    # def dto_values(self):
+    #     self.dtoval=('CustomerCd =' + self.CustomerCd,'CustomerName =' + self.CustomerName)
 
+        # return self.dtoval
 
 # 	TEXT
-# ringiNo	TEXT
 # CustomerName	TEXT
 # CustomerKanaName	TEXT
 # CustomerShortName	TEXT

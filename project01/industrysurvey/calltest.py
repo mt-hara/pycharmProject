@@ -41,26 +41,27 @@ if __name__ == "__main__":
         excls.close()
         quit()
     else:
+        pass
 
-        print("biztype : {}".format(data.xlCustomerBizType))
-        print("capitalform : {}".format(data.xlCapitalForm))
-        print("corptype : {}".format(data.xlCorporateType))
-        print("stockstatus : {}".format(data.xlStockListingStatus))
-        print("stockmarket : {}".format(data.xlStockMarket))
-        print("iso9001certif : {}".format(data.xlISO9001Certif))
-        print("iso9000plan : {}".format(data.xlISO9001Plan))
-        print("iso19001nocertif : {}".format(data.xlISO9001NoCertif))
-        print("iso14001certif : {}".format(data.xlISO14001Certif))
-        print("iso14001plan : {}".format(data.xlISO14001Plan))
-        print("iso14001nocertif : {}".format(data.xlISO14001NoCertif))
-
-        print("=====================================================")
-        for x, y in data.shapes_dto.__dict__.items():
-            print("{}:{}".format(x, y))
-        print("=====================================================")
-
-        for k ,v in data.__dict__.items():
-            print("{} : {}".format(k,v))
+        # print("biztype : {}".format(data.xlCustomerBizType))
+        # print("capitalform : {}".format(data.xlCapitalForm))
+        # print("corptype : {}".format(data.xlCorporateType))
+        # print("stockstatus : {}".format(data.xlStockListingStatus))
+        # print("stockmarket : {}".format(data.xlStockMarket))
+        # print("iso9001certif : {}".format(data.xlISO9001Certif))
+        # print("iso9000plan : {}".format(data.xlISO9001Plan))
+        # print("iso19001nocertif : {}".format(data.xlISO9001NoCertif))
+        # print("iso14001certif : {}".format(data.xlISO14001Certif))
+        # print("iso14001plan : {}".format(data.xlISO14001Plan))
+        # print("iso14001nocertif : {}".format(data.xlISO14001NoCertif))
+        #
+        # print("=====================================================")
+        # for x, y in data.shapes_dto.__dict__.items():
+        #     print("{}:{}".format(x, y))
+        # print("=====================================================")
+        #
+        # for k ,v in data.__dict__.items():
+        #     print("{} : {}".format(k,v))
     # for x1, y1 in shape_dto.__dict__.items():
     #     print("{}:{}".format(x1, y1))
 

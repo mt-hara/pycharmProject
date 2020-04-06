@@ -18,16 +18,7 @@ class AllCustomerMaster(Base):
     CustomerName = Column(String)
 
 
-class DTOtoColumns():
-    def __init__(self,**kwargs):
-        # self.dtoval = None
-        self.CustomerCd = kwargs["cd"]
-        self.CustomerName = kwargs["name"]
 
-    # def dto_values(self):
-    #     self.dtoval=('CustomerCd =' + self.CustomerCd,'CustomerName =' + self.CustomerName)
-
-        # return self.dtoval
 
 # 	TEXT
 # CustomerName	TEXT

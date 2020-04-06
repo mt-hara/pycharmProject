@@ -4,7 +4,7 @@ from os.path import join
 
 from dao.BaseEngine import BaseSession
 from dao.Models import CustomerData
-from dao.Models import AllCustomerMaster, DTOtoColumns
+from dao.Models import AllCustomerMaster
 
 
 class Customers(BaseSession):
@@ -37,9 +37,13 @@ class AllCustomer(BaseSession):
 
     def insert(self, cd, name):
         with self.transaction() as session:
-            dt = DTOtoColumns(cd = cd, name = name)
-            i = AllCustomerMaster(CustomerCd = dt.CustomerCd,CustomerName = dt.CustomerName)
-            self.session.add(i)
+            customer = AllCustomerMaster()
+            customer.CustomerCd = cd
+            customer.CustomerName = name
+            self.session.add(customer)
+            # AllCustomerMaster().insert().values(CustomerCd = cd)
+
+            # self.session.add(i)
 
 
 if __name__ == "__main__":

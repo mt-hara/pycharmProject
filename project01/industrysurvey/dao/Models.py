@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Float, Boolean, MetaData
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import create_engine
 
 Base = declarative_base()
 
@@ -8,13 +9,22 @@ class CustomerData(Base):
     __tablename__ = 'customerData'
     customerCd = Column(String, primary_key=True)
     customerName = Column(String)
-    fld1 = Column(None)
+    fld1 = Column(Float)
+
 
 class AllCustomerMaster(Base):
     __tablename__ = 'AllCustomerMaster'
+    CustomerCd = Column(String, primary_key=True)
 
+# "sqlite:///"
+# "G:\\97.ACCESS\\sqlite3db\\BizSurvey.sqlite3"
+if __name__ == "__main__":
 
-# CustomerCd	TEXT
+ sqlpath = "sqlite:///" + "G:\\97.ACCESS\\sqlite3db\\BizSurvey.sqlite3"
+ engine = create_engine(sqlpath)
+ metadata = MetaData(engine)
+ print(vars(metadata))
+# 	TEXT
 # ringiNo	TEXT
 # CustomerName	TEXT
 # CustomerKanaName	TEXT

@@ -1,7 +1,7 @@
 import sys
 import pathlib
-from dao.baseengine import BaseSession
-from dao.models import CustomerData
+from dao.BaseEngine import BaseSession
+from dao.Models import CustomerData
 
 
 class Customers(BaseSession):
@@ -28,10 +28,10 @@ class Customers(BaseSession):
             print(":{}:{}:{}".format(i.customerCd, i.customerName, i.fld1))
 
 if __name__ == "__main__":
-    # sqlite_patrh = "G:\\97.ACCESS\\sqlite3db\\BizSurvey.sqlite3"
-    sqlite_patrh = "C:\\dev\\sqlite3\\BizSurvey.sqlite3"
-
+    sqlite_patrh = "G:\\97.ACCESS\\sqlite3db\\BizSurvey.sqlite3"
+    # sqlite_patrh = "C:\\dev\\sqlite3\\BizSurvey.sqlite3"
     # "C:\dev\sqlite3\BizSurvey.sqlite3"
+
     cli = Customers(sqlite_patrh)
     # cli.select()
     # strfld = cli.like_select("シーシーエス")

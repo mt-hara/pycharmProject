@@ -2,7 +2,7 @@ import sys
 import traceback
 from excelapp.ExcelApp import ExcelApp, ExcelWorkBook
 from dto.ExcelSheetDTO import ExcelSheetDTO
-from excelapp.shapeState import ShapesPosToValue
+from excelapp.ShapeState import ShapesPosToValue
 
 
 class main():
@@ -57,6 +57,10 @@ if __name__ == "__main__":
         print("=====================================================")
         for x, y in data.shapes_dto.__dict__.items():
             print("{}:{}".format(x, y))
+        print("=====================================================")
+
+        for k ,v in data.__dict__.items():
+            print("{} : {}".format(k,v))
     # for x1, y1 in shape_dto.__dict__.items():
     #     print("{}:{}".format(x1, y1))
 

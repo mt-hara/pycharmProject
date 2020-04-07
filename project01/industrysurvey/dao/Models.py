@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, Boolean, Numeric
+from sqlalchemy import Column, Integer, String, Float, Boolean, Numeric, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 
@@ -12,17 +12,39 @@ class CustomerData(Base):
     fld1 = Column(Float)
 
 
+class StockStatusMaster(Base):
+    __tablename__ = "StockStatusMaster"
+    CustomerCd = Column(String, primary_key=True)
+    stockListingStatus = Column(String)
+    MainStockholder_1 = Column(String)
+    MainStockholder_2 = Column(String)
+    MainStockholder_3 = Column(String)
+    MainStockholder_4 = Column(String)
+    MainStockholder_5 = Column(String)
+
+    AllCustomnerCd = Column(String, ForeignKey('AllCustomerMaster.CustomerCd'))
+    # ratioSH_1 REAL
+    # ratioSH_2 REAL
+    # ratioSH_3 REAL
+    # ratioSH_4 REAL
+    # ratioSH_5 REAL
+
 class AllCustomerMaster(Base):
     __tablename__ = 'AllCustomerMaster'
     CustomerCd = Column(String, primary_key=True)
     CustomerName = Column(String)
+    CustomerKanaName = Column(String)
+    CustomerShortName = Column(String)
+
+
+
+    def __init__(self, xldto):
+        self.CustomerCd = xldto.xlCustomerCd
+        self.CustomerName =xldto.xlCustomerName
 
 
 
 
-# 	TEXT
-# CustomerName	TEXT
-# CustomerKanaName	TEXT
 # CustomerShortName	TEXT
 # excludeLaw	NUMERIC
 # headOfficeZipCd	TEXT

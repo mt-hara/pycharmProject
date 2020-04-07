@@ -1,6 +1,5 @@
-from sqlalchemy import Column, Integer, String, Float, Boolean, Numeric, ForeignKey
+from sqlalchemy import Column, Integer, String, Float, Boolean, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine
 from sqlalchemy.orm import relationship
 
 Base = declarative_base()
@@ -15,8 +14,8 @@ Base = declarative_base()
 
 class AllCustomerMaster(Base):
     __tablename__ = "AllCustomerMaster"
-    CustomerCd:str = Column(String,primary_key=True, nullable=False)
-    CustomerName:str = Column(String)
+    CustomerCd: str = Column(String, primary_key=True, nullable=False)
+    CustomerName: str = Column(String)
     CustomerKanaName: str = Column(String)
     CustomerShortName: str = Column(String)
     ExcludeLaw: bool = Column(Boolean)
@@ -26,34 +25,16 @@ class AllCustomerMaster(Base):
 
     def __init__(self, xldto):
         self.CustomerCd = xldto.xlCustomerCd
-        self.CustomerName =xldto.xlCustomerName
-
-
-class StockStatusMaster(Base):
-    __tablename__ = "StockStatusMaster"
-    CustomerCd: str = Column(String, ForeignKey("CustomerMaster.CustomerCd"), primary_key=True)
-    stockListingStatus: str = Column(String)
-    stockMarket: str = Column(String)
-    MainStockholder_1: str = Column(String)
-    MainStockholder_2: str = Column(String)
-    MainStockholder_3: str = Column(String)
-    MainStockholder_4: str = Column(String)
-    MainStockholder_5: str = Column(String)
-    RatioSH_1: float = Column(Numeric)
-    RatioSH_2: float = Column(Numeric)
-    RatioSH_3: float = Column(Numeric)
-    RatioSH_4: float = Column(Numeric)
-    RatioSH_5: float = Column(Numeric)
-
+        self.CustomerName = xldto.xlCustomerName
 
 
 class CustomerMaster(Base):
-    __tablename__ = 'CustomerMaster'
+    __tablename__ = 'customerMaster'
     customerCd = Column(String, primary_key=True, nullable=False)
     customerName = Column(String)
     customerKanaName = Column(String)
     customerShortName = Column(String)
-    excludeLaw: bool = Column(Boolean)
+    excludeLaw: bool = Column(Boolean)  # False
     headOfficeZipCd: str = Column(String)
     headOfficeAddress: str = Column(String)
     headOfficeTel: str = Column(String)
@@ -62,295 +43,161 @@ class CustomerMaster(Base):
     branchOfficeAddress: str = Column(String)
     branchOfficeTel: str = Column(String)
     branchOfficeFax: str = Column(String)
+    repName: str = Column(String)
+    repKanaName: str = Column(String)
+    repJobTitle: str = Column(String)
+    repBirthday: str = Column(String)
+    employees: int = Column(Integer)
+    employeeMonth: str = Column(String)
+    employeeYear: str = Column(String)
+    capitalForm: int = Column(Integer)
+    corporateType: str = Column(String)  # shapes 株式 有限 その他
+    otherCorpType: str = Column(String)  # Null
+    customerCapital: float = Column(Float)
+    establishedMonth: str = Column(String)
+    establishedYear: str = Column(String)
+    accountClosingMonth: int = Column(Integer)
+    returnOnEquity: float = Column(Float)
+    ISO9001Certif: str = Column(String)
+    ISO9001ResistedNo: str = Column(String)
+    ISO9001CertifPlanYM: str = Column(String)
+    ISO14001Certif: str = Column(String)
+    ISO14001ResistedNo: str = Column(String)
+    ISO14001CertifPlanYM: str = Column(String)
+    otherCertif: str = Column(String)
+    CustomerCategory: str = Column(String)  # Null
+    CustomerBizType: str = Column(String)  # shapes
+    picName: str = Column(String)
+    picKanaName: str = Column(String)
+    PicEmailAddress: str = Column(String)
+    picDept: str = Column(String)
+    picPosition: str = Column(String)
+    sameHeadOffice: str = Column(String)
+    contactZipCd: str = Column(String)
+    contactAddress: str = Column(String)
+    contactTel: str = Column(String)
+    contactFax: str = Column(String)
 
-    stockstatus = relationship("StockStatusMaster", order_by="StockStatusMaster.CustomerCd",
-                               uselist = False, backref="CustomerMaster")
+    stockstatus = relationship("StockStatusMaster", order_by="StockStatusMaster.customerCd",
+                               uselist=False, backref="customerMaster")
 
+    bizcondition = relationship("BizConditionsMaster", order_by="StockStatusMaster.customerCd",
+                                uselist=False, backref="customerMaster")
 
-# repName	TEXT
-# repKanaName	TEXT
-# repJobTitle	TEXT
-# repBirthday	TEXT
-# employees	NUMERIC
-# employeeMonth	TEXT
-# employeeYear	TEXT
-# CapitalForm	INTEGER
-# CorporateType	TEXT
-# OtherCorpType	TEXT
-# CustomerCapital	REAL
-# establishedMonth	TEXT
-# establishedYear	TEXT
-# AccountClosingMonth	INTEGER
-# ReturnOnEquity	REAL
-# ISO9001Certif	TEXT
-# ISO9001ResistedNo	TEXT
-# ISO9001CertifPlanYM	TEXT
-# ISO14001Certif	TEXT
-# ISO14001ResistedNo	TEXT
-# ISO14001CertifPlanYM	TEXT
-# OtherCertif	TEXT
-# CustomerCategory	TEXT
-# CustomerBizType	TEXT
-# picName	TEXT
-# picKanaName	TEXT
-# PicEmailAddress	TEXT
-# picDept	TEXT
-# picPosition	TEXT
-# sameHeadOffice	TEXT
-# contactZipCd	TEXT
-# contactAddress1	TEXT
-# contactAddress2	TEXT
-# contactTel	TEXT
-# contactFax	TEXT
-# contactInfo	TEXT
-# FTA	NUMERIC
-# FTANotice	TEXT
-# QAA	NUMERIC
-# QAANotice	TEXT
-# NDA	NUMERIC
-# NDANotice	TEXT
-# otherContract	TEXT
-# stockListingStatus	NUMERIC
-# stockMarket	TEXT
-# MainStockholder_1	TEXT
-# MainStockholder_2	TEXT
-# MainStockholder_3	TEXT
-# MainStockholder_4	TEXT
-# MainStockholder_5	TEXT
-# ratioSH_1	REAL
-# ratioSH_2	REAL
-# ratioSH_3	REAL
-# ratioSH_4	REAL
-# ratioSH_5	REAL
-# mainCustomer_1	TEXT
-# mainCustomer_2	TEXT
-# mainCustomer_3	TEXT
-# mainCustomer_4	TEXT
-# mainCustomer_5	TEXT
-# CurPrdYear	TEXT
-# CurPrdSales_1	NUMERIC
-# CurPrdSales_2	NUMERIC
-# CurPrdSales_3	NUMERIC
-# CurPrdSales_4	NUMERIC
-# CurPrdSales_5	NUMERIC
-# CurPrdSales_Our	NUMERIC
-# CurPrdSales_Other	NUMERIC
-# CurPrdSalesRatio_1	REAL
-# CurPrdSalesRatio_2	REAL
-# CurPrdSalesRatio_3	REAL
-# CurPrdSalesRatio_4	REAL
-# CurPrdSalesRatio_5	REAL
-# CurPrdSalesRatio_Our	REAL
-# CurPrdSalesRatio_Othor	REAL
-# CurPrdSales_Sum	NUMERIC
-# CurPrdOperatingProfit	NUMERIC
-# CurPrdOrdinaryincome	NUMERIC
-# PrevPrdYear	TEXT
-# PrevPrdSales_1	NUMERIC
-# PrevPrdSales_2	NUMERIC
-# PrevPrdSales_3	NUMERIC
-# PrevPrdSales_4	NUMERIC
-# PrevPrdSales_5	NUMERIC
-# PrevPrdSales_Our	NUMERIC
-# PrevPrdSales_Other	NUMERIC
-# PrevPrdSalesRatio_1	REAL
-# PrevPrdSalesRatio_2	REAL
-# PrevPrdSalesRatio_3	REAL
-# PrevPrdSalesRatio_4	REAL
-# PrevPrdSalesRatio_5	REAL
-# PrevPrdSalesRatio_Our	REAL
-# PrevPrdSalesRatio_Other	REAL
-# PrevPrdSales_Sum	NUMERIC
-# PrevPrdOperatingProfit	NUMERIC
-# PrevPrdOrdinaryIncome	NUMERIC
-# LastPrdYear	TEXT
-# lastPrdSales_1	NUMERIC
-# lastPrdSales_2	NUMERIC
-# lastPrdSales_3	NUMERIC
-# lastPrdSales_4	NUMERIC
-# lastPrdSales_5	NUMERIC
-# lastPrdSales_Our	NUMERIC
-# lastPrdSales_Other	NUMERIC
-# lastPrdSalesRatio_1	REAL
-# lastPrdSalesRatio_2	REAL
-# lastPrdSalesRatio_3	REAL
-# lastPrdSalesRatio_4	REAL
-# lastPrdSalesRatio_5	REAL
-# lastPrdSalesRatio_Our	REAL
-# lastPrdSalesRatio_Other	REAL
-# lastPrdSales_sum	NUMERIC
-# lastPrdOperatingProfit	NUMERIC
-# lastPrdOrdinaryincome	NUMERIC
-# CurPrdMainProducts	TEXT
-# MainSupplier_1	TEXT
-# MainSupplier_2	TEXT
-# MainSupplier_3	TEXT
-# MainSupplier_4	TEXT
-# MainSupplier_5	TEXT
-# MainSupplierValue_1	NUMERIC
-# MainSupplierValue_2	NUMERIC
-# MainSupplierValue_3	NUMERIC
-# MainSupplierValue_4	NUMERIC
-# MainSupplierValue_5	NUMERIC
-# MainSupplierRatio_1	REAL
-# MainSupplierRatio_2	REAL
-# MainSupplierRatio_3	REAL
-# MainSupplierRatio_4	REAL
-# MainSupplierRatio_5	REAL
-# MainProducts_1	TEXT
-# MainProducts_2	TEXT
-# MainProducts_3	TEXT
-# MainProducts_4	TEXT
-# MainProducts_5	TEXT
+    mainsupplier = relationship("BizConditionsMaster", order_by="StockStatusMaster.customerCd",
+                                uselist=False, backref="customerMaster")
+
+    mainproduct = relationship("MainProductMaster", order_by="StockStatusMaster.customerCd",
+                               uselist=False, backref="customerMaster")
 
 
+class StockStatusMaster(Base):
+    __tablename__ = "stockStatusMaster"
+    CustomerCd: str = Column(String, ForeignKey("customerMaster.customerCd"), primary_key=True)
+    stockListingStatus: str = Column(String)
+    stockMarket: str = Column(String)
+    MainStockholder_1: str = Column(String)
+    MainStockholder_2: str = Column(String)
+    MainStockholder_3: str = Column(String)
+    MainStockholder_4: str = Column(String)
+    MainStockholder_5: str = Column(String)
+    RatioSH_1: float = Column(Float)
+    RatioSH_2: float = Column(Float)
+    RatioSH_3: float = Column(Float)
+    RatioSH_4: float = Column(Float)
+    RatioSH_5: float = Column(Float)
 
-# CustomerShortName	TEXT
-# excludeLaw	NUMERIC
-# headOfficeZipCd	TEXT
-# headOfficeAddress1	TEXT
-# headOfficeAddress2	TEXT
-# headOfficeTel	TEXT
-# headOfficeFax	TEXT
-# BranchOfficeZipCd	TEXT
-# BranchOfficeAddress1	TEXT
-# BranchOfficeAddress2	TEXT
-# BranchOfficeTel	TEXT
-# BranchOfficeFax	TEXT
-# repName	TEXT
-# repKanaName	TEXT
-# repJobTitle	TEXT
-# repBirthday	TEXT
-# employees	NUMERIC
-# employeeMonth	TEXT
-# employeeYear	TEXT
-# CapitalForm	INTEGER
-# CorporateType	TEXT
-# OtherCorpType	TEXT
-# CustomerCapital	REAL
-# establishedMonth	TEXT
-# establishedYear	TEXT
-# AccountClosingMonth	INTEGER
-# ReturnOnEquity	REAL
-# ISO9001Certif	TEXT
-# ISO9001ResistedNo	TEXT
-# ISO9001CertifPlanYM	TEXT
-# ISO14001Certif	TEXT
-# ISO14001ResistedNo	TEXT
-# ISO14001CertifPlanYM	TEXT
-# OtherCertif	TEXT
-# CustomerCategory	TEXT
-# CustomerBizType	TEXT
-# picName	TEXT
-# picKanaName	TEXT
-# PicEmailAddress	TEXT
-# picDept	TEXT
-# picPosition	TEXT
-# sameHeadOffice	TEXT
-# contactZipCd	TEXT
-# contactAddress1	TEXT
-# contactAddress2	TEXT
-# contactTel	TEXT
-# contactFax	TEXT
-# contactInfo	TEXT
-# FTA	NUMERIC
-# FTANotice	TEXT
-# QAA	NUMERIC
-# QAANotice	TEXT
-# NDA	NUMERIC
-# NDANotice	TEXT
-# otherContract	TEXT
-# ここから
-# stockListingStatus	NUMERIC
-# stockMarket	TEXT
-# MainStockholder_1	TEXT
-# MainStockholder_2	TEXT
-# MainStockholder_3	TEXT
-# MainStockholder_4	TEXT
-# MainStockholder_5	TEXT
-# ratioSH_1	REAL
-# ratioSH_2	REAL
-# ratioSH_3	REAL
-# ratioSH_4	REAL
-# ratioSH_5	REAL
 
-# mainCustomer_1	TEXT
-# mainCustomer_2	TEXT
-# mainCustomer_3	TEXT
-# mainCustomer_4	TEXT
-# mainCustomer_5	TEXT
-# CurPrdYear	TEXT
-# CurPrdSales_1	NUMERIC
-# CurPrdSales_2	NUMERIC
-# CurPrdSales_3	NUMERIC
-# CurPrdSales_4	NUMERIC
-# CurPrdSales_5	NUMERIC
-# CurPrdSales_Our	NUMERIC
-# CurPrdSales_Other	NUMERIC
-# CurPrdSalesRatio_1	REAL
-# CurPrdSalesRatio_2	REAL
-# CurPrdSalesRatio_3	REAL
-# CurPrdSalesRatio_4	REAL
-# CurPrdSalesRatio_5	REAL
-# CurPrdSalesRatio_Our	REAL
-# CurPrdSalesRatio_Othor	REAL
-# CurPrdSales_Sum	NUMERIC
-# CurPrdOperatingProfit	NUMERIC
-# CurPrdOrdinaryincome	NUMERIC
-# PrevPrdYear	TEXT
-# PrevPrdSales_1	NUMERIC
-# PrevPrdSales_2	NUMERIC
-# PrevPrdSales_3	NUMERIC
-# PrevPrdSales_4	NUMERIC
-# PrevPrdSales_5	NUMERIC
-# PrevPrdSales_Our	NUMERIC
-# PrevPrdSales_Other	NUMERIC
-# PrevPrdSalesRatio_1	REAL
-# PrevPrdSalesRatio_2	REAL
-# PrevPrdSalesRatio_3	REAL
-# PrevPrdSalesRatio_4	REAL
-# PrevPrdSalesRatio_5	REAL
-# PrevPrdSalesRatio_Our	REAL
-# PrevPrdSalesRatio_Other	REAL
-# PrevPrdSales_Sum	NUMERIC
-# PrevPrdOperatingProfit	NUMERIC
-# PrevPrdOrdinaryIncome	NUMERIC
-# LastPrdYear	TEXT
-# lastPrdSales_1	NUMERIC
-# lastPrdSales_2	NUMERIC
-# lastPrdSales_3	NUMERIC
-# lastPrdSales_4	NUMERIC
-# lastPrdSales_5	NUMERIC
-# lastPrdSales_Our	NUMERIC
-# lastPrdSales_Other	NUMERIC
-# lastPrdSalesRatio_1	REAL
-# lastPrdSalesRatio_2	REAL
-# lastPrdSalesRatio_3	REAL
-# lastPrdSalesRatio_4	REAL
-# lastPrdSalesRatio_5	REAL
-# lastPrdSalesRatio_Our	REAL
-# lastPrdSalesRatio_Other	REAL
-# lastPrdSales_sum	NUMERIC
-# lastPrdOperatingProfit	NUMERIC
-# lastPrdOrdinaryincome	NUMERIC
-# CurPrdMainProducts	TEXT
-# MainSupplier_1	TEXT
-# MainSupplier_2	TEXT
-# MainSupplier_3	TEXT
-# MainSupplier_4	TEXT
-# MainSupplier_5	TEXT
-# MainSupplierValue_1	NUMERIC
-# MainSupplierValue_2	NUMERIC
-# MainSupplierValue_3	NUMERIC
-# MainSupplierValue_4	NUMERIC
-# MainSupplierValue_5	NUMERIC
-# MainSupplierRatio_1	REAL
-# MainSupplierRatio_2	REAL
-# MainSupplierRatio_3	REAL
-# MainSupplierRatio_4	REAL
-# MainSupplierRatio_5	REAL
-# MainProducts_1	TEXT
-# MainProducts_2	TEXT
-# MainProducts_3	TEXT
-# MainProducts_4	TEXT
-# MainProducts_5	TEXT
+class BizConditionsMaster(Base):
+    __tablename__ = "bizConditionsMaster"
+    CustomerCd: str = Column(String, ForeignKey("customerMaster.customerCd"), primary_key=True)
+    mainCustomer_1: str = Column(String)
+    mainCustomer_2: str = Column(String)
+    mainCustomer_3: str = Column(String)
+    mainCustomer_4: str = Column(String)
+    mainCustomer_5: str = Column(String)
+    curPrdYear: str = Column(String)
+    curPrdSales_1: int = Column(Integer)
+    curPrdSales_2: int = Column(Integer)
+    curPrdSales_3: int = Column(Integer)
+    curPrdSales_4: int = Column(Integer)
+    curPrdSales_5: int = Column(Integer)
+    curPrdSales_Our: int = Column(Integer)
+    curPrdSales_Other: int = Column(Integer)
+    curPrdSalesRatio_1: float = Column(Float)
+    curPrdSalesRatio_2: float = Column(Float)
+    curPrdSalesRatio_3: float = Column(Float)
+    curPrdSalesRatio_4: float = Column(Float)
+    curPrdSalesRatio_5: float = Column(Float)
+    curPrdSalesRatio_Our: float = Column(Float)
+    curPrdSalesRatio_Othor: float = Column(Float)
+    curPrdSales_Sum: int = Column(Integer)
+    curPrdOperatingProfit: int = Column(Integer)
+    curPrdOrdinaryincome: int = Column(Integer)
+    prevPrdYear: str = Column(String)
+    prevPrdSales_1: int = Column(Integer)
+    prevPrdSales_2: int = Column(Integer)
+    prevPrdSales_3: int = Column(Integer)
+    prevPrdSales_4: int = Column(Integer)
+    prevPrdSales_5: int = Column(Integer)
+    prevPrdSales_Our: int = Column(Integer)
+    prevPrdSales_Other: int = Column(Integer)
+    prevPrdSalesRatio_1: float = Column(Float)
+    prevPrdSalesRatio_2: float = Column(Float)
+    prevPrdSalesRatio_3: float = Column(Float)
+    prevPrdSalesRatio_4: float = Column(Float)
+    prevPrdSalesRatio_5: float = Column(Float)
+    prevPrdSalesRatio_Our: float = Column(Float)
+    prevPrdSalesRatio_Other: float = Column(Float)
+    prevPrdSales_Sum: int = Column(Integer)
+    prevPrdOperatingProfit: int = Column(Integer)
+    prevPrdOrdinaryIncome: int = Column(Integer)
+    lastPrdYear: str = Column(String)
+    lastPrdSales_1: int = Column(Integer)
+    lastPrdSales_2: int = Column(Integer)
+    lastPrdSales_3: int = Column(Integer)
+    lastPrdSales_4: int = Column(Integer)
+    lastPrdSales_5: int = Column(Integer)
+    lastPrdSales_Our: int = Column(Integer)
+    lastPrdSales_Other: int = Column(Integer)
+    lastPrdSalesRatio_1: float = Column(Float)
+    lastPrdSalesRatio_2: float = Column(Float)
+    lastPrdSalesRatio_3: float = Column(Float)
+    lastPrdSalesRatio_4: float = Column(Float)
+    lastPrdSalesRatio_5: float = Column(Float)
+    lastPrdSalesRatio_Our: float = Column(Float)
+    lastPrdSalesRatio_Other: float = Column(Float)
+    lastPrdSales_sum: int = Column(Integer)
+    lastPrdOperatingProfit: int = Column(Integer)
+    lastPrdOrdinaryincome: int = Column(Integer)
+    curPrdMainProducts: str = Column(String)
+
+
+class MainSupplierMaster(Base):
+    __tablename__ = "mainSupplierMaster"
+    CustomerCd: str = Column(String, ForeignKey("customerMaster.customerCd"), primary_key=True)
+    mainSupplier_1: str = Column(String)
+    mainSupplier_2: str = Column(String)
+    mainSupplier_3: str = Column(String)
+    mainSupplier_4: str = Column(String)
+    mainSupplier_5: str = Column(String)
+    mainSupplierValue_1: int = Column(Integer)
+    mainSupplierValue_2: int = Column(Integer)
+    mainSupplierValue_3: int = Column(Integer)
+    mainSupplierValue_4: int = Column(Integer)
+    mainSupplierValue_5: int = Column(Integer)
+    mainSupplierRatio_1: float = Column(Float)
+    mainSupplierRatio_2: float = Column(Float)
+    mainSupplierRatio_3: float = Column(Float)
+    mainSupplierRatio_4: float = Column(Float)
+    mainSupplierRatio_5: float = Column(Float)
+
+
+class MainProductMaster(Base):
+    __tablename__ = "mainProductMaster"
+    CustomerCd: str = Column(String, ForeignKey("customerMaster.customerCd"), primary_key=True)
+    MainProducts_1: str = Column(String)
+    MainProducts_2: str = Column(String)
+    MainProducts_3: str = Column(String)
+    MainProducts_4: str = Column(String)
+    MainProducts_5: str = Column(String)

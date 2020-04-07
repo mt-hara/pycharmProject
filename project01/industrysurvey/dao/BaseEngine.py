@@ -2,10 +2,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from contextlib import contextmanager
 
-DBPATH = "C:\\Dev\\DB\\sqlite3\\BizSurvey.sqlite3"
-# "G:\\97.ACCESS\\sqlite3db\\BizSurvey.sqlite3"
-# "C:\\Dev\\DB\\sqlite3\\BizSurvey.sqlite3"
-# "C:\\dev\\sqlite3\\BizSurvey.sqlite3"
+# DBPATH = "C:\\Dev\\DB\\sqlite3\\BizSurvey.sqlite3"
+#DBPATH = "G:\\97.ACCESS\\sqlite3db\\BizSurvey.sqlite3"
+# DBPATH = "C:\\Dev\\DB\\sqlite3\\BizSurvey.sqlite3"
+DBPATH = "C:\\dev\\sqlite3\\BizSurvey.sqlite3"
 
 class BaseEngine():
 

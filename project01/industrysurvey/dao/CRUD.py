@@ -1,5 +1,5 @@
 from dao.BaseEngine import BaseSession
-from dao.Models import AllCustomerMaster
+from dao.Models import CustomerMaster
 
 
 class AllCustomer(BaseSession):
@@ -8,7 +8,7 @@ class AllCustomer(BaseSession):
 
     def has_record(self,param):
         # with self.transaction() as session:
-        result = self.session.query(AllCustomerMaster).filter(AllCustomerMaster.CustomerCd == param).all()
+        result = self.session.query(CustomerMaster).filter(CustomerMaster.CustomerCd == param).all()
         if len(result) == 0:
             return True
         else:
@@ -16,13 +16,13 @@ class AllCustomer(BaseSession):
 
     def select(self):
         # with self.transaction() as session:
-        ret = self.session.query(AllCustomerMaster).all()
+        ret = self.session.query(CustomerMaster).all()
         return ret
 
     def insert(self, xldto):
         if self.has_record(xldto.xlCustomerCd) is True:
             with self.transaction() as session:
-                customer = AllCustomerMaster(xldto)
+                customer = CustomerMaster(xldto)
                 self.session.add(customer)
                 # AllCustomerMaster().insert().values(CustomerCd = cd)
                 # self.session.add(i)

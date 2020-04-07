@@ -30,8 +30,7 @@ if __name__ == "__main__":
         excls.close()
         quit()
     else:
-        sqlite_patrh = "C:\\dev\\sqlite3\\BizSurvey.sqlite3"
-        customer_model = AllCustomer(sqlite_patrh)
+        customer_model = AllCustomer()
         customer_model.insert(data)
 
 

@@ -15,8 +15,8 @@ class User(Base):
     name = Column(String, nullable=False)
 
     address = relationship('Address', order_by='Address.id',
-                       uselist=False, backref='users')
-    # testtext = relationship("Address", order_by="Address.id",uselist=False, backref="users")
+                       uselist=False, backref="users")
+    # testtext= relationship("Address", order_by="Address.id",uselist=False)
 
     def __repr__(self):
         return '<User(%d, %s)>' % (self.id, self.name)
@@ -26,7 +26,8 @@ class Address(Base):
     __tablename__ = 'addresses'
 
     id = Column(Integer,ForeignKey('users.id'), primary_key=True)
-    email = Column(String, nullable=False)
+    email = Column(String,nullable=True)
+    testtext = Column(String)
     # owner_id = Column(Integer, ForeignKey('users.id'))
 
     def __repr__(self):
@@ -34,13 +35,13 @@ class Address(Base):
 
 
 if __name__ == '__main__':
-    engine = create_engine('sqlite:///' + "C:\\Dev\\DB\\sqlite3\\BizSurvey.sqlite3", echo=True)
+    engine = create_engine('sqlite:///' + "C:\\dev\\sqlite3\\BizSurvey.sqlite3", echo=True)
     Base.metadata.create_all(engine)
     SessionMaker = sessionmaker(bind=engine)
     session = SessionMaker()
 
     new_user = User(name='foo')
-    new_user.address = Address(email='foo@example.jp')
+    new_user.address = Address(email='foo@example.jp',testtext="test")
 
     session.add(new_user)
     session.commit()

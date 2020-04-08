@@ -2,7 +2,7 @@ import sys
 import traceback
 from excelapp.ExcelApp import ExcelApp, ExcelWorkBook
 from dto.ExcelSheetDTO import ExcelSheetDTO
-from dao.CRUD import AllCustomer
+from dao.CRUD import ExecuteNoneQuery
 
 class main():
     def __init__(self, filename):
@@ -30,8 +30,9 @@ if __name__ == "__main__":
         excls.close()
         quit()
     else:
-        customer_model = AllCustomer()
-        customer_model.insert(data)
+        te = ExecuteNoneQuery(data)
+        # customer_model = Update(data)
+        # customer_model = Insert(data)
 
 
     print("Finish code")

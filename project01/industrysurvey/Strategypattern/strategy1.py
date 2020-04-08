@@ -1,4 +1,5 @@
 from abc import ABCMeta, abstractmethod
+# Context 状態判断
 class Report():
     def __init__(self, title, text, formatter):
         self.title = title
@@ -9,11 +10,13 @@ class Report():
         self.formater.output_report(self.title, self.text)
 
 class Formatter(metaclass=ABCMeta):
+    # strategy 戦略のインターフェース
     @abstractmethod
     def output_report(self, title, text):
         pass
 
 class HTMLFormatter(Formatter):
+    # Conctrete strategy
     def output_report(self, title, text):
         print("<html>")
         print("<head>")

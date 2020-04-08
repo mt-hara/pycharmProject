@@ -1,14 +1,11 @@
 import sys
 # from dao.BaseEngine import BaseEngine
 from dao.BaseEngine import BaseSession,  MetaBase
-# from dao.BaseEngine import MetaBase
 from dao.tablemodel.CustomerMaster import CustomerMaster
 from dao.tablemodel.StockStatusMaster import StockStatusMaster
 # from dao.tablemodel.BizConditionsMaster import BizConditionsMaster
 # from dao.tablemodel.MainProductMaster import MainProductMaster
 # from dao.tablemodel.MainSupplierMaster import MainSupplierMaster
-# from dao.Models import *
-# from dao.Models import Base
 
 
 class TableMigration(BaseSession):

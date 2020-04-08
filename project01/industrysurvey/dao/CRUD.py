@@ -1,43 +1,104 @@
-from dao.BaseEngine import BaseSession
-from dao.Models import CustomerMaster
+import sys
+# from dao.BaseEngine import BaseEngine
+from dao.BaseEngine import BaseSession,  MetaBase
+# from dao.BaseEngine import MetaBase
+from dao.tablemodel.CustomerMaster import CustomerMaster
+from dao.tablemodel.StockStatusMaster import StockStatusMaster
+# from dao.tablemodel.BizConditionsMaster import BizConditionsMaster
+# from dao.tablemodel.MainProductMaster import MainProductMaster
+# from dao.tablemodel.MainSupplierMaster import MainSupplierMaster
+# from dao.Models import *
+# from dao.Models import Base
 
 
-class AllCustomer(BaseSession):
+class TableMigration(BaseSession):
     def __init__(self):
         super().__init__()
+        try:
+            MetaBase().metadata.create_all(self.engine)
+        except Exception as e:
+            print(e)
 
-    def has_record(self,param):
-        # with self.transaction() as session:
-        result = self.session.query(CustomerMaster).filter(CustomerMaster.CustomerCd == param).all()
-        if len(result) == 0:
-            return True
-        else:
-            return False
 
-    def select(self):
-        # with self.transaction() as session:
-        ret = self.session.query(CustomerMaster).all()
-        return ret
+# class AllCustomer(BaseSession):
+#     def __init__(self):
+#         super().__init__()
+#
+#     def has_record(self,param):
+#         # with self.transaction() as session:
+#         result = self.session.query(CustomerMaster).filter(CustomerMaster.CustomerCd == param).all()
+#         if len(result) == 0:
+#             return True
+#         else:
+#             return False
+#
+#     def select(self):
+#         # with self.transaction() as session:
+#         ret = self.session.query(CustomerMaster).all()
+#         return ret
+#
+#     def insert(self, xldto):
+#         if self.has_record(xldto.xlCustomerCd) is True:
+#             with self.transaction() as session:
+#                 customer = CustomerMaster(xldto)
+#                 self.session.add(customer)
+#                 # AllCustomerMaster().insert().values(CustomerCd = cd)
+#                 # self.session.add(i)
+#         else:
+#             self.update(xldto)
+#
+#     def update(self,xldto):
+#         print("Update")
 
-    def insert(self, xldto):
-        if self.has_record(xldto.xlCustomerCd) is True:
+# class Migration():
+#     def __init__(self):
+#         self.e = BaseEngine().engine
+#
+#     def CustomerMaster(self):
+#         Base().metadata.create_all(self.e)
+
+
+
+class RegistData(BaseSession):
+    def __init__(self, xldto):
+        super().__init__()
+        try:
+            customer = CustomerMaster()
+            customer.stockstatus = StockStatusMaster()
+            customer.set_data(xldto)
+            customer.stockstatus.set_data(xldto)
+
             with self.transaction() as session:
-                customer = CustomerMaster(xldto)
                 self.session.add(customer)
-                # AllCustomerMaster().insert().values(CustomerCd = cd)
-                # self.session.add(i)
-        else:
-            self.update(xldto)
+        except Exception as e:
+            print(e)
 
-    def update(self,xldto):
-        print("Update")
+
+
+class DeleteAll(BaseSession):
+    def __init__(self):
+        super().__init__()
+        try:
+            with self.transaction() as session:
+                del_list = self.session.query(CustomerMaster).all()
+                for item in del_list:
+                    self.session.delete(item)
+
+        except Exception as e:
+            print(e)
+
+
+
+
 
 if __name__ == "__main__":
-    cli = AllCustomer()
-    li = cli.select()
-    for i in li:
-        for k, v in i.__dict__.items():
-            print("{} = {}".format(k,v))
+    DeleteAll()
+    # TableMigration()
+    # cli = AllCustomer()
+    # li = cli.select()
+    # for i in li:
+    #     for k, v in i.__dict__.items():
+    #         print("{} = {}".format(k,v))
     # for i in li:
     #     for k, v in i:
     #         print("{} = {}".format(k,v))

@@ -1,4 +1,4 @@
-from abstractdto.abs_customer_master_dto import CustomerMaster
+from sample.abs_customer_master_dto_old import CustomerMaster
 class CustomerDTO(CustomerMaster):
     def __init__(self):
         super(CustomerDTO, self).__init__()

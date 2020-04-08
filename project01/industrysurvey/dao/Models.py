@@ -29,7 +29,7 @@ class AllCustomerMaster(Base):
 
 
 class CustomerMaster(Base):
-    __tablename__ = 'customerMaster'
+    __tablename__ = 'customermaster'
     customerCd = Column(String, primary_key=True, nullable=False)
     customerName = Column(String)
     customerKanaName = Column(String)
@@ -79,38 +79,38 @@ class CustomerMaster(Base):
     contactFax: str = Column(String)
 
     stockstatus = relationship("StockStatusMaster", order_by="StockStatusMaster.customerCd",
-                               uselist=False, backref="customerMaster")
+                               uselist=False, backref="customermaster")
 
-    bizcondition = relationship("BizConditionsMaster", order_by="StockStatusMaster.customerCd",
-                                uselist=False, backref="customerMaster")
-
-    mainsupplier = relationship("BizConditionsMaster", order_by="StockStatusMaster.customerCd",
-                                uselist=False, backref="customerMaster")
-
-    mainproduct = relationship("MainProductMaster", order_by="StockStatusMaster.customerCd",
-                               uselist=False, backref="customerMaster")
+    # bizcondition = relationship("BizConditionsMaster", order_by="StockStatusMaster.customerCd",
+    #                             uselist=False, backref="customermaster")
+    #
+    # mainsupplier = relationship("MainSupplierMaster", order_by="StockStatusMaster.customerCd",
+    #                             uselist=False, backref="customermaster")
+    #
+    # mainproduct = relationship("MainProductMaster", order_by="StockStatusMaster.customerCd",
+    #                            uselist=False, backref="customermaster")
 
 
 class StockStatusMaster(Base):
     __tablename__ = "stockStatusMaster"
-    CustomerCd: str = Column(String, ForeignKey("customerMaster.customerCd"), primary_key=True)
+    customerCd: str = Column(String, ForeignKey("customermaster.customerCd"), primary_key=True)
     stockListingStatus: str = Column(String)
     stockMarket: str = Column(String)
-    MainStockholder_1: str = Column(String)
-    MainStockholder_2: str = Column(String)
-    MainStockholder_3: str = Column(String)
-    MainStockholder_4: str = Column(String)
-    MainStockholder_5: str = Column(String)
-    RatioSH_1: float = Column(Float)
-    RatioSH_2: float = Column(Float)
-    RatioSH_3: float = Column(Float)
-    RatioSH_4: float = Column(Float)
-    RatioSH_5: float = Column(Float)
+    mainStockholder_1: str = Column(String)
+    mainStockholder_2: str = Column(String)
+    mainStockholder_3: str = Column(String)
+    mainStockholder_4: str = Column(String)
+    mainStockholder_5: str = Column(String)
+    ratioSH_1: float = Column(Float)
+    ratioSH_2: float = Column(Float)
+    ratioSH_3: float = Column(Float)
+    ratioSH_4: float = Column(Float)
+    ratioSH_5: float = Column(Float)
 
 
 class BizConditionsMaster(Base):
     __tablename__ = "bizConditionsMaster"
-    CustomerCd: str = Column(String, ForeignKey("customerMaster.customerCd"), primary_key=True)
+    customerCd: str = Column(String, ForeignKey("customermaster.customerCd"), primary_key=True)
     mainCustomer_1: str = Column(String)
     mainCustomer_2: str = Column(String)
     mainCustomer_3: str = Column(String)
@@ -175,7 +175,7 @@ class BizConditionsMaster(Base):
 
 class MainSupplierMaster(Base):
     __tablename__ = "mainSupplierMaster"
-    CustomerCd: str = Column(String, ForeignKey("customerMaster.customerCd"), primary_key=True)
+    customerCd: str = Column(String, ForeignKey("customermaster.customerCd"), primary_key=True)
     mainSupplier_1: str = Column(String)
     mainSupplier_2: str = Column(String)
     mainSupplier_3: str = Column(String)
@@ -195,9 +195,9 @@ class MainSupplierMaster(Base):
 
 class MainProductMaster(Base):
     __tablename__ = "mainProductMaster"
-    CustomerCd: str = Column(String, ForeignKey("customerMaster.customerCd"), primary_key=True)
-    MainProducts_1: str = Column(String)
-    MainProducts_2: str = Column(String)
-    MainProducts_3: str = Column(String)
-    MainProducts_4: str = Column(String)
-    MainProducts_5: str = Column(String)
+    customerCd: str = Column(String, ForeignKey("customermaster.customerCd"), primary_key=True)
+    mainProducts_1: str = Column(String)
+    mainProducts_2: str = Column(String)
+    mainProducts_3: str = Column(String)
+    mainProducts_4: str = Column(String)
+    mainProducts_5: str = Column(String)

@@ -59,6 +59,11 @@ class TableMigration(BaseSession):
 class RegistData(BaseSession):
     def __init__(self, xldto):
         super().__init__()
+
+
+
+class InsertData(BaseSession):
+    def __init__(self,xldto):
         try:
             customer = CustomerMaster()
             customer.stockstatus = StockStatusMaster()
@@ -70,6 +75,9 @@ class RegistData(BaseSession):
         except Exception as e:
             print(e)
 
+
+class UodateData():
+    pass
 
 
 class DeleteAll(BaseSession):

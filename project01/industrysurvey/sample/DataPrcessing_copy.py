@@ -5,8 +5,6 @@ from dao.tablemodel.CustomerMaster import CustomerMaster
 from dao.tablemodel.StockStatusMaster import StockStatusMaster
 # from dao.crud.InsertData import InsertData
 # from dao.crud.UpdateData import UpdateData
-from dao.crud.InsertData import InsertData
-from dao.crud.UpdateData import UpdateData
 
 class ExecuteNonQuery():
     # SelectOparationクラスのラッパークラス
@@ -49,7 +47,7 @@ class DataProsessing(BaseSession,metaclass=ABCMeta):
 
 class Insert(DataProsessing):
     def InsOrUpdate(self, xldto):
-        InsertData(xldto)
+        pass
         # try:
         #     customer = CustomerMaster()
         #     customer.stockstatus = StockStatusMaster()
@@ -64,7 +62,8 @@ class Insert(DataProsessing):
 
 class Update(DataProsessing):
     def InsOrUpdate(self, xldto):
-        UpdateData(xldto)
+        pass
+
         # try:
         #     with self.transaction() as session:
         #         update_customer = self.session.query(CustomerMaster).filter(CustomerMaster.customerCd == xldto.xlCustomerCd).first()

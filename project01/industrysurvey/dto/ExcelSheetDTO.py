@@ -1,4 +1,4 @@
-from abstractdto.AbstractExcelSheetDTO import AbstractExcelSheetDTO
+from dto.AbstractExcelSheetDTO import AbstractExcelSheetDTO
 from excelapp.ShapeState import ShapesPosToValue
 from abc import ABCMeta, abstractmethod
 

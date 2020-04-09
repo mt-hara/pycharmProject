@@ -4,29 +4,6 @@ from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
-#
-# class CustomerData(Base):
-#     __tablename__ = 'customerData'
-#     customerCd = Column(String, primary_key=True)
-#     customerName = Column(String)
-#     fld1 = Column(Float)
-
-
-class AllCustomerMaster(Base):
-    __tablename__ = "AllCustomerMaster"
-    CustomerCd: str = Column(String, primary_key=True, nullable=False)
-    CustomerName: str = Column(String)
-    CustomerKanaName: str = Column(String)
-    CustomerShortName: str = Column(String)
-    ExcludeLaw: bool = Column(Boolean)
-    HeadOfficeZipCd: str = Column(String)
-    HeadOfficeAddress: str = Column(String)
-    HeadOfficeTel: str = Column(String)
-
-    def __init__(self, xldto):
-        self.CustomerCd = xldto.xlCustomerCd
-        self.CustomerName = xldto.xlCustomerName
-
 
 class CustomerMaster(Base):
     __tablename__ = 'customermaster'

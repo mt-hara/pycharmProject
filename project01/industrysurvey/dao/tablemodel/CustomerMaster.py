@@ -1,5 +1,5 @@
 from dao.BaseEngine import MetaBase
-from sqlalchemy import Column, Integer, String, Float, Boolean, ForeignKey
+from sqlalchemy import Column, Integer, String, Float, Boolean
 from sqlalchemy.orm import relationship
 
 
@@ -58,8 +58,6 @@ class CustomerMaster(MetaBase):
     mainproduct = relationship("MainProductMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
     mainsupplier = relationship("MainSupplierMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
 
-
-
-    def set_data(self,xldto):
+    def set_data(self, xldto):
         self.customerCd = xldto.xlCustomerCd
         self.customerName = xldto.xlCustomerName

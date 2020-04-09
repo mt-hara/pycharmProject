@@ -8,7 +8,7 @@ class CustomerMaster(MetaBase):
     customerCd: str = Column(String, primary_key=True, nullable=False)
     customerName: str = Column(String, nullable=True)
     customerKanaName: str = Column(String, nullable=True)
-    customerShortName: str = Column(String, nullable=True)
+    customerShortName: str = Column(String, nullable=True)  # Null
     excludeLaw: bool = Column(Boolean, nullable=True)  # False
     headOfficeZipCd: str = Column(String, nullable=True)
     headOfficeAddress: str = Column(String, nullable=True)
@@ -59,5 +59,50 @@ class CustomerMaster(MetaBase):
     mainsupplier = relationship("MainSupplierMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
 
     def set_data(self, xldto):
-        self.customerCd = xldto.xlCustomerCd
-        self.customerName = xldto.xlCustomerName
+        self.customerCd: str = xldto.xlCustomerCd
+        self.customerName: str = xldto.xlCustomerName
+        self.customerKanaName: str = xldto.xlCustomerKanaName
+        self.customerShortName: str = ""
+        self.excludeLaw: bool = False
+        self.headOfficeZipCd: str = xldto.xlHeadOfficeZipCd
+        self.headOfficeAddress: str = xldto.xlHeadOfficeAddress
+        self.headOfficeTel: str = xldto.xlHeadOfficeTel
+        self.headOfficeFax: str = xldto.xlHeadOfficeFax
+        self.branchOfficeZipCd: str = xldto.xlBranchOfficeZipCd
+        self.branchOfficeAddress: str = xldto.xlBranchOfficeAddress
+        self.branchOfficeTel: str = xldto.xlBranchOfficeTel
+        self.branchOfficeFax: str = xldto.xlBranchOfficeFax
+        self.repName: str = xldto.xlRepName
+        self.repKanaName: str = xldto.xlRepKanaName
+        self.repJobTitle: str = xldto.xlRepJobTitle
+        self.repBirthday: str = ""
+
+
+    def year_month(self,year, month):
+        pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

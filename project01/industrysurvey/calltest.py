@@ -41,7 +41,10 @@ if __name__ == "__main__":
         excls.close()
         quit()
     else:
-        pass
+        for k, v in data.__dict__.items():
+            print("{}={}".format(k,v))
+
+        print(data.xlRepBirthYear)
 
         # print("biztype : {}".format(data.xlCustomerBizType))
         # print("capitalform : {}".format(data.xlCapitalForm))

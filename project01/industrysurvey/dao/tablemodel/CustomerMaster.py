@@ -2,9 +2,8 @@ from dao.BaseEngine import MetaBase
 from sqlalchemy import Column, Integer, String, Float, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 
-Base = MetaBase
 
-class CustomerMaster(Base):
+class CustomerMaster(MetaBase):
     __tablename__ = "customermaster"
     customerCd: str = Column(String, primary_key=True, nullable=False)
     customerName: str = Column(String, nullable=True)
@@ -54,7 +53,12 @@ class CustomerMaster(Base):
     contactTel: str = Column(String, nullable=True)
     contactFax: str = Column(String, nullable=True)
 
+    bizconditions = relationship("BizConditionsMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
     stockstatus = relationship("StockStatusMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
+    mainproduct = relationship("MainProductMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
+    mainsupplier = relationship("MainSupplierMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
+
+
 
     def set_data(self,xldto):
         self.customerCd = xldto.xlCustomerCd

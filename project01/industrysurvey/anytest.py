@@ -2,7 +2,8 @@ import sys
 import traceback
 from excelapp.ExcelApp import ExcelApp, ExcelWorkBook
 from dto.ExcelSheetDTO import ExcelSheetDTO
-from dao.crud.DataPrcessing import ExecuteNoneQuery
+from dao.crud.CRUD import ExecuteNoneQuery
+from dao.crud.TableMigration import TableMigration
 
 class main():
     def __init__(self, filename):
@@ -30,6 +31,7 @@ if __name__ == "__main__":
         excls.close()
         quit()
     else:
+        TableMigration()
         te = ExecuteNoneQuery(data)
         # customer_model = Update(data)
         # customer_model = Insert(data)

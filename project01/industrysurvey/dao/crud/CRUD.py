@@ -1,7 +1,10 @@
 from dao.BaseEngine import BaseSession, MetaBase
 from abc import ABCMeta, abstractmethod
 from dao.tablemodel.CustomerMaster import CustomerMaster
+from dao.tablemodel.BizConditionsMaster import BizConditionsMaster
 from dao.tablemodel.StockStatusMaster import StockStatusMaster
+from dao.tablemodel.MainProductMaster import MainProductMaster
+from dao.tablemodel.MainSupplierMaster import MainSupplierMaster
 
 
 class ExecuteNoneQuery(BaseSession):
@@ -33,9 +36,15 @@ class Insert(Excecute, BaseSession):
     def execute(self, xldto):
         try:
             customer = CustomerMaster()
+            customer.bizconditions = BizConditionsMaster()
             customer.stockstatus = StockStatusMaster()
+            customer.mainsupplier = MainSupplierMaster()
+            customer.mainproduct = MainProductMaster()
             customer.set_data(xldto)
+            customer.bizconditions.set_data(xldto)
             customer.stockstatus.set_data(xldto)
+            customer.mainsupplier.set_data(xldto)
+            customer.mainproduct.set_data(xldto)
 
             with self.transaction() as session:
                 self.session.add(customer)
@@ -49,6 +58,26 @@ class Update(Excecute, BaseSession):
             with self.transaction() as session:
                 update_customer = self.session.query(CustomerMaster).filter(CustomerMaster.customerCd == xldto.xlCustomerCd).first()
                 update_customer.set_data(xldto)
+                update_customer.bizconditions.set_data(xldto)
                 update_customer.stockstatus.set_data(xldto)
+                update_customer.mainsupplier.set_data(xldto)
+                update_customer.mainproduct.set_data(xldto)
         except Exception as e:
             print(e)
+
+
+class DeleteAll():
+    def __init__(self):
+        # super().__init__()
+        self.basesession = BaseSession()
+        try:
+            with self.basesession.transaction() as session:
+                del_list = self.basesession.session.query(CustomerMaster).all()
+                for item in del_list:
+                    self.basesession.session.delete(item)
+
+        except Exception as e:
+            print(e)
+
+if __name__ == "__main__":
+    DeleteAll()

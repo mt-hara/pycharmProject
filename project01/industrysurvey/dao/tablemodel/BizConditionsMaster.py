@@ -2,9 +2,8 @@ from dao.BaseEngine import MetaBase
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, Float, Boolean, ForeignKey
 
-Base = MetaBase
 
-class BizConditionsMaster(Base):
+class BizConditionsMaster(MetaBase):
     __tablename__ = "bizconditionsmaster"
     customerCd: str = Column(String, ForeignKey("customermaster.customerCd"), primary_key=True)
     mainCustomer_1: str = Column(String)
@@ -67,3 +66,10 @@ class BizConditionsMaster(Base):
     lastPrdOperatingProfit: int = Column(Integer)
     lastPrdOrdinaryincome: int = Column(Integer)
     curPrdMainProducts: str = Column(String)
+
+    def set_data(self, xldto):
+        self.mainCustomer_1 = xldto.xlmainCustomer_1
+        self.mainCustomer_2 = xldto.xlmainCustomer_2
+        self.mainCustomer_3 = xldto.xlmainCustomer_3
+        self.mainCustomer_4 = xldto.xlmainCustomer_4
+        self.mainCustomer_5 = xldto.xlmainCustomer_5

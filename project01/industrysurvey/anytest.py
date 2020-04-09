@@ -2,7 +2,7 @@ import sys
 import traceback
 from excelapp.ExcelApp import ExcelApp, ExcelWorkBook
 from dto.ExcelSheetDTO import ExcelSheetDTO
-from dao.CRUD import ExecuteNoneQuery
+from dao.crud.DataPrcessing import ExecuteNonQuery
 
 class main():
     def __init__(self, filename):
@@ -30,7 +30,7 @@ if __name__ == "__main__":
         excls.close()
         quit()
     else:
-        te = ExecuteNoneQuery(data)
+        te = ExecuteNonQuery(data)
         # customer_model = Update(data)
         # customer_model = Insert(data)
 

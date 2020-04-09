@@ -206,22 +206,6 @@ class SetConcreteState():
             return False
 
 
-# def set_concrete_state(top_pos, left_pos, dto):
-#     if 210 < top_pos < 225:
-#         return VenderBizType(left_pos, dto)
-#     if 222 < top_pos < 238:
-#         return CapitalForm(left_pos, dto)
-#     if 246 < top_pos < 256:
-#         return StockStatus(left_pos, dto)
-#     if 690 < top_pos < 717:
-#         return ISOCertifStatus(left_pos, dto)
-#     if 720 < top_pos < 731:
-#         return ISOSplan(left_pos, dto)
-#     if 733 < top_pos < 747:
-#         return ISONoCerfit(left_pos, dto)
-#     if top_pos > 800:
-#         return False
-
 class ShapesPosToValue():
     def __init__(self, xlws):
         self.__shape_dto = ShapesDto()

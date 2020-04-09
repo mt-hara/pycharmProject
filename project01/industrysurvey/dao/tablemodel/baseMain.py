@@ -3,10 +3,10 @@ import traceback
 from excelapp.ExcelApp import ExcelApp,ExcelWorkBook
 from dto.ExcelSheetDTO import ExcelSheetDTO
 
-from dao.BaseEngine import BaseEngine, BaseSession, MetaBase
+from dao.BaseEngine import BaseSession
 from dao.tablemodel.CustomerMaster import CustomerMaster
 from dao.tablemodel.StockStatusMaster import StockStatusMaster
-from dao.CRUD import RegistData
+from dao.crud.CRUD_old import RegistData
 
 class Main(BaseSession):
     def __init__(self,xldto):

@@ -57,7 +57,7 @@ class TableMigration(BaseSession):
 #     def CustomerMaster(self):
 #         Base().metadata.create_all(self.e)
 
-
+# strategy insterface
 class DataProcessing(BaseSession, metaclass=ABCMeta):
     @abstractmethod
     def InsOrUpdate(self, xldto):

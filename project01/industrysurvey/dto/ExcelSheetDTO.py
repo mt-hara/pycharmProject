@@ -159,8 +159,8 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
         if param == None:
             return None
 
-        if bool(re.compile("^\d+\.?\d*\Z").match(param)) == True:
-        # elif type(param) == int or type(param) == float:
+        # if bool(re.compile("^\d+\.?\d*\Z").match(param)) == True:
+        elif type(param) == int or type(param) == float:
             if datatype == int:
                 return int(param)
             elif datatype == float:
@@ -170,12 +170,16 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
                 return str(int(param))
         # 数値以外の場合
         else:
-            if datatype == int:
-                return int(param)
-            elif datatype == float:
-                return float(param)  # ここでエラー発生
-            elif datatype == str:
+            if datatype == str:
                 return str(param)
+            else:
+                return None
+            # if datatype == int:
+            #     return int(param)
+            # elif datatype == float:
+            #     return float(param)  # ここでエラー発生
+            # elif datatype == str:
+            #     return str(param)
 
     def get_shapes_value(self):
         shapes_data_factory = ShapesPosToValue(self.ws)

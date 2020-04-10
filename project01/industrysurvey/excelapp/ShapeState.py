@@ -202,7 +202,7 @@ class SetConcreteState():
             return ISOSplan(self.left_pos, self.shapes)
         if 750 < self.top_pos < 765:
             return ISONoCerfit(self.left_pos, self.shapes)
-        if self.top_pos > 800:
+        else:
             return False
 
 

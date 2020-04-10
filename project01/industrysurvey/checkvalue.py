@@ -3,7 +3,15 @@
 # s2 = "非公開"
 import sys
 import re
-def check(val, type):
+def check(val, valuetype):
+    if valuetype == type(val):
+        return val
+
+    if valuetype == int:
+        if type(val) is str:
+            pass
+
+
     paramtype = type(val)
     if paramtype is str:
         if bool(re.compile("^\d+\.?\d*\Z").match(val)):
@@ -15,6 +23,12 @@ def check(val, type):
                 return result
     else:
         return val
+
+
+    def is_numeric(param):
+        return bool(re.compile("^\d+\.?\d*\Z").match(param))
+
+
 
     # if val is None:
     #     return None
@@ -35,7 +49,7 @@ def conv_str_to_int(val):
 
 
 if __name__ == "__main__":
-    s =check("123.0")
+    s =check("123.0",float)
     print(s)
     print(type(s))
 

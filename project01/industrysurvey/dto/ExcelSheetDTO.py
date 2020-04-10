@@ -1,6 +1,7 @@
 from dto.AbstractExcelSheetDTO import AbstractExcelSheetDTO
 from excelapp.ShapeState import ShapesPosToValue
 from abc import ABCMeta, abstractmethod
+import re
 
 
 class ExcelSheetDTO(AbstractExcelSheetDTO):
@@ -150,13 +151,16 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
     def __get_cell(self, range_value: str):
         return self.ws.range(range_value).value
 
+
+
     def cells(self, range_value: str, datatype):
         param = self.__get_cell(range_value)
         # cellのデータ型とDTOのデータ型の整合性を取る
         if param == None:
             return None
-        # cellのデータ型がInt or floatの場合
-        elif type(param) == int or type(param) == float:
+
+        if bool(re.compile("^\d+\.?\d*\Z").match(param)) == True:
+        # elif type(param) == int or type(param) == float:
             if datatype == int:
                 return int(param)
             elif datatype == float:
@@ -164,12 +168,12 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
             elif datatype == str:
                 # 小数点以下を削除
                 return str(int(param))
-        # 上記以外の場合
+        # 数値以外の場合
         else:
             if datatype == int:
                 return int(param)
             elif datatype == float:
-                return float(param)
+                return float(param)  # ここでエラー発生
             elif datatype == str:
                 return str(param)
 

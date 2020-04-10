@@ -168,18 +168,13 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
             elif datatype == str:
                 # 小数点以下を削除
                 return str(int(param))
-        # 数値以外の場合
+        # 数値以外の場合でDTOのデータ型がSTR以外の場合はNoneを代入
         else:
             if datatype == str:
                 return str(param)
             else:
                 return None
-            # if datatype == int:
-            #     return int(param)
-            # elif datatype == float:
-            #     return float(param)  # ここでエラー発生
-            # elif datatype == str:
-            #     return str(param)
+
 
     def get_shapes_value(self):
         shapes_data_factory = ShapesPosToValue(self.ws)

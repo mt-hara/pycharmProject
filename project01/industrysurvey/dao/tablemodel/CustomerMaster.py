@@ -1,7 +1,8 @@
 from dao.BaseEngine import MetaBase
 from sqlalchemy import Column, Integer, String, Float, Boolean
 from sqlalchemy.orm import relationship
-
+from dao.DAOFunction import YearMonthGenerator, YearMonthDayGenerator
+import re
 
 class CustomerMaster(MetaBase):
     __tablename__ = "customermaster"
@@ -75,13 +76,7 @@ class CustomerMaster(MetaBase):
         self.repName: str = xldto.xlRepName
         self.repKanaName: str = xldto.xlRepKanaName
         self.repJobTitle: str = xldto.xlRepJobTitle
-        self.repBirthday: str = ""
-
-
-    def year_month(self,year, month):
-        pass
-
-
+        self.repBirthday: str = YearMonthDayGenerator(xldto.xlRepBirthYear , xldto.xlRepBirthMonth, xldto.xlRepBirthDay).year_month_day()
 
 
 

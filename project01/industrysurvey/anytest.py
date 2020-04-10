@@ -2,8 +2,8 @@ import sys
 import traceback
 from excelapp.ExcelApp import ExcelApp, ExcelWorkBook
 from dto.ExcelSheetDTO import ExcelSheetDTO
-from dao.crud.CRUD import ExecuteNoneQuery
-from dao.crud.TableMigration import TableMigration
+from dao.CRUD import ExecuteNoneQuery
+from dao.TableMigration import TableMigration
 
 class main():
     def __init__(self, filename):

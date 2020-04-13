@@ -1,8 +1,8 @@
 import sys
 # from dao.BaseEngine import BaseEngine
 from dao.BaseEngine import BaseSession, MetaBase
-from dao.TableModel.CustomerMaster import CustomerMaster
-from dao.TableModel.StockStatusMaster import StockStatusMaster
+from dao.tablemodel.CustomerMaster import CustomerMaster
+from dao.tablemodel.StockStatusMaster import StockStatusMaster
 from abc import ABCMeta, abstractmethod
 
 

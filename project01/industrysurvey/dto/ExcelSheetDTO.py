@@ -194,6 +194,9 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
 
 
 class ISOCertifStatus():
+    """
+    ISO認証状況の選択パターンに応じて、セットする値を取得する。
+    """
     def __init__(self):
         self.checktype = ""
         self.cellval = ""

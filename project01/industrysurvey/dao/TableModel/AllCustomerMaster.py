@@ -7,18 +7,21 @@ Base = declarative_base()
 class AllCustomerMaster(Base):
     __tablename__ = "allcustomermaster"
     customerCd: str = Column(String, primary_key=True, nullable=False)
-    customerName: str = Column(String)
-    customerKanaName: str = Column(String)
-    customerShortName: str = Column(String)
+    customerName: str = Column(String, nullable=True)
+    customerKanaName: str = Column(String, nullable=True)
+    customerShortName: str = Column(String, nullable=True)
     excludeLaw: bool = Column(Boolean)  # False
+    headOfficeZipCd: str = Column(String, nullable=True)
+    headOfficeAddress: str = Column(String, nullable=True)
+    headOfficeTel: str = Column(String, nullable=True)
+    headOfficeFax:str = Column(String, nullable=True)
+    branchOfficeZipCd: str = Column(String, nullable=True)
+    branchOfficeAddress: str = Column(String, nullable=True)
+    branchOfficeTel: str = Column(String, nullable=True)
+    branchOfficeFax: str = Column(String, nullable=True)
 
 
-
-# headOfficeZipCd	TEXT
-# headOfficeAddress1	TEXT
-# headOfficeAddress2	TEXT
-# headOfficeTel	TEXT
-# headOfficeFax	TEXT
+# 	TEXT
 # branchOfficeZipCd	TEXT
 # branchOfficeAddress1	TEXT
 # branchOfficeAddress2	TEXT

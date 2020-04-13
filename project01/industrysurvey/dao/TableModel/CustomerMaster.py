@@ -78,7 +78,10 @@ class CustomerMaster(MetaBase):
         self.repJobTitle: str = xldto.xlRepJobTitle
         self.repBirthday: str = YearMonthDayGenerator(xldto.xlRepBirthYear , xldto.xlRepBirthMonth, xldto.xlRepBirthDay).year_month_day()
 
-
+    def update_dict(self,dict):
+        for name, value in dict.items():
+            if name in self.__dict__:
+                setattr(self, name, value)
 
 
 

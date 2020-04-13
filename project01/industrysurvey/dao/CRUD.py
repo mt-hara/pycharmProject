@@ -1,4 +1,4 @@
-from dao.BaseEngine import BaseSession, MetaBase
+from dao.BaseEngine import BaseSession
 from abc import ABCMeta, abstractmethod
 from dao.tablemodel.CustomerMaster import CustomerMaster
 from dao.tablemodel.BizConditionsMaster import BizConditionsMaster
@@ -7,10 +7,11 @@ from dao.tablemodel.MainProductMaster import MainProductMaster
 from dao.tablemodel.MainSupplierMaster import MainSupplierMaster
 
 
-class ExecuteNoneQuery(BaseSession):
+class ExecuteNonQuery(BaseSession):
     # Execute ClassのwapperClass
-    def __init__(self, xldto):
+    def __init__(self, xldto, *args):
         super().__init__()
+        self.p = args
         self.xldto = xldto
         self.querytype = self.__has_record()
         self.execute()
@@ -19,6 +20,8 @@ class ExecuteNoneQuery(BaseSession):
         self.querytype.execute(self.xldto)
 
     def __has_record(self):
+        # if "Delete" in self.p:
+        #     print(self.p)
         param = self.xldto.xlCustomerCd
         result = self.session.query(CustomerMaster).filter(CustomerMaster.customerCd == param).all()
         if len(result) == 0:
@@ -79,6 +82,21 @@ class DeleteAll():
 
         except Exception as e:
             print(e)
+
+
+class SelectAll(BaseSession):
+    def __init__(self):
+        super().__init__()
+        self.result = None
+        self.search()
+
+    def search(self):
+        self.result = self.session.query(CustomerMaster).all()
+        return self.result
+
+
+class Delete(Excecute, BaseSession):
+    pass
 
 if __name__ == "__main__":
     DeleteAll()

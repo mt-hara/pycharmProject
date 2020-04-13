@@ -59,6 +59,8 @@ class CustomerMaster(MetaBase):
     mainproduct = relationship("MainProductMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
     mainsupplier = relationship("MainSupplierMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
 
+
+
     def set_data(self, xldto):
         self.customerCd: str = xldto.xlCustomerCd
         self.customerName: str = xldto.xlCustomerName

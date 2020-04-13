@@ -1,4 +1,4 @@
-from dao.tablemodel.CustomerMaster import CustomerMaster
+from dao.TableModel.CustomerMaster import CustomerMaster
 from dao.BaseEngine import BaseSession
 from dao.tabledao.ImpCRUD import IExecute
 

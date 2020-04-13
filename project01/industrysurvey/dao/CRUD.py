@@ -1,13 +1,14 @@
 from dao.BaseEngine import BaseSession, MetaBase
 from abc import ABCMeta, abstractmethod
-from dao.TableModel.CustomerMaster import CustomerMaster
-from dao.TableModel.BizConditionsMaster import BizConditionsMaster
-from dao.TableModel.StockStatusMaster import StockStatusMaster
-from dao.TableModel.MainProductMaster import MainProductMaster
-from dao.TableModel.MainSupplierMaster import MainSupplierMaster
+from dao.tablemodel.CustomerMaster import CustomerMaster
+from dao.tablemodel.BizConditionsMaster import BizConditionsMaster
+from dao.tablemodel.StockStatusMaster import StockStatusMaster
+from dao.tablemodel.MainProductMaster import MainProductMaster
+from dao.tablemodel.MainSupplierMaster import MainSupplierMaster
 
 
 class ExecuteNoneQuery(BaseSession):
+    # Execute ClassのwapperClass
     def __init__(self, xldto):
         super().__init__()
         self.xldto = xldto

@@ -7,7 +7,7 @@ from dao.TableModel.MainProductMaster import MainProductMaster
 from dao.TableModel.MainSupplierMaster import MainSupplierMaster
 
 
-class ExecuteNonQuery(BaseSession):
+class ExecuteNonQuery_1(BaseSession):
     # Execute ClassのwapperClass
     def __init__(self, xldto, *args):
         super().__init__()

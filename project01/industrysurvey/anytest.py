@@ -2,7 +2,7 @@ import sys
 import traceback
 from excelapp.ExcelApp import ExcelApp, ExcelWorkBook
 from dto.ExcelSheetDTO import ExcelSheetDTO
-from dao.CRUD import ExecuteNonQuery
+from dao.CRUD_old import ExecuteNonQuery_1
 from dao.TableMigration import TableMigration
 
 class main():
@@ -33,7 +33,7 @@ if __name__ == "__main__":
         quit()
     else:
         TableMigration()
-        te = ExecuteNonQuery(data)
+        te = ExecuteNonQuery_1(data)
         # customer_model = Update(data)
         # customer_model = Insert(data)
 

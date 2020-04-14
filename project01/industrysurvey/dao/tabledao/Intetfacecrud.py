@@ -1,14 +1,15 @@
+import types
 from dao.BaseEngine import BaseSession
 from abc import ABCMeta, abstractmethod
 
 class Report():
     def __init__(self, title,types):
         self.title = title
-        self.typys = types
+        self.types = types
 
 
     def printer(self):
-        self.typys.execute(self.title)
+        self.types.execute(self.title)
 
 class IExecute(metaclass=ABCMeta):
     @abstractmethod

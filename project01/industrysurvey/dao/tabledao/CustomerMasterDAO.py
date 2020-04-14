@@ -1,6 +1,6 @@
 from dao.TableModel.CustomerMaster import CustomerMaster
 from dao.BaseEngine import BaseSession
-from dao.tabledao.ImpCRUD import IExecute
+from dao.tabledao.Intetfacecrud import IExecute
 
 class Instert(BaseSession, IExecute):
     def execute(self, title):

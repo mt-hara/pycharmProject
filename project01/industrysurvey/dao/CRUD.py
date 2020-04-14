@@ -1,10 +1,10 @@
 from dao.BaseEngine import BaseSession
 from abc import ABCMeta, abstractmethod
-from dao.tablemodel.CustomerMaster import CustomerMaster
-from dao.tablemodel.BizConditionsMaster import BizConditionsMaster
-from dao.tablemodel.StockStatusMaster import StockStatusMaster
-from dao.tablemodel.MainProductMaster import MainProductMaster
-from dao.tablemodel.MainSupplierMaster import MainSupplierMaster
+from dao.TableModel.CustomerMaster import CustomerMaster
+from dao.TableModel.BizConditionsMaster import BizConditionsMaster
+from dao.TableModel.StockStatusMaster import StockStatusMaster
+from dao.TableModel.MainProductMaster import MainProductMaster
+from dao.TableModel.MainSupplierMaster import MainSupplierMaster
 
 
 class ExecuteNonQuery(BaseSession):

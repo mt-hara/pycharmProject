@@ -4,6 +4,7 @@ from sqlalchemy import Column, Integer, String, Float, Boolean, ForeignKey
 
 class BizConditionsMaster(MetaBase):
     __tablename__ = "bizconditionsmaster"
+    # customerCd: str = Column(String)
     customerCd: str = Column(String, ForeignKey("customermaster.customerCd"), primary_key=True)
     mainCustomer_1: str = Column(String)
     mainCustomer_2: str = Column(String)

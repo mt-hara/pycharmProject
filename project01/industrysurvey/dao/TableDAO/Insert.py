@@ -10,15 +10,16 @@ class Instert(IQueryExecute, BaseSession):
     def execute(self, xldto):
         try:
             customer = CustomerMaster()
+            # customer.create_relationship()
             customer.bizconditions = BizConditionsMaster()
-            customer.stockstatus = StockStatusMaster()
-            customer.mainsupplier = MainSupplierMaster()
-            customer.mainproduct = MainProductMaster()
+            # customer.stockstatus = StockStatusMaster()
+            # customer.mainsupplier = MainSupplierMaster()
+            # customer.mainproduct = MainProductMaster()
             customer.set_data(xldto)
             customer.bizconditions.set_data(xldto)
-            customer.stockstatus.set_data(xldto)
-            customer.mainsupplier.set_data(xldto)
-            customer.mainproduct.set_data(xldto)
+            # customer.stockstatus.set_data(xldto)
+            # customer.mainsupplier.set_data(xldto)
+            # customer.mainproduct.set_data(xldto)
 
             with self.transaction() as session:
                 self.session.add(customer)

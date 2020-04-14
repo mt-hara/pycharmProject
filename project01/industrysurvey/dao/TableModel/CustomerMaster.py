@@ -54,11 +54,12 @@ class CustomerMaster(MetaBase):
     contactTel: str = Column(String, nullable=True)
     contactFax: str = Column(String, nullable=True)
 
-    def create_relationship(self):
-        bizconditions = relationship("BizConditionsMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
-        stockstatus = relationship("StockStatusMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
-        mainproduct = relationship("MainProductMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
-        mainsupplier = relationship("MainSupplierMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
+
+
+    # bizconditions = relationship("BizConditionsMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
+    # stockstatus = relationship("StockStatusMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
+    # mainproduct = relationship("MainProductMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
+    # mainsupplier = relationship("MainSupplierMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
 
 
 
@@ -92,10 +93,18 @@ class CustomerMaster(MetaBase):
 
 
 
+class CustomerMasterMigration(CustomerMaster):
+    def __init__(self):
+        super().__init__()
 
-
-
-
+        self.bizconditions = relationship("BizConditionsMaster", uselist=False, backref="customermaster",
+                                     cascade="all, delete-orphan")
+        self.stockstatus = relationship("StockStatusMaster", uselist=False, backref="customermaster",
+                                   cascade="all, delete-orphan")
+        self.mainproduct = relationship("MainProductMaster", uselist=False, backref="customermaster",
+                                   cascade="all, delete-orphan")
+        self.mainsupplier = relationship("MainSupplierMaster", uselist=False, backref="customermaster",
+                                    cascade="all, delete-orphan")
 
 
 

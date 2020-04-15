@@ -1,12 +1,12 @@
 from dao.BaseEngine import MetaBase
 from sqlalchemy import Column, Integer, String, Float, Boolean
 from sqlalchemy.orm import relationship
-from dao.DAOFunction import YearMonthGenerator, YearMonthDayGenerator
+from dao.DAOFunction import YearMonthGenerator, YearMonthDayGenerator, ISOCertifGenerator
 
 
 class CustomerMaster(MetaBase):
     __tablename__ = "customermaster"
-    customerCd: str = Column(String, primary_key=True, nullable=False)
+    customerCd: str = Column("customerCd",String, primary_key=True, nullable=False)
     customerName: str = Column(String, nullable=True)
     customerKanaName: str = Column(String, nullable=True)
     customerShortName: str = Column(String, nullable=True)  # Null
@@ -43,6 +43,7 @@ class CustomerMaster(MetaBase):
     otherCertif: str = Column(String, nullable=True)
     CustomerCategory: str = Column(String, nullable=True)  # Null
     CustomerBizType: str = Column(String, nullable=True)  # shapes
+    otherBizType: str = Column(String, nullable=True)  # Null
     picName: str = Column(String, nullable=True)
     picKanaName: str = Column(String, nullable=True)
     PicEmailAddress: str = Column(String, nullable=True)
@@ -54,13 +55,10 @@ class CustomerMaster(MetaBase):
     contactTel: str = Column(String, nullable=True)
     contactFax: str = Column(String, nullable=True)
 
-
-
-    # bizconditions = relationship("BizConditionsMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
-    # stockstatus = relationship("StockStatusMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
-    # mainproduct = relationship("MainProductMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
-    # mainsupplier = relationship("MainSupplierMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
-
+    bizconditions = relationship("BizConditionsMaster", uselist=False, backref="customermaster")
+    stockstatus = relationship("StockStatusMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
+    mainproduct = relationship("MainProductMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
+    mainsupplier = relationship("MainSupplierMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
 
 
     def set_data(self, xldto):
@@ -81,38 +79,44 @@ class CustomerMaster(MetaBase):
         self.repKanaName: str = xldto.xlRepKanaName
         self.repJobTitle: str = xldto.xlRepJobTitle
         self.repBirthday: str = YearMonthDayGenerator(xldto.xlRepBirthYear , xldto.xlRepBirthMonth, xldto.xlRepBirthDay).year_month_day()
+        self.employees: int = xldto.xlEmployees
+        self.employeeYear: str = xldto.xlEmployeeYear
+        self.employeeMonth: str = xldto.xlEmployeeMonth
+        self.capitalForm: int = xldto.xlCapitalForm
+        self.corporateType: str = xldto.xlCorporateType
+        self.otherCorpType: str = ""
+        self.customerCapital:float = xldto.xlCustomerCapital
+        self.establishedYear: str = xldto.xlEstablishedYear
+        self.establishedMonth: str = xldto.xlEstablishedMonth
+        self.accountClosingMonth:int = xldto.xlAccountClosingMonth
+        self.returnOnEquity: float = xldto.xlReturnOnEquity
+        self.ISO9001Certif: str = ISOCertifGenerator(xldto.xlISO9001Certif, xldto.xlISO9001Plan,
+                                                     xldto.xlISO9001NoCertif).certif_condition()
+        self.ISO9001ResistedNo: str =xldto.xlISO9001ResistedNo
+        self.ISO9001CertifPlanYM: str = YearMonthGenerator(xldto.xlISO9001CertifPlanYear,
+                                                           xldto.xlISO9001CertifPlanMonth).year_month()
+        self.ISO14001Certif: str = ISOCertifGenerator(xldto.xlISO14001Certif, xldto.xlISO14001Plan,
+                                                      xldto.xlISO14001NoCertif).certif_condition()
+        self.ISO14001ResistedNo: str = xldto.xlISO14001ResistedNo
+        self.ISO14001CertifPlanYM: str = YearMonthGenerator(xldto.xlISO14001CertifPlanYear,
+                                                            xldto.xlISO14001CertifPlanMonth).year_month()
+        self.otherCertif: str =xldto.xlOtherCertif
+        self.CustomerCategory: str = ""
+        self.CustomerBizType: str = xldto.xlCustomerBizType
+        self.otherBizType: str = ""
+        self.picName: str = xldto.xlPicName
+        self.picKanaName: str = ""
+        self.PicEmailAddress: str = xldto.xlPicEmailAddress
+        self.picDept: str = xldto.xlPicDept
+        self.picPosition: str = xldto.xlPicPosition
+        self.contactZipCd: str = xldto.xlContactZipCd
+        self.contactAddress: str = xldto.xlContactAddress
+        self.contactTel: str = xldto.xlContactTel
+        self.contactFax: str = xldto.xlContactFax
+
 
     def update_dict(self,dict):
         for name, value in dict.items():
             if name in self.__dict__:
                 setattr(self, name, value)
-
-
-
-
-
-
-
-class CustomerMasterMigration(CustomerMaster):
-    def __init__(self):
-        super().__init__()
-
-        self.bizconditions = relationship("BizConditionsMaster", uselist=False, backref="customermaster",
-                                     cascade="all, delete-orphan")
-        self.stockstatus = relationship("StockStatusMaster", uselist=False, backref="customermaster",
-                                   cascade="all, delete-orphan")
-        self.mainproduct = relationship("MainProductMaster", uselist=False, backref="customermaster",
-                                   cascade="all, delete-orphan")
-        self.mainsupplier = relationship("MainSupplierMaster", uselist=False, backref="customermaster",
-                                    cascade="all, delete-orphan")
-
-
-
-
-
-
-
-
-
-
 

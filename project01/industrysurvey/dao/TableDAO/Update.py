@@ -9,8 +9,8 @@ class Update(IQueryExecute, BaseSession):
                 update_customer = self.session.query(CustomerMaster).filter(CustomerMaster.customerCd == xldto.xlCustomerCd).first()
                 update_customer.set_data(xldto)
                 update_customer.bizconditions.set_data(xldto)
-                update_customer.stockstatus.set_data(xldto)
-                update_customer.mainsupplier.set_data(xldto)
-                update_customer.mainproduct.set_data(xldto)
+                # update_customer.stockstatus.set_data(xldto)
+                # update_customer.mainsupplier.set_data(xldto)
+                # update_customer.mainproduct.set_data(xldto)
         except Exception as e:
             print(e)

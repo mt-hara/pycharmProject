@@ -57,5 +57,20 @@ class EraYearToADYear():
             elif era_val in ["令和", "R", "r"]:
                 self.ret_year = str(2018 + int(conv_year))
 
-    # def return_result(self):
-    #     return self.ret_year
+
+class ISOCertifGenerator():
+    def __init__(self, certif, plan, nocertif):
+        self.certif = certif
+        self.plan = plan
+        self.nocertif = nocertif
+
+    def certif_condition(self):
+        if self.certif == "取得済":
+            return "取得済"
+        elif self.plan == "取得予定":
+            return "取得予定"
+        elif self.nocertif == "取得予定なし":
+            return "取得予定なし"
+        else:
+            return ""
+

@@ -54,7 +54,7 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
         self.xlContactZipCd: str = self.cells("H55", str)  # H55
         self.xlContactAddress: str = self.cells("C56", str)  # C56
         self.xlContactTel: str = self.cells("H60", str)  # H60
-        self.xlContactFax: str = self.cells("G60", str)  # G60
+        self.xlContactFax: str = self.cells("Q60", str)  # G60
         self.xlMainStockholder_1: str = self.cells("U19", str)  # U19
         self.xlMainStockholder_2: str = self.cells("U20", str)  # U20
         self.xlMainStockholder_3: str = self.cells("U21", str)  # U21

@@ -1,11 +1,12 @@
 from dao.BaseEngine import MetaBase
+from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, Float, Boolean, ForeignKey
-
 
 class BizConditionsMaster(MetaBase):
     __tablename__ = "bizconditionsmaster"
     # customerCd: str = Column(String)
     customerCd: str = Column(String, ForeignKey("customermaster.customerCd"), primary_key=True)
+    # customerCd: str = Column("customerCd",String, ForeignKey("customermaster.customerCd", onupdate='CASCADE', ondelete='CASCADE'), primary_key=True)
     mainCustomer_1: str = Column(String)
     mainCustomer_2: str = Column(String)
     mainCustomer_3: str = Column(String)

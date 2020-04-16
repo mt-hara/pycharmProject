@@ -3,7 +3,7 @@ import traceback
 from excelapp.ExcelApp import ExcelApp, ExcelWorkBook
 from dto.ExcelSheetDTO import ExcelSheetDTO
 from dao.TableDAO.QueryContext import ExecuteQuery
-from dao.TableMigration import TableMigration
+
 
 class main():
     def __init__(self, filename):

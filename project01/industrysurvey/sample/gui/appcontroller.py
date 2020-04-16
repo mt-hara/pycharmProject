@@ -14,7 +14,7 @@ class AppController():
 
     def click_get_file(self):
         dialog = GetFile(self.model.def_dir,self.model.ftype)
-        files = dialog.get_files
+        files = dialog.get_files()
         if files == False:
             return False
         self.model.filepath = files

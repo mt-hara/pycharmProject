@@ -36,19 +36,16 @@ class ItemShelfItetator(Iterator):
 
 class ItemShelf(Aggregate):
     def __init__(self):
+        self.__items = []
         self.__last = 0
-        self.__items = [None] * 0
 
     def getitemat(self, index):
         return self.__items[index]
 
     def append(self, item):
-        self.__items.append([None])
-        self.__items[self.__last] = item
+        self.__items.append(item)
+        # self.__items[self.__last] = item
         self.__last += 1
-        print(len(self.__items))
-        print(self.__last)
-
 
     def getlength(self):
         return self.__last
@@ -56,15 +53,15 @@ class ItemShelf(Aggregate):
     def iterator(self):
         return ItemShelfItetator(self)
 
-if __name__ == "__main__":
-    item_shelf = ItemShelf()
-    item_shelf.append(DTOTest(1, "test1"))
-    item_shelf.append(DTOTest(2, "test2"))
-    item_shelf.append(DTOTest(3, "test3"))
-    item_shelf.append(DTOTest(4, "test4"))
-    it = item_shelf.iterator()
-    i = 0
-    while it.hasnext():
-        i = i +1
-        item = it.next()
-        print("{}:number = {} : name = {}".format(i,item.number,item.name))
+# if __name__ == "__main__":
+#     item_shelf = ItemShelf()
+#     item_shelf.append(DTOTest(1, "test1"))
+#     item_shelf.append(DTOTest(2, "test2"))
+#     item_shelf.append(DTOTest(3, "test3"))
+#     item_shelf.append(DTOTest(4, "test4"))
+#     it = item_shelf.iterator()
+#     i = 0
+#     while it.hasnext():
+#         i = i +1
+#         item = it.next()
+#         print("{}:number = {} : name = {}".format(i,item.number,item.name))

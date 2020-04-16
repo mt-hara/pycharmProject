@@ -1,14 +1,9 @@
-import sys
-import pathlib
-
 import tkinter as tk
-import tkinter.filedialog as FileDialog
-import tkinter.messagebox as msgbox
 from tkinter import Tk
 
-from gui.appmodel import AppModel
-from gui.appview import AppView
-from gui.appcontroller import AppController
+from sample.gui.appmodel import AppModel
+from sample.gui.appview import AppView
+from sample.gui.appcontroller import AppController
 
 
 class AbstractApp(tk.Frame):

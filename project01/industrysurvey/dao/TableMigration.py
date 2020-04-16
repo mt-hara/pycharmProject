@@ -23,5 +23,4 @@ class TableDelete(BaseEngine):
 
 if __name__ == "__main__":
     TableDelete()
-    # TableMigration()
-    # TableDelete()
+    TableMigration()

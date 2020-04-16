@@ -55,7 +55,7 @@ class CustomerMaster(MetaBase):
     contactTel: str = Column(String, nullable=True)
     contactFax: str = Column(String, nullable=True)
 
-    bizconditions = relationship("BizConditionsMaster", uselist=False, backref="customermaster")
+    bizconditions = relationship("BizConditionsMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
     stockstatus = relationship("StockStatusMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
     mainproduct = relationship("MainProductMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
     mainsupplier = relationship("MainSupplierMaster", uselist=False, backref="customermaster", cascade="all, delete-orphan")
@@ -113,10 +113,3 @@ class CustomerMaster(MetaBase):
         self.contactAddress: str = xldto.xlContactAddress
         self.contactTel: str = xldto.xlContactTel
         self.contactFax: str = xldto.xlContactFax
-
-
-    def update_dict(self,dict):
-        for name, value in dict.items():
-            if name in self.__dict__:
-                setattr(self, name, value)
-

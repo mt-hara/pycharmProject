@@ -6,9 +6,6 @@ class YearMonthGenerator():
         self.year = year
         self.month = month
 
-    # @property
-    # def year(self):
-
     def year_month(self):
         if (self.year is not None) and (self.month is not None):
             y_value = EraYearToADYear(self.year).ret_year
@@ -37,7 +34,6 @@ class EraYearToADYear():
         self.cur_year = year
         self.ret_year = None
         self.era_to_ad()
-        # self.return_result()
 
     def __get_year_value(self):
         return re.sub("\\D", "", self.cur_year)
@@ -73,4 +69,3 @@ class ISOCertifGenerator():
             return "取得予定なし"
         else:
             return ""
-

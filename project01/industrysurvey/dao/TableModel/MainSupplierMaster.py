@@ -22,8 +22,19 @@ class MainSupplierMaster(MetaBase):
     mainSupplierRatio_5: float = Column(Float)
 
     def set_data(self, xldto):
-        self.mainSupplier_1 = xldto.xlMainSupplier_1
-        self.mainSupplier_2 = xldto.xlMainSupplier_2
-        self.mainSupplier_3 = xldto.xlMainSupplier_3
-        self.mainSupplier_4 = xldto.xlMainSupplier_4
-        self.mainSupplier_5 = xldto.xlMainSupplier_5
+        self.mainSupplier_1: str = xldto.xlMainSupplier_1
+        self.mainSupplier_2: str = xldto.xlMainSupplier_2
+        self.mainSupplier_3: str = xldto.xlMainSupplier_3
+        self.mainSupplier_4: str = xldto.xlMainSupplier_4
+        self.mainSupplier_5: str = xldto.xlMainSupplier_5
+        self.mainSupplierValue_1: int = xldto.xlMainSupplierValue_1
+        self.mainSupplierValue_2: int = xldto.xlMainSupplierValue_2
+        self.mainSupplierValue_3: int = xldto.xlMainSupplierValue_3
+        self.mainSupplierValue_4: int = xldto.xlMainSupplierValue_4
+        self.mainSupplierValue_5: int = xldto.xlMainSupplierValue_5
+        self.mainSupplierRatio_1: float = xldto.xlMainSupplierRatio_1
+        self.mainSupplierRatio_2: float = xldto.xlMainSupplierRatio_2
+        self.mainSupplierRatio_3: float = xldto.xlMainSupplierRatio_3
+        self.mainSupplierRatio_4: float = xldto.xlMainSupplierRatio_4
+        self.mainSupplierRatio_5: float = xldto.xlMainSupplierRatio_5
+

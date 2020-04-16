@@ -18,7 +18,6 @@ class StockStatusMaster(MetaBase):
     ratioSH_4: float = Column(Float)
     ratioSH_5: float = Column(Float)
 
-    # customer = relationship("CustomerMaster", uselist=False, back_populates="stockstatus")
 
     def set_data(self, xldto):
         self.stockListingStatus = xldto.xlStockListingStatus

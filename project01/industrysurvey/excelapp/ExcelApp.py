@@ -12,7 +12,7 @@ class ExcelApp(AbstractExcelApp):
     def __init__(self):
         super().__init__()
 
-    def set_app(self):
+    def get_app(self):
         return self.app
 
 
@@ -35,6 +35,8 @@ class ExcelWorkBook(AbstractExcelWorkBook):
         except AttributeError:
             msgbox.showinfo("エラー", "シート読み込みエラー")
             exit(0)
+        # else:
+        #     return self.xlws
 
     def close_workbook(self):
         self.xlwb.close()

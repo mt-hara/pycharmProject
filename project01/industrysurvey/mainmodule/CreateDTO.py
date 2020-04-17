@@ -1,8 +1,9 @@
 import sys
 import traceback
+
+from iterators.ItemIterator import *
 from selectfiledir.filepicker import GetFile
 from excelapp.ExcelApp import ExcelApp, ExcelWorkBook
-from iterators.ItemIterator import *
 from dto.ExcelSheetDTO import ExcelSheetDTO
 from dao.TableDAO.QueryContext import ExecuteQuery
 
@@ -10,15 +11,16 @@ from dao.TableDAO.QueryContext import ExecuteQuery
 class FilePicker():
     def __init__(self):
         self.__def_dir = "DeskTop"
-        self.__ftype =  [("Excel2003ファイル", "*.xlsx")]
+        self.__ftype = [("Excel2003ファイル", "*.xlsx")]
         self.picker = GetFile(self.__def_dir, self.__ftype)
         self.file_list = self.picker.get_files()
 
     def get_file_list(self):
         if self.file_list is False:
             quit()
-        else :
+        else:
             return self.file_list
+
 
 class ExcelFile():
     def __init__(self):
@@ -27,19 +29,6 @@ class ExcelFile():
         self.wb = ExcelWorkBook()
         self.ws = None
         self.dto = None
-
-    def close_app_wb(self):
-        self.wb.close_workbook()
-
-    def close_app(self):
-        self.app.quit()
-
-    def close_baseapp(self):
-        self.baseapp.close_App()
-
-    def close(self):
-        self.close_app_wb()
-        self.close_baseapp()
 
     def open_wb(self, filepath):
         self.wb.open_wb(self.app, filepath)
@@ -57,15 +46,27 @@ class ExcelFile():
         else:
             return self.dto
 
+    def close_app_wb(self):
+        self.wb.close_workbook()
 
-class Dto():
+    def close_app(self):
+        self.app.quit()
+
+    def close_baseapp(self):
+        self.baseapp.close_App()
+
+    def close(self):
+        self.close_app_wb()
+        self.close_baseapp()
+
+
+class ExcelDataToDto():
     def __init__(self):
         self.file_list = []
         self.get_file_list()
-        self.excelapp=ExcelFile()
+        self.excelapp = ExcelFile()
         self.item_shelf = ItemShelf()
         self.dto = None
-
 
     def get_file_list(self):
         picker = FilePicker()
@@ -86,15 +87,3 @@ class Dto():
             self.excelapp.close_app_wb()
         self.excelapp.close_app()
         return self.item_shelf
-
-
-if __name__ == "__main__":
-    dtoinst = Dto()
-    te = dtoinst.get_excel_dto()
-    it = dtoinst.item_shelf.iterator()
-    i = 0
-    while it.hasnext():
-        i +=1
-        item=it.next()
-        print("{}: {}: {}".format(i, item.xlCustomerCd,item.xlCustomerName))
-    print("end")

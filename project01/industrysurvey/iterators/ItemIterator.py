@@ -1,5 +1,5 @@
 from abc import ABCMeta, abstractmethod
-from dto.DTOTest import DTOTest
+
 
 class Aggregate(metaclass=ABCMeta):
     @abstractmethod
@@ -52,16 +52,3 @@ class ItemShelf(Aggregate):
 
     def iterator(self):
         return ItemShelfItetator(self)
-
-# if __name__ == "__main__":
-#     item_shelf = ItemShelf()
-#     item_shelf.append(DTOTest(1, "test1"))
-#     item_shelf.append(DTOTest(2, "test2"))
-#     item_shelf.append(DTOTest(3, "test3"))
-#     item_shelf.append(DTOTest(4, "test4"))
-#     it = item_shelf.iterator()
-#     i = 0
-#     while it.hasnext():
-#         i = i +1
-#         item = it.next()
-#         print("{}:number = {} : name = {}".format(i,item.number,item.name))

@@ -1,5 +1,4 @@
 import collections.abc
-from dto.DTOTest import DTOTest
 
 class ItemShelf(collections.abc.Iterable):
     def __init__(self):

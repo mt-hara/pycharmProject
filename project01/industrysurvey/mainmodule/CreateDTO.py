@@ -6,6 +6,7 @@ from selectfiledir.filepicker import GetFile
 from excelapp.ExcelApp import ExcelApp, ExcelWorkBook
 from dto.ExcelSheetDTO import ExcelSheetDTO
 from dao.TableDAO.QueryContext import ExecuteQuery
+from functions.StopWatch import stop_watch
 
 
 class FilePicker():
@@ -34,6 +35,7 @@ class ExcelFile():
     def open_excelapp(self):
         self.baseapp = ExcelFile()
 
+    # @stop_watch
     def open_wb(self, filepath):
         self.wb.open_wb(self.app, filepath)
         self.ws = self.wb.xlws

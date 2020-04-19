@@ -24,27 +24,31 @@ class FilePicker():
 
 class ExcelFile():
     def __init__(self):
+        # self.baseapp = None
         self.baseapp = ExcelApp()
         self.app = self.baseapp.app
         self.wb = ExcelWorkBook()
         self.ws = None
         self.dto = None
 
+    def open_excelapp(self):
+        self.baseapp = ExcelFile()
+
     def open_wb(self, filepath):
         self.wb.open_wb(self.app, filepath)
         self.ws = self.wb.xlws
         return self.ws
 
-    def get_dto(self):
-        try:
-            self.dto = ExcelSheetDTO(self.ws)
-        except AttributeError as e:
-            type_, value, traceback_ = sys.exc_info()
-            print(traceback.format_exception(type_, value, traceback_))
-            self.close()
-            quit()
-        else:
-            return self.dto
+    # def get_dto(self):
+    #     try:
+    #         self.dto = ExcelSheetDTO(self.ws)
+    #     except AttributeError as e:
+    #         type_, value, traceback_ = sys.exc_info()
+    #         print(traceback.format_exception(type_, value, traceback_))
+    #         self.close()
+    #         quit()
+    #     else:
+    #         return self.dto
 
     def close_app_wb(self):
         self.wb.close_workbook()
@@ -60,15 +64,15 @@ class ExcelFile():
         self.close_baseapp()
 
 
-class ExcelDataToDto():
+class ExcelDataToDTO():
     def __init__(self):
         self.file_list = []
-        self.get_file_list()
+        self.get_filepath_list()
         self.excelapp = ExcelFile()
         self.item_shelf = ItemShelf()
         self.dto = None
 
-    def get_file_list(self):
+    def get_filepath_list(self):
         picker = FilePicker()
         self.file_list = picker.get_file_list()
 
@@ -87,3 +91,6 @@ class ExcelDataToDto():
             self.excelapp.close_app_wb()
         self.excelapp.close_app()
         return self.item_shelf
+
+    def close_app(self):
+        self.excelapp.close_app()

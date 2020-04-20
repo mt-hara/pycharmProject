@@ -6,13 +6,13 @@
 # from dto.ExcelSheetDTO import ExcelSheetDTO
 from mainmodule.CreateDTO import ExcelDataToDTO
 from dao.TableDAO.QueryContext import ExecuteQuery
+from functions.StopWatch import stop_watch
 
-
-if __name__ == "__main__":
+@stop_watch
+def main():
     data_dato = ExcelDataToDTO()
-    file_list = []
-    lists = data_dato.file_list
-    for i in lists:
+    filelists = data_dato.file_list
+    for i in filelists:
         print(i)
     data_dato.get_excel_dto()
     it = data_dato.item_shelf.iterator()
@@ -23,6 +23,8 @@ if __name__ == "__main__":
         print("{}: {}: {}".format(i, item.xlCustomerCd,item.xlCustomerName))
     print("end")
 
+if __name__ == "__main__":
+    main()
 
     # class FilePicker():
 #     def __init__(self):

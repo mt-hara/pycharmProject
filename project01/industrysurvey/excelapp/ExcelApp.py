@@ -40,3 +40,4 @@ class ExcelWorkBook(AbstractExcelWorkBook):
 
     def close_workbook(self):
         self.xlwb.close()
+

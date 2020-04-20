@@ -41,17 +41,6 @@ class ExcelFile():
         self.ws = self.wb.xlws
         return self.ws
 
-    # def get_dto(self):
-    #     try:
-    #         self.dto = ExcelSheetDTO(self.ws)
-    #     except AttributeError as e:
-    #         type_, value, traceback_ = sys.exc_info()
-    #         print(traceback.format_exception(type_, value, traceback_))
-    #         self.close()
-    #         quit()
-    #     else:
-    #         return self.dto
-
     def close_app_wb(self):
         self.wb.close_workbook()
 
@@ -96,3 +85,4 @@ class ExcelDataToDTO():
 
     def close_app(self):
         self.excelapp.close_app()
+

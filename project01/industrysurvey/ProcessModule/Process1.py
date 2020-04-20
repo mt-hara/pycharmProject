@@ -1,25 +1,32 @@
 import time
+from functions.StopWatch import stop_watch
+from concurrent import futures
+
 import concurrent.futures
+import math
 
+PRIMES = [
+    112272535095293,
+    112582705942171,
+    112272535095293,
+    115280095190773,
+    115797848077099,
+    1099726899285419]
 
-# 単に時間がかかるだけの処理
-def killing_time(number):
-    return_list = []
-    for i in range(1, number + 1):
-        if number % i == 1:
-            if i <= 9999:
-                return_list.append(i)
-    return return_list
+def is_prime(n):
+    if n % 2 == 0:
+        return False
 
+    sqrt_n = int(math.floor(math.sqrt(n)))
+    for i in range(3, sqrt_n + 1, 2):
+        if n % i == 0:
+            return False
+    return True
 
 def main():
-    start = time.time()
-    num_list = [25000000, 20000000, 20076000, 14500000]
-    with concurrent.futures.ProcessPoolExecutor(max_workers=4) as excuter:
-        result_list = list(excuter.map(killing_time, num_list))
-    stop = time.time()
-    print('%.3f seconds' % (stop - start))
-
+    with concurrent.futures.ProcessPoolExecutor() as executor:
+        for number, prime in zip(PRIMES, executor.map(is_prime, PRIMES)):
+            print('%d is prime: %s' % (number, prime))
 
 if __name__ == '__main__':
     main()

@@ -1,39 +1,22 @@
-# import time
-# import threading
-#
-# def proc():
-#     for i in range(0, 5):
-#        print("count" , i)
-#
-#     if __name__ == "__main__":
-#         th1 = threading.Thread(target=proc)
-#         th1.start()
 import os
-import multiprocessing
 
-MAX_COUNT = 100000000
-ITERATION = 50000000
+pid_list = []
 
-def whoami(what):
-    #単純な加算
-    count = 0
-    for n in range(MAX_COUNT):
-        if count % ITERATION ==0:
-            #実行中のプロセスIDと,現在のcount数を表示
-            print("{} Process {} count {}".format(what,os.getpid(),count))
-        count +=1
-    #どのIDのプロセスが終了したかを表示
-    print("end {} Process {}".format(what,os.getpid()))
-#現在のプロセスのidを表示
-print("Main Process ID is {}".format(os.getpid()))
-#メインのプロセスで実行
-whoami("main program")
+def main():
+    pid_list.append(os.getpid())
+    child_id = os.forkpty()
 
-print("-----------------------------------------------------")
-#プロセスを10作りスタートさせる.
+    if child_id == 0:
+        pid_list.append(os.getpid())
+        print()
+        print("C：Chrild process")
+        print("C: my pid = {}".format(pid_list))
+    else:
+        pid_list.append(os.getpid())
+        print()
+        print("P: parent process")
+        print("P: mychild pid = {}".format(child_id))
+        print("P I known pid = {}".format(pid_list))
+
 if __name__ == "__main__":
-
-    for n in range(10):
-        p = multiprocessing.Process(target=whoami,args=("Process {}".format(n),))
-        p.start()
-    print("end of program")
+    main()

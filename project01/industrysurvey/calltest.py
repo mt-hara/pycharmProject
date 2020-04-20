@@ -1,21 +1,33 @@
 import sys
 import traceback
-from excelapp.ExcelApp import ExcelApp, ExcelWorkBook
-from dto.ExcelSheetDTO import ExcelSheetDTO
-from excelapp.ShapeState import ShapesPosToValue
-
+from functions.StopWatch import stop_watch
+from mainmodule.CreateDTO import ExcelDataToDTO
 
 class main():
-    def __init__(self, filename):
-        self.baseapp = ExcelApp()
-        self.app = self.baseapp.app
-        self.wb = ExcelWorkBook()
-        self.wb.open_wb(self.app, filename)
-        self.ws = self.wb.xlws
-
-    def close(self):
-        self.wb.close_workbook()
-        self.baseapp.close_App()
+    def __init__(self):
+        self.show_itr()
+        # self.dto = ExcelDataToDTO()
+        # self.dto.get_excel_dto()
+        # self.it = self.dto.item_shelf.iterator()
+    @stop_watch
+    def show_itr(self):
+        self.dto = ExcelDataToDTO()
+        self.dto.get_excel_dto()
+        self.it = self.dto.item_shelf.iterator()
+        while self.it.hasnext():
+            item = self.it.next()
+            print("code={} : name = {}".format(item.xlCustomerCd,item.xlCustomerName))
+        self.dto.close_app()
+    # def __init__(self, filename):
+    #     self.baseapp = ExcelApp()
+    #     self.app = self.baseapp.app
+    #     self.wb = ExcelWorkBook()
+    #     self.wb.open_wb(self.app, filename)
+    #     self.ws = self.wb.xlws
+    #
+    # def close(self):
+    #     self.wb.close_workbook()
+    #     self.baseapp.close_App()
 
     # @property
     # def ws(self):
@@ -28,23 +40,26 @@ class main():
 
 
 if __name__ == "__main__":
-    filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（（株）清和光学製作所）.xlsx"
-    excls = main(filename)
-    ws = excls.ws
 
-    try:
-        data = ExcelSheetDTO(ws)
+    main()
 
-    except AttributeError as e:
-        type_, value, traceback_ = sys.exc_info()
-        print(traceback.format_exception(type_, value, traceback_))
-        excls.close()
-        quit()
-    else:
-        for k, v in data.__dict__.items():
-            print("{}={}".format(k,v))
-
-        print(data.xlRepBirthYear)
+    # filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（（株）清和光学製作所）.xlsx"
+    # excls = main(filename)
+    # ws = excls.ws
+    #
+    # try:
+    #     data = ExcelSheetDTO(ws)
+    #
+    # except AttributeError as e:
+    #     type_, value, traceback_ = sys.exc_info()
+    #     print(traceback.format_exception(type_, value, traceback_))
+    #     excls.close()
+    #     quit()
+    # else:
+    #     for k, v in data.__dict__.items():
+    #         print("{}={}".format(k,v))
+    #
+    #     print(data.xlRepBirthYear)
 
         # print("biztype : {}".format(data.xlCustomerBizType))
         # print("capitalform : {}".format(data.xlCapitalForm))
@@ -97,7 +112,7 @@ if __name__ == "__main__":
     # print(data.xlCustomerCd)
     # print(data.xlCustomerName)
 
-    excls.close()
+    # excls.close()
 
     # filename = "C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（㈱八木熊）.xlsx"
     # filename = ["C:\\Users\\m-hara\\Desktop\\取引先コード取得済\\業態調査票（㈱八木熊）.xlsx", \

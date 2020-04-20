@@ -33,10 +33,10 @@ class ExcelFile():
         self.dto = None
 
     def open_excelapp(self):
-        self.baseapp = ExcelFile()
+        self.baseapp = ExcelApp()
 
     # @stop_watch
-    def open_wb(self, filepath):
+    def open_workbook(self, filepath):
         self.wb.open_wb(self.app, filepath)
         self.ws = self.wb.xlws
         return self.ws
@@ -69,7 +69,7 @@ class ExcelDataToDTO():
 
     def get_excel_dto(self):
         for i in self.file_list:
-            ws = self.excelapp.open_wb(i)
+            ws = self.excelapp.open_workbook(i)
             try:
                 self.dto = ExcelSheetDTO(ws)
             except AttributeError as e:

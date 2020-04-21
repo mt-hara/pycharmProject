@@ -1,6 +1,7 @@
 import sys
 import traceback
-
+import pathlib
+import shutil
 from iterators.ItemIterator import *
 from selectfiledir.filepicker import GetFile
 from excelapp.ExcelApp import ExcelApp, ExcelWorkBook
@@ -86,3 +87,37 @@ class ExcelDataToDTO():
     def close_app(self):
         self.excelapp.close_app()
 
+
+
+class DTO():
+    def __init__(self):
+        self.file_shelf = ItemShelf()
+        self.exapp = ExcelFile()
+        self.dto = None
+
+    def get_filepath_itr(self):
+        picker = FilePicker()
+        filelist = picker.get_file_list()
+        for item in filelist:
+            self.file_shelf.append(item)
+
+    def change_dir(self,filename):
+        currentdir=pathlib.Path(filename).parent
+        new_dir=currentdir / "import済"
+        shutil.move(filename,new_dir)
+
+    def get_dto(self,filepath):
+        ws = self.exapp.open_workbook(filepath)
+        try:
+            self.dto = ExcelSheetDTO(ws)
+        except Exception as e:
+            print(e)
+            
+
+if __name__ == "__main__":
+    dto = DTO()
+    dto.get_filepath_itr()
+    it = dto.file_shelf.iterator()
+    while it.hasnext():
+        item = it.next()
+        print(item)

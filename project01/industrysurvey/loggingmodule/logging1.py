@@ -1,10 +1,7 @@
-import logging.config
-from loggingmodule.log_functions import test_func
-fileopath = "C:\\workspace\\pycharmProject\\project01\\industrysurvey\\loggingmodule\\logging.conf"
-logging.config.fileConfig(fileopath)
+import loggingmodule.logging_config
+import logging
 
-logger = logging.getLogger()
-logger.info("info level log")
-logger.debug("debug level log")
+log = logging.getLogger(__name__)
 
-test_func()
+log.debug("debug")
+# log.info("info")

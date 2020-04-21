@@ -22,9 +22,10 @@ class ExecuteQuery(BaseSession):
         try:
             result = self.session.query(CustomerMaster).filter(CustomerMaster.customerCd == param).all()
         except Exception as e:
-            type_, value, traceback_ = sys.exc_info()
-            print(traceback.format_exception(type_, value,traceback_))
-            return
+            raise Exception
+            # type_, value, traceback_ = sys.exc_info()
+            # print(traceback.format_exception(type_, value,traceback_))
+            # return
         else:
             if len(result) == 0:
                 return Instert()

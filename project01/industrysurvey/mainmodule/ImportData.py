@@ -73,9 +73,16 @@ class ImportExcelData():
             type_, value, traceback_ = sys.exc_info()
             print(traceback.format_exception(type_, value, traceback_))
             self.excelapp.close()
-            quit()
+            basename=pathlib.Path(filepath).name
+            self.indata= str(basename) + " : GetDto False"
+            return False
         else:
+            basename=pathlib.Path(filepath).name
+            indata= str(basename) + " : GetDto success"
             return xldto
+        finally:
+            with open("execute_log.txt", "a", encoding="utf-8") as f:
+                f.write(self.indata)
 
     def import_data(self, xldto):
         exe_query= ExecuteQuery(xldto)
@@ -84,5 +91,15 @@ class ImportExcelData():
         except:
             pass
 
-
-
+if __name__ == "__main__":
+    ida = ImportExcelData()
+    ida.get_filepath_itr()
+    it = ida.file_shelf.iterator()
+    while it.hasnext():
+        item = it.next()
+        dto = ida.get_excel_dto(item)
+        if dto is False:
+            print("error")
+            continue
+        else:
+            print("ok")

@@ -7,8 +7,9 @@ class ErrorTest():
     def raise_error(self):
         try:
             raise AttributeError
-        except:
+        except AttributeError as e:
             raise
+
 
 
 class Main():
@@ -18,7 +19,7 @@ class Main():
     def err_test(self):
         try:
             self.err.raise_error()
-        except Exception as e:
+        except AttributeError as e:
             type_, value, traceback_ = sys.exc_info()
             print(traceback.format_exception(type_, value, traceback_))
 

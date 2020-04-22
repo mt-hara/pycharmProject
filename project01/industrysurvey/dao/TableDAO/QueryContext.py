@@ -4,10 +4,12 @@ from dao.BaseEngine import BaseSession
 from dao.TableModel.CustomerMaster import CustomerMaster
 from dao.TableDAO.Insert import Instert
 from dao.TableDAO.Update import Update
+from dao.TableDAO.InsertAll import InsertAll
+from dao.TableDAO.UpdateAll import UpdateAll
 
 
 class ExecuteQuery(BaseSession):
-    def __init__(self,xldto):
+    def __init__(self, xldto):
         super().__init__()
         self.xldto = xldto
         self.iqexecute = self.has_record()
@@ -30,6 +32,30 @@ class ExecuteQuery(BaseSession):
                 return Update()
 
 
+class ExecuteQueryAll(BaseSession):
+    def __init__(self, xldto):
+        super().__init__()
+        self.xldto = xldto
+        self.iqexecute = self.has_record()
+
+    def execute(self):
+        self.iqexecute.execute(self.xldto)
+
+    def has_record(self):
+        param = self.xldto.xlCustomerCd
+        if param == None:
+            raise ValueError("取引先コード取得エラー")
+        try:
+            result = self.session.query(CustomerMaster).filter(CustomerMaster.customerCd == param).all()
+        except Exception as e:
+            raise
+        else:
+            if len(result) == 0:
+                return InsertAll()
+            else:
+                return UpdateAll()
+
+
 class DeleleAll(BaseSession):
     def __init__(self):
         super().__init__()
@@ -40,7 +66,6 @@ class DeleleAll(BaseSession):
                     self.session.delete(item)
         except Exception as e:
             print(e)
-
 
 # class main():
 #     def __init__(self, filename):

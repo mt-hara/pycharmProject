@@ -25,4 +25,4 @@ class Instert(IQueryExecute, BaseSession):
                 session.add(customer)
 
         except Exception as e:
-            print(e)
+            raise

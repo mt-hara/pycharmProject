@@ -7,11 +7,15 @@ from selectfiledir.filepicker import GetFile
 from excelapp.ExcelApp import ExcelApp, ExcelWorkBook
 from dto.ExcelSheetDTO import ExcelSheetDTO
 from dao.TableDAO.QueryContext import ExecuteQuery
+from functions.StopWatch import stop_watch
+
+
+_log_dir= "C:\\workspace\\pycharmProject\\project01\\industrysurvey\\log"
 
 class FilePicker():
     def __init__(self):
         self.__def_dir = "DeskTop"
-        self.__ftype = [("Excel2007ファイル", "*.xlsx")]
+        self.__ftype = [("Excel2007ファイル", "*.xlsx"),("Excel2007ファイル", "*.xls")]
         self.picker = GetFile(self.__def_dir, self.__ftype)
         self.file_list = self.picker.get_files()
 
@@ -28,10 +32,6 @@ class ExcelFile():
         self.app = self.baseapp.app
         self.wb = ExcelWorkBook()
         self.ws = None
-        # self.dto = None
-
-    # def get_excelapp(self):
-    #     self.baseapp = ExcelApp()
 
     def open_workbook(self, filepath):
         self.wb.open_wb(self.app, filepath)
@@ -51,8 +51,73 @@ class ExcelFile():
 class ImportExcelData():
     def __init__(self):
         self.file_shelf = ItemShelf()
+        self.filepath = ""
         self.excelapp = ExcelFile()
+        self.basename = ""
         self.dto = None
+        self.ws = None
+
+    def change_dir(self, filepath):
+        currentdir = pathlib.Path(filepath).parent
+        new_dir = currentdir / "import済"
+        shutil.move(filepath, new_dir)
+
+    def ws_open(self,filepath):
+        self.basename = pathlib.Path(filepath).name
+        self.filepath = filepath
+        _log_file = pathlib.Path(_log_dir) / "file_open.log"
+        try:
+            self.ws = self.excelapp.open_workbook(self.filepath)
+        except Exception as e:
+            self.__file_open_log = "Error...File_Open:" + str(self.basename) + "\n"
+            raise
+        else:
+            self.__file_open_log= "Success...File_Open:" + str(self.basename) + "\n"
+            # self.excelapp.close_app_wb()
+            self.get_dto()
+
+        finally:
+            with open(_log_file, "a", encoding="utf-8") as f:
+                f.write(self.__file_open_log)
+
+
+    def get_dto(self):
+        _log_file = pathlib.Path(_log_dir) / "dto_log.log"
+        try:
+            self.dto = ExcelSheetDTO(self.ws)
+        except AttributeError as e:
+            self.__dto_log = "Error...GetDTO:" + str(self.basename) + "\n"
+            raise
+        else:
+            self.excelapp.close_app_wb()
+            self.execute_query()
+            self.__dto_log = "Success...GetDTO:" + str(self.basename) + "\n"
+
+        finally:
+            # self.excelapp.close_app_wb()
+            with open(_log_file, "a", encoding="utf-8") as f:
+                f.write(self.__dto_log)
+
+    def execute_query(self):
+        _log_file = pathlib.Path(_log_dir) / "query_log.log"
+        try:
+            query = ExecuteQuery(self.dto)
+            query.execute()
+        except Exception as e:
+            self.__query_log = "Error...Query:" + str(self.basename) + "\n"
+            raise
+        else:
+            self.__query_log = "Success...Query:" + str(self.basename) + "\n"
+            self.change_dir(self.filepath)
+        finally:
+            with open(_log_file, "a", encoding="utf-8") as f:
+                f.write(self.__query_log)
+
+    def close_app_wb(self):
+        self.excelapp.close_app_wb()
+
+    def close_baseAapp(self):
+        self.excelapp.close_baseapp()
 
     def get_filepath_itr(self):
         picker = FilePicker()
@@ -60,46 +125,19 @@ class ImportExcelData():
         for item in file_list:
             self.file_shelf.append(item)
 
-    def change_dir(self, filepath):
-        currentdir = pathlib.Path(filepath).parent
-        new_dir = currentdir / "import済"
-        shutil.move(filepath, new_dir)
-
-    def get_excel_dto(self, filepath):
-        ws = self.excelapp.open_workbook(filepath)
-        try:
-            xldto = ExcelSheetDTO(ws)
-        except AttributeError as e:
-            type_, value, traceback_ = sys.exc_info()
-            print(traceback.format_exception(type_, value, traceback_))
-            self.excelapp.close()
-            basename=pathlib.Path(filepath).name
-            self.indata= str(basename) + " : GetDto False"
-            return False
-        else:
-            basename=pathlib.Path(filepath).name
-            indata= str(basename) + " : GetDto success"
-            return xldto
-        finally:
-            with open("execute_log.txt", "a", encoding="utf-8") as f:
-                f.write(self.indata)
-
-    def import_data(self, xldto):
-        exe_query= ExecuteQuery(xldto)
-        try:
-            exe_query.execute()
-        except:
-            pass
-
-if __name__ == "__main__":
+@stop_watch
+def main():
     ida = ImportExcelData()
     ida.get_filepath_itr()
     it = ida.file_shelf.iterator()
+    i = 0
+    max = it.get_length()
     while it.hasnext():
+        i = i + 1
         item = it.next()
-        dto = ida.get_excel_dto(item)
-        if dto is False:
-            print("error")
-            continue
-        else:
-            print("ok")
+        files = ida.ws_open(item)
+        print("{:.1%}".format(i/max))
+    ida.close_baseAapp()
+
+if __name__ == "__main__":
+    main()

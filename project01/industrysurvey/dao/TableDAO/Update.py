@@ -15,4 +15,4 @@ class Update(IQueryExecute, BaseSession):
                 update_customer.mainsupplier.set_data(xldto)
                 update_customer.mainproduct.set_data(xldto)
         except Exception as e:
-            print(e)
+            raise

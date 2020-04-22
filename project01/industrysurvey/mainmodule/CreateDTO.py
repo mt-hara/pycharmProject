@@ -9,6 +9,8 @@ from dto.ExcelSheetDTO import ExcelSheetDTO
 from dao.TableDAO.QueryContext import ExecuteQuery
 from functions.StopWatch import stop_watch
 
+_log_base_dir = "C:\\workspace\\pycharmProject\\project01\\industrysurvey\\log"
+
 
 class FilePicker():
     def __init__(self):
@@ -31,7 +33,6 @@ class ExcelFile():
         self.app = self.baseapp.app
         self.wb = ExcelWorkBook()
         self.ws = None
-        self.dto = None
 
     def open_excelapp(self):
         self.baseapp = ExcelApp()
@@ -112,7 +113,27 @@ class DTO():
             self.dto = ExcelSheetDTO(ws)
         except Exception as e:
             print(e)
-            
+
+    # def ws_open(self,filepath):
+    #     # tmp = pathlib.Path(self.logbase)
+    #     # log_file = tmp / "execute_log.txt"
+    #     # basename = pathlib.Path(filepath).name
+    #     try:
+    #         self.ws = self.excelapp.open_workbook(filepath)
+    #     except Exception as e:
+    #         type_, value, traceback_ = sys.exc_info()
+    #         print(traceback.format_exception(type_, value, traceback_))
+    #         # self.intext = str(basename) + ": read NG : " + str(traceback.format_exception(type_, value, traceback_)) + \
+    #         #               "\n"
+    #         raise
+    #     else:
+    #         # self.intext = str(basename) + ": read OK\n"
+    #         self.close_app_wb()
+    #     # finally:
+    #         # with open(log_file,"a",encoding="utf-8") as f:
+    #         #     f.write(self.intext)
+
+
 
 if __name__ == "__main__":
     dto = DTO()

@@ -33,6 +33,9 @@ class ItemShelfItetator(Iterator):
         self.__index += 1
         return item
 
+    def get_length(self):
+        return  self.__itemshelf.getlength()
+
 
 class ItemShelf(Aggregate):
     def __init__(self):

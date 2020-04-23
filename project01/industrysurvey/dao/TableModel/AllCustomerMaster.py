@@ -1,10 +1,11 @@
 from sqlalchemy import Column, Integer, String, Float, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from dao.DAOFunction import YearMonthDayGenerator, YearMonthGenerator, ISOCertifGenerator
-Base = declarative_base()
+from dao.BaseEngine import MetaBase
+# Base = declarative_base()
 
 
-class AllCustomerMaster(Base):
+class AllCustomerMaster(MetaBase):
     __tablename__ = "allcustomermaster"
     customerCd: str = Column( String, primary_key=True, nullable=False)
     customerName: str = Column(String, nullable=True)

@@ -54,6 +54,7 @@ class ImportExcelData():
         self.filepath = ""
         self.excelapp = ExcelFile()
         self.basename = ""
+        self.customercd = ""
         self.dto = None
         self.ws = None
 
@@ -89,6 +90,7 @@ class ImportExcelData():
             self.__dto_log = "Error...GetDTO:" + str(self.basename) + "\n"
             raise
         else:
+            self.customercd =self.dto.xlCustomerCd
             self.excelapp.close_app_wb()
             self.execute_query()
             self.__dto_log = "Success...GetDTO:" + str(self.basename) + "\n"
@@ -104,10 +106,10 @@ class ImportExcelData():
             query = ExecuteQuery(self.dto)
             query.execute()
         except Exception as e:
-            self.__query_log = "Error...Query:" + str(self.basename) + "\n"
-            raise
+            self.__query_log = "Error...Query:" +str(self.customercd) + "," + str(self.basename) + "\n"
+
         else:
-            self.__query_log = "Success...Query:" + str(self.basename) + "\n"
+            self.__query_log = "Success...Query:" +str(self.customercd) + "," + str(self.basename) + "\n"
             self.change_dir(self.filepath)
         finally:
             with open(_log_file, "a", encoding="utf-8") as f:
@@ -136,7 +138,7 @@ def main():
         i = i + 1
         item = it.next()
         files = ida.ws_open(item)
-        print("{:.1%}".format(i/max))
+        print("{}/{} {:.1%}".format(i,max,i/max))
     ida.close_baseAapp()
 
 if __name__ == "__main__":

@@ -2,9 +2,9 @@ import sys
 import traceback
 import pathlib
 # import logging
-# log = logging.getLogger(__name__)
+# LogModule = logging.getLogger(__name__)
 
-_log_file= "C:\\workspace\\pycharmProject\\project01\\industrysurvey\\log"
+_log_file= "/LogModule"
 class ErrorTest():
     def __init__(self):
         pass
@@ -26,8 +26,8 @@ class Main():
         self.err= ErrorTest()
 
     def err_test(self):
-        _log_file_path = pathlib.Path(_log_file) / "log.log"
-        # _log_file_path = tmp / "log.log"
+        _log_file_path = pathlib.Path(_log_file) / "LogModule.LogModule"
+        # _log_file_path = tmp / "LogModule.LogModule"
         try:
             self.err.raise_error()
         except AttributeError as e:

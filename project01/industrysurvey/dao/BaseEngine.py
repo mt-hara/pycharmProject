@@ -3,10 +3,10 @@ from sqlalchemy.orm import sessionmaker
 from contextlib import contextmanager
 from sqlalchemy.ext.declarative import declarative_base
 
-# DBPATH = "C:\\Dev\\DB\\sqlite3\\BizSurvey.sqlite3"
+DBPATH = "C:\\Dev\\sqlite3\\BizSurvey.sqlite3"
 # DBPATH = "G:\\97.ACCESS\\sqlite3db\\BizSurvey.sqlite3"
 # DBPATH = "C:\\Dev\\DB\\sqlite3\\BizSurvey.sqlite3"
-DBPATH = "C:\\dev\\sqlite3db\\BizSurvey.sqlite3"
+# DBPATH = "C:\\dev\\sqlite3db\\BizSurvey.sqlite3"
 
 MetaBase = declarative_base()
 

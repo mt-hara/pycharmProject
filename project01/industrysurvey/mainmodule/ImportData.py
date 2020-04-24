@@ -10,7 +10,7 @@ from dao.TableDAO.QueryContext import ExecuteQuery
 from functions.StopWatch import stop_watch
 
 
-_log_dir= "C:\\workspace\\pycharmProject\\project01\\industrysurvey\\log"
+_log_dir= "C:\\workspace\\pycharmProject\\project01\\industrysurvey\\LogData"
 
 class FilePicker():
     def __init__(self):
@@ -58,10 +58,18 @@ class ImportExcelData():
         self.dto = None
         self.ws = None
 
-    def change_dir(self, filepath):
-        currentdir = pathlib.Path(filepath).parent
-        new_dir = currentdir / "import済"
-        shutil.move(filepath, new_dir)
+    # def change_dir(self, filepath):
+    #     currentdir = pathlib.Path(filepath).parent
+    #     new_dir = currentdir / "import済"
+    #     shutil.move(filepath, new_dir)
+
+    def change_dir(self, filepath, new_dir_name):
+        current_dir = pathlib.Path(filepath).parent
+        new_dir_path = current_dir / new_dir_name
+        pathlib.Path(new_dir_path).mkdir(exist_ok=True)
+        shutil.move(filepath, new_dir_path)
+
+
 
     def ws_open(self,filepath):
         self.basename = pathlib.Path(filepath).name
@@ -70,16 +78,16 @@ class ImportExcelData():
         try:
             self.ws = self.excelapp.open_workbook(self.filepath)
         except Exception as e:
-            self.__file_open_log = "Error...File_Open:" + str(self.basename) + "\n"
+            self.__file_open_log = "Error...File_Open:" + str(self.basename)
             raise
         else:
-            self.__file_open_log= "Success...File_Open:" + str(self.basename) + "\n"
+            self.__file_open_log= "Success...File_Open:" + str(self.basename)
             # self.excelapp.close_app_wb()
             self.get_dto()
 
         finally:
             with open(_log_file, "a", encoding="utf-8") as f:
-                f.write(self.__file_open_log)
+                f.write("\n" + self.__file_open_log)
 
 
     def get_dto(self):
@@ -87,18 +95,18 @@ class ImportExcelData():
         try:
             self.dto = ExcelSheetDTO(self.ws)
         except AttributeError as e:
-            self.__dto_log = "Error...GetDTO:" + str(self.basename) + "\n"
+            self.__dto_log = "Error...GetDTO:" + str(self.basename)
             raise
         else:
             self.customercd =self.dto.xlCustomerCd
             self.excelapp.close_app_wb()
             self.execute_query()
-            self.__dto_log = "Success...GetDTO:" + str(self.basename) + "\n"
+            self.__dto_log = "Success...GetDTO:" + str(self.basename)
 
         finally:
             # self.excelapp.close_app_wb()
             with open(_log_file, "a", encoding="utf-8") as f:
-                f.write(self.__dto_log)
+                f.write("\n" + self.__dto_log)
 
     def execute_query(self):
         _log_file = pathlib.Path(_log_dir) / "query_log.log"
@@ -106,14 +114,14 @@ class ImportExcelData():
             query = ExecuteQuery(self.dto)
             query.execute()
         except Exception as e:
-            self.__query_log = "Error...Query:" +str(self.customercd) + "," + str(self.basename) + "\n"
+            self.__query_log = "Error...Query:" +str(self.customercd) + "," + str(self.basename)
 
         else:
-            self.__query_log = "Success...Query:" +str(self.customercd) + "," + str(self.basename) + "\n"
-            self.change_dir(self.filepath)
+            self.__query_log = "Success...Query:" +str(self.customercd) + "," + str(self.basename)
+            self.change_dir(self.filepath,"import済")
         finally:
             with open(_log_file, "a", encoding="utf-8") as f:
-                f.write(self.__query_log)
+                f.write("\n" + self.__query_log)
 
     def close_app_wb(self):
         self.excelapp.close_app_wb()

@@ -9,7 +9,7 @@ from dto.ExcelSheetDTO import ExcelSheetDTO
 from dao.TableDAO.QueryContext import ExecuteQuery
 from functions.StopWatch import stop_watch
 
-_log_base_dir = "C:\\workspace\\pycharmProject\\project01\\industrysurvey\\log"
+_log_base_dir = "/LogModule"
 
 
 class FilePicker():

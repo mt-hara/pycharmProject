@@ -92,14 +92,36 @@ class ExcelDataToSQL():
     def open_ws(self,filepath):
         self.basename = pathlib.Path(filepath).name
         self.filepath = filepath
+        _log_file = pathlib.Path(_log_dir) / "fileopen_log.log"
+        try:
+            self.ws = self.excelapp.open_workbook(self.filepath)
+        except Exception as e:
+            _log_data = "Error:{}".format(self.basename)
+            raise
+        else:
+            _log_data = "Success:{}".format(self.basename)
+        write_log_data(_log_file, _log_data)
 
-
+    def get_dto(self):
+        _log_file = pathlib.Path(_log_dir) / "getdto_log.log"
+        try:
+            self.dto = ExcelSheetDTO(self.ws)
+        except AttributeError as e:
+            _log_data = "Error:{}".format(self.basename)
+        else:
+            self.customercd = self.dto.xlCustomerCd
+            self.customername = self.dto.xlCustomerName
+            _log_data = "Success:{}:{}".format(self.customercd, self.customername)
 
 
 @stop_watch
 def main():
     todto = ExcelDataToSQL()
     todto.get_file_itr()
+    itr = todto.file_shelf.iterator()
+    while itr.hasnext():
+        item = itr.next()
+        todto.open_ws(item)
 
     # filedata = ExcelDataToSQL()
     # filedata.open_wb()

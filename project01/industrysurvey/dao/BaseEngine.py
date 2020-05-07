@@ -15,7 +15,7 @@ class BaseEngine():
 
     def __init__(self) -> None:
         self.sqlpath = "sqlite:///" + DBPATH
-        self.engine = create_engine(self.sqlpath, echo=True)
+        self.engine = create_engine(self.sqlpath, echo=False)
 
 
 class BaseSession(BaseEngine):

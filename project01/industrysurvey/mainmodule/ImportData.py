@@ -12,6 +12,8 @@ from functions.StopWatch import stop_watch
 
 _log_dir= "C:\\workspace\\pycharmProject\\project01\\industrysurvey\\LogData"
 
+# 一覧データ作成ベースプログラム
+
 class FilePicker():
     def __init__(self):
         self.__def_dir = "DeskTop"

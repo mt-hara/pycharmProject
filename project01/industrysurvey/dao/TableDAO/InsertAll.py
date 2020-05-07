@@ -12,3 +12,4 @@ class InsertAll(IQueryExecute, BaseSession):
 
         except Exception as e:
             print(e)
+            raise

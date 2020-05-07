@@ -2,6 +2,7 @@ import sys
 import traceback
 from dao.BaseEngine import BaseSession
 from dao.TableModel.CustomerMaster import CustomerMaster
+from dao.TableModel.AllCustomerMaster import AllCustomerMaster
 from dao.TableDAO.Insert import Instert
 from dao.TableDAO.Update import Update
 from dao.TableDAO.InsertAll import InsertAll
@@ -46,7 +47,7 @@ class ExecuteQueryAll(BaseSession):
         if param == None:
             raise ValueError("取引先コード取得エラー")
         try:
-            result = self.session.query(CustomerMaster).filter(CustomerMaster.customerCd == param).all()
+            result = self.session.query(AllCustomerMaster).filter(AllCustomerMaster.customerCd == param).all()
         except Exception as e:
             raise
         else:

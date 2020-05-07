@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Float, Boolean
-from sqlalchemy.ext.declarative import declarative_base
+# from sqlalchemy.ext.declarative import declarative_base
 from dao.DAOFunction import YearMonthDayGenerator, YearMonthGenerator, ISOCertifGenerator
 from dao.BaseEngine import MetaBase
 # Base = declarative_base()

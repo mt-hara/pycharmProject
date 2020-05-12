@@ -20,7 +20,7 @@ class AbstractExcelSheetDTO():
         self.__xlEmployees: int = 0  # k22
         self.__xlEmployeeYear: str = ""  # I23
         self.__xlEmployeeMonth: str = ""  # O23
-        self.__xlCapitalForm: int = 0  # shape 取得
+        self.__xlCapitalForm: str = ""  # shape 取得
         self.__xlCorporateType: str = ""  # shape 取得
         self.__xlCustomerCapital: float = 0  # H18
         self.__xlEstablishedYear: str = ""  # O19
@@ -40,7 +40,7 @@ class AbstractExcelSheetDTO():
         self.__xlISO14001CertifPlanYear: str = ""  # AF51
         self.__xlISO14001CertifPlanMonth: str = ""  # AJ51
         self.__xlOtherCertif: str = ""  # I53
-        self.__xlCustomerBizType: int = 0  # shape 取得
+        self.__xlCustomerBizType: str = ""  # shape 取得
         self.__xlOtherBizType: str = ""  # 手入力
         self.__xlPicName: str = ""  # H57
         self.__xlPicEmailAddress: str = ""  # H58
@@ -50,7 +50,7 @@ class AbstractExcelSheetDTO():
         self.__xlContactAddress: str = ""  # C56
         self.__xlContactTel: str = ""  # H60
         self.__xlContactFax: str = ""  # G60
-        self.__xlStockListingStatus: int = 0  # 0:非上場　1:上場 shape 取得
+        self.__xlStockListingStatus: str = ""  # 0:非上場　1:上場 shape 取得
         self.__xlStockMarket: str = ""  # shape 取得 Text
         self.__xlMainStockholder_1: str = ""  # U19
         self.__xlMainStockholder_2: str = ""  # U20
@@ -308,7 +308,7 @@ class AbstractExcelSheetDTO():
         return self.__xlCapitalForm
 
     @xlCapitalForm.setter
-    def xlCapitalForm(self, param: int):
+    def xlCapitalForm(self, param: str):
         self.__xlCapitalForm = param
 
     @property
@@ -548,7 +548,7 @@ class AbstractExcelSheetDTO():
         return self.__xlStockListingStatus
 
     @xlStockListingStatus.setter
-    def xlStockListingStatus(self, param: int):
+    def xlStockListingStatus(self, param: str):
         self.__xlStockListingStatus = param
 
     @property

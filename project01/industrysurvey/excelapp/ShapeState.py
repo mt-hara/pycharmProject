@@ -32,21 +32,21 @@ class VenderBizType(ConcreteState):
 
     def __init__(self, left_pos, dto):
         super().__init__(left_pos, dto)
-        self.biztype: int = 0
+        self.biztype: str = ""
 
     def choose(self, state_context):
         if 80 < self.position < 125:
-            self.biztype = 1
+            self.biztype = "1"
         elif 145 < self.position < 190:
-            self.biztype = 2
+            self.biztype = "2"
         elif 200 < self.position < 285:
-            self.biztype = 3
+            self.biztype = "3"
         elif 298 < self.position < 350:
-            self.biztype = 4
+            self.biztype = "4"
         elif 360 < self.position < 400:
-            self.biztype = 5
+            self.biztype = "5"
         elif 422 < self.position < 445:
-            self.biztype = 6
+            self.biztype = "6"
         else:
             raise Exception("業種取得エラー")
 
@@ -65,22 +65,22 @@ class CapitalForm(ConcreteState):
 
     def __init__(self, left_pos, dto):
         super().__init__(left_pos, dto)
-        self.capital_form: int = 0
-        self.corp_type: int = 0
+        self.capital_form: str = ""
+        self.corp_type: str = ""
 
     def choose(self, state_context):
         if 80 < self.position < 125:
-            self.capital_form = 1
+            self.capital_form = "1"
             self.corp_type = None
         elif 150 < self.position < 235:
-            self.capital_form = 2
-            self.corp_type = 1
+            self.capital_form = "2"
+            self.corp_type = "1"
         elif 240 < self.position < 290:
-            self.capital_form = 2
-            self.corp_type = 2
+            self.capital_form = "2"
+            self.corp_type = "2"
         elif 295 < self.position < 400:
-            self.capital_form = 2
-            self.corp_type = 9
+            self.capital_form = "2"
+            self.corp_type = "9"
 
         self.shapes_dto.shCapitalForm = self.capital_form
         self.shapes_dto.shCorporateType = self.corp_type
@@ -96,14 +96,14 @@ class StockStatus(ConcreteState):
 
     def __init__(self, left_pos, dto):
         super().__init__(left_pos, dto)
-        self.stock_status: int = 0
+        self.stock_status: str = ""
         self.stock_market: str = ""
 
     def choose(self, state_context):
         if 340 < self.position < 410:
-            self.stock_status = 0
+            self.stock_status = "0"
         else:
-            self.stock_status = 1
+            self.stock_status = "1"
             if 80 < self.position < 125:
                 self.stock_market = "東証１部"
             elif 150 < self.position < 190:

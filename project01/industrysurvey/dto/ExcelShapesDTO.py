@@ -1,9 +1,9 @@
 class ShapesDto():
     def __init__(self):
-        self.__shCustomerBizType: int = 0  # shape only
-        self.__shCapitalForm: int = 0  # shape only
+        self.__shCustomerBizType: str = ""  # shape only
+        self.__shCapitalForm: str = ""  # shape only
         self.__shCorporateType: str = ""  # shape only
-        self.__shStockListingStatus: int = 0  # shape only
+        self.__shStockListingStatus: str = ""  # shape only
         self.__shStockMarket: str = ""  # shape only
         self.__shISO9001Certif: str = ""  # shape or cell data
         self.__shISO9001Plan: str = ""  # shape or cell data
@@ -17,7 +17,7 @@ class ShapesDto():
         return self.__shCustomerBizType
 
     @shCustomerBizType.setter
-    def shCustomerBizType(self, param: int):
+    def shCustomerBizType(self, param: str):
         self.__shCustomerBizType = param
 
     @property
@@ -25,7 +25,7 @@ class ShapesDto():
         return self.__shCapitalForm
 
     @shCapitalForm.setter
-    def shCapitalForm(self, param: int):
+    def shCapitalForm(self, param: str):
         self.__shCapitalForm = param
 
     @property
@@ -41,7 +41,7 @@ class ShapesDto():
         return self.__shStockListingStatus
 
     @shStockListingStatus.setter
-    def shStockListingStatus(self, param: int):
+    def shStockListingStatus(self, param: str):
         self.__shStockListingStatus = param
 
     @property

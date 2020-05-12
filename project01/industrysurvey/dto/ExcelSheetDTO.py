@@ -179,10 +179,10 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
     def get_shapes_value(self):
         shapes_data_factory = ShapesPosToValue(self.ws)
         self.shapes_dto = shapes_data_factory.shapes_dto
-        self.xlCustomerBizType: int = self.shapes_dto.shCustomerBizType
-        self.xlCapitalForm: int = self.shapes_dto.shCapitalForm
+        self.xlCustomerBizType: str = self.shapes_dto.shCustomerBizType
+        self.xlCapitalForm: str = self.shapes_dto.shCapitalForm
         self.xlCorporateType: str = self.shapes_dto.shCorporateType
-        self.xlStockListingStatus: int = self.shapes_dto.shStockListingStatus
+        self.xlStockListingStatus: str = self.shapes_dto.shStockListingStatus
         self.xlStockMarket: str = self.shapes_dto.shStockMarket
         i_status = ISOCertifStatus()
         self.xlISO9001Certif = i_status.iso_status("certif", self.xlISO9001Certif, self.shapes_dto.shISO9001Certif)

@@ -1,5 +1,5 @@
 from dao.BaseEngine import MetaBase
-from sqlalchemy import Column, Integer, String, Float, Boolean
+from sqlalchemy import Column, Integer, String, Float, Boolean, Text
 from sqlalchemy.orm import relationship
 from dao.DAOFunction import YearMonthGenerator, YearMonthDayGenerator, ISOCertifGenerator
 
@@ -26,7 +26,7 @@ class CustomerMaster(MetaBase):
     employees: int = Column(Integer, nullable=True)
     employeeMonth: str = Column(String, nullable=True)
     employeeYear: str = Column(String, nullable=True)
-    capitalForm: int = Column(Integer, nullable=True)
+    capitalForm: str = Column(String, nullable=True)
     corporateType: str = Column(String, nullable=True)  # shapes 株式 有限 その他
     otherCorpType: str = Column(String, nullable=True)  # Null
     customerCapital: float = Column(Float)
@@ -82,7 +82,7 @@ class CustomerMaster(MetaBase):
         self.employees: int = xldto.xlEmployees
         self.employeeYear: str = xldto.xlEmployeeYear
         self.employeeMonth: str = xldto.xlEmployeeMonth
-        self.capitalForm: int = xldto.xlCapitalForm
+        self.capitalForm: str = xldto.xlCapitalForm
         self.corporateType: str = xldto.xlCorporateType
         self.otherCorpType: str = ""
         self.customerCapital:float = xldto.xlCustomerCapital

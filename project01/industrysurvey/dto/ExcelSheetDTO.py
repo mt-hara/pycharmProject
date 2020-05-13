@@ -2,7 +2,7 @@ from dto.AbstractExcelSheetDTO import AbstractExcelSheetDTO
 from excelapp.ShapeState import ShapesPosToValue
 from abc import ABCMeta, abstractmethod
 import re
-
+import unicodedata
 
 class ExcelSheetDTO(AbstractExcelSheetDTO):
     def __init__(self, ws):
@@ -167,14 +167,27 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
                 return float(param)
             elif datatype == str:
                 # 小数点以下を削除
-                return str(int(param))
+                tmp = str(int(param))
+                # 前後の空白を削除
+                s_param = self.strip_string(tmp)
+                # 数字を半角、カタカナを全角に変換
+                han_param = self.str_zen_han(s_param)
+                return str(int(han_param))
         # 数値以外の場合でDTOのデータ型がSTR以外の場合はNoneを代入
         else:
             if datatype == str:
-                return str(param)
+                han_param = self.str_zen_han(param)
+                return str(han_param)
             else:
                 return None
 
+    def str_zen_han(self,param):
+        tmp = unicodedata.normalize("NFKC",param)
+        return str(tmp)
+
+    def strip_string(self,param: str):
+        tmp = param.strip()
+        return str(tmp)
 
     def get_shapes_value(self):
         shapes_data_factory = ShapesPosToValue(self.ws)
@@ -261,7 +274,7 @@ class ISOCetif(ConcreteISOState):
         if self.cellVal == "○" or self.cellVal is not None:
             self.iso_certif_val = "取得済"
         else:
-            if self.shapeval is not None:
+            if self.shapeval  != "":
                 self.iso_certif_val = "取得済"
             else:
                 self.iso_certif_val = None

@@ -177,7 +177,8 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
         else:
             if datatype == str:
                 han_param = self.str_zen_han(param)
-                return str(han_param)
+                s_param = self.strip_string(han_param)
+                return str(s_param)
             else:
                 return None
 

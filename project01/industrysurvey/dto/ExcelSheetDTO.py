@@ -28,7 +28,8 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
         self.xlEmployees: int = self.cells("K22", int)  # K22
         self.xlEmployeeYear: str = self.cells("I23", str)  # I23
         self.xlEmployeeMonth: str = self.cells("O23", str)  # O23
-        self.xlCustomerCapital: float = self.cells("H18", float)  # H18
+        self.xlCustomerCapital: float = self.cells_capital("H18") # H18
+        # self.xlCustomerCapital: float = self.cells("H18", float)/1000  # H18
         self.xlEstablishedYear: str = self.cells("O19", str)  # O19
         self.xlEstablishedMonth: str = self.cells("I19", str)  # I19
         self.xlAccountClosingMonth: int = self.cells("M21", int)  # M21
@@ -151,7 +152,13 @@ class ExcelSheetDTO(AbstractExcelSheetDTO):
     def __get_cell(self, range_value: str):
         return self.ws.range(range_value).value
 
-
+    def cells_capital(self,range_value):
+        param = self.__get_cell(range_value)
+        if param == None:
+            return None
+        elif type(param) == int or type(param) == float:
+            val = float(param)/1000
+            return val
 
     def cells(self, range_value: str, datatype):
         param = self.__get_cell(range_value)

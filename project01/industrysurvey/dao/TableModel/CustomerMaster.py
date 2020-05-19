@@ -13,10 +13,12 @@ class CustomerMaster(MetaBase):
     excludeLaw: bool = Column(Boolean, nullable=True)  # False
     headOfficeZipCd: str = Column(String, nullable=True)
     headOfficeAddress: str = Column(String, nullable=True)
+    headOfficeAddress2: str = Column(String,nullable=True)
     headOfficeTel: str = Column(String, nullable=True)
     headOfficeFax: str = Column(String, nullable=True)
     branchOfficeZipCd: str = Column(String, nullable=True)
     branchOfficeAddress: str = Column(String, nullable=True)
+    branchOfficeAddress2: str = Column(String, nullable=True)
     branchOfficeTel: str = Column(String, nullable=True)
     branchOfficeFax: str = Column(String, nullable=True)
     repName: str = Column(String, nullable=True)
@@ -69,10 +71,12 @@ class CustomerMaster(MetaBase):
         self.excludeLaw: bool = False
         self.headOfficeZipCd: str = xldto.xlHeadOfficeZipCd
         self.headOfficeAddress: str = xldto.xlHeadOfficeAddress
+        self.headOfficeAddress2: str = ""
         self.headOfficeTel: str = xldto.xlHeadOfficeTel
         self.headOfficeFax: str = xldto.xlHeadOfficeFax
         self.branchOfficeZipCd: str = xldto.xlBranchOfficeZipCd
         self.branchOfficeAddress: str = xldto.xlBranchOfficeAddress
+        self.branchOfficeAddress2: str = ""
         self.branchOfficeTel: str = xldto.xlBranchOfficeTel
         self.branchOfficeFax: str = xldto.xlBranchOfficeFax
         self.repName: str = xldto.xlRepName
